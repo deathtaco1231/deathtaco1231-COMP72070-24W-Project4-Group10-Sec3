@@ -23,22 +23,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="PikStuff_Server_Project.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="PikStuff_Server_Project.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtMoc Include="PikStuff_Server_Project.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="PikStuff_Server_Project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+
   </ItemGroup>
 </Project>

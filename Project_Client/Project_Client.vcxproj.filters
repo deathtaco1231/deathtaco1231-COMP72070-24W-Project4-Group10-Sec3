@@ -23,16 +23,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="PikStuff_Server_Project.qrc">
+    <QtRcc Include="Login.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="PikStuff_Server_Project.ui">
+    <QtUic Include="Login.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="PikStuff_Server_Project.h">
+    <QtMoc Include="Login.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="PikStuff_Server_Project.cpp">
+    <ClCompile Include="Login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,5 +40,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
