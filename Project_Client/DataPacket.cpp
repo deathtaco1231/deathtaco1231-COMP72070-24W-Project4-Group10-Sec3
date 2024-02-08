@@ -15,11 +15,18 @@ void setProvVector(std::vector<std::string>* a) {
 }
 
 Address::Address() {
+	this->City = "Empty";
+	this->stAddr = "Empty";
+	this->Province = "Empty";
+	this->unitno = NULL;
 }
-Address::Address(std::string, std::string, std::string, int) {
-
+Address::Address(std::string streetad, std::string city, std::string prov, int unitno) {
+	this->unitno = unitno;
+	this->stAddr = streetad;
+	this->City = city;
+	this->Province = prov;
 }
-~Address() {
+Address::~Address() {
 
 }
 void setProvince(std::string);

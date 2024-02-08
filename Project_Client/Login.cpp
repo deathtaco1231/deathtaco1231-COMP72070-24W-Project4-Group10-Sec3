@@ -10,6 +10,10 @@ Login::Login(QWidget *parent)
 Login::~Login()
 {}
 
-void configUI(void) {
+void Login::configUI(void) {
+    
+}
 
+void Login::on_LoginBtn_clicked() {
+    
 }

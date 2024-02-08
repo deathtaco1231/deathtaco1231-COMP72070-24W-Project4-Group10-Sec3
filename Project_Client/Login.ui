@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>474</height>
+    <width>897</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,7 +78,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../../Downloads/ProjectLogo.png</pixmap>
+     <pixmap>../../ProjectLogo.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -90,7 +90,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>801</width>
+     <width>897</width>
      <height>22</height>
     </rect>
    </property>
