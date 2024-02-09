@@ -17,5 +17,5 @@ void HomePage::configUI(void) {
     std::string addr = "200 Old Carriage Drive";
     Address *a = new Address(addr, addr, addr, 0);
     ui.listWidget->addItem(QString::fromStdString(a->getCity()) + QString::fromStdString(a->getProvince()));
-
+    
 }
