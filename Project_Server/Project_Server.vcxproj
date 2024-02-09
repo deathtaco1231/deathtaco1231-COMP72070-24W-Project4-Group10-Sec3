@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="Project_Server.qrc" />
-    <QtUic Include="Project_Server.ui" />
-    <QtMoc Include="Project_Server.h" />
-    <ClCompile Include="Project_Server.cpp" />
+    <QtRcc Include="Login.qrc" />
+    <QtUic Include="Login.ui" />
+    <QtMoc Include="Login.h" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -34,6 +34,10 @@ void setstAddr(std::string);
 void setCity(std::string);
 void setUnitNo(int);
 int getUnitNo();
-std::string getCity();
+std::string Address::getCity() {
+	return this->City;
+}
 std::string getstAddr();
-std::string getProvince();
+std::string Address::getProvince() {
+	return this->Province;
+}

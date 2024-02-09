@@ -23,7 +23,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Login.qrc">
+    <QtRcc Include="Resources.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
     <QtUic Include="Login.ui">
@@ -40,12 +40,12 @@
     <ClCompile Include="DataPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HomePage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataPacket.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HomePage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Login.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="HomePage.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

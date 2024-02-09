@@ -1,10 +1,10 @@
-#include "Project_Server.h"
+#include "Login.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Project_Server w;
+    Login w;
     w.show();
     return a.exec();
 }

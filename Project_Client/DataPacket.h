@@ -24,7 +24,6 @@ public:
 
 };
 void setProvVector(std::vector<std::string>*);
-
 class Package : public Address{
 protected:
 	std::string ItemName;
@@ -33,4 +32,11 @@ protected:
 public:
 	Package();
 	~Package();
+};
+class Header {
+
+};
+class DataPkt {
+public:
+	Header head;
 };

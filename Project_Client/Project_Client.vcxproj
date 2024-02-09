@@ -160,16 +160,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="Login.qrc" />
+    <QtRcc Include="Resources.qrc" />
     <QtUic Include="HomePage.ui" />
     <QtUic Include="Login.ui" />
     <ClCompile Include="DataPacket.cpp" />
+    <ClCompile Include="HomePage.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataPacket.h" />
-    <ClInclude Include="HomePage.h" />
+    <QtMoc Include="HomePage.h" />
     <QtMoc Include="Login.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

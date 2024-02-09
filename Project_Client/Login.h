@@ -1,7 +1,8 @@
 #pragma once
-
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include "ui_Login.h"
+#include "HomePage.h"
 
 class Login : public QMainWindow
 {
@@ -16,5 +17,6 @@ private slots:
 
 private:
     Ui::Project_ClientClass ui;
+    HomePage* mainscrn;
 };
 

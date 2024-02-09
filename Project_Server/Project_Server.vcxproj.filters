@@ -23,16 +23,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Project_Server.qrc">
+    <QtRcc Include="Login.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="Project_Server.ui">
+    <QtUic Include="Login.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="Project_Server.h">
+    <QtMoc Include="Login.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="Project_Server.cpp">
+    <ClCompile Include="Login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
