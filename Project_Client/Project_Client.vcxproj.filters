@@ -43,6 +43,9 @@
     <ClCompile Include="HomePage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DeliveryPopup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataPacket.h">
@@ -53,12 +56,18 @@
     <QtUic Include="HomePage.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="DeliveryPopup.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Login.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="HomePage.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DeliveryPopup.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

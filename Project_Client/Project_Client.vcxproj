@@ -103,7 +103,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(Qt_INCLUDEPATH_);$(IntDir)uic\</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,15 +161,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="Resources.qrc" />
+    <QtUic Include="DeliveryPopup.ui" />
     <QtUic Include="HomePage.ui" />
     <QtUic Include="Login.ui" />
     <ClCompile Include="DataPacket.cpp" />
+    <ClCompile Include="DeliveryPopup.cpp" />
     <ClCompile Include="HomePage.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataPacket.h" />
+    <QtMoc Include="DeliveryPopup.h" />
     <QtMoc Include="HomePage.h" />
     <QtMoc Include="Login.h" />
   </ItemGroup>
