@@ -160,10 +160,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Package.cpp" />
+    <ClCompile Include="Person.cpp" />
     <QtRcc Include="Resources.qrc" />
     <QtUic Include="DeliveryPopup.ui" />
     <QtUic Include="HomePage.ui" />
     <QtUic Include="Login.ui" />
+    <ClCompile Include="Address.cpp" />
     <ClCompile Include="DataPacket.cpp" />
     <ClCompile Include="DeliveryPopup.cpp" />
     <ClCompile Include="HomePage.cpp" />
@@ -171,7 +175,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Address.h" />
+    <ClInclude Include="AllHeaders.h" />
+    <ClInclude Include="Courier.h" />
     <ClInclude Include="DataPacket.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Package.h" />
+    <ClInclude Include="Person.h" />
     <QtMoc Include="DeliveryPopup.h" />
     <QtMoc Include="HomePage.h" />
     <QtMoc Include="Login.h" />

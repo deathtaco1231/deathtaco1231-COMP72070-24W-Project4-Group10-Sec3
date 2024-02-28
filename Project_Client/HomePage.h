@@ -1,5 +1,5 @@
 #pragma once
-
+#include "AllHeaders.h"
 #include <QtWidgets/QMainWindow>
 #include "ui_HomePage.h"
 #include "DeliveryPopup.h"

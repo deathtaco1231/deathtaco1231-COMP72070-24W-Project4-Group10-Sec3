@@ -1,42 +1,29 @@
 #pragma once
-#include <iostream>
-#include <memory>
-#include <fstream>
-#include <vector>
-class Address {
-protected:
-	std::string stAddr;
-	int unitno;
-	std::string City;
-	std::string Province;
-public:
-	Address();
-	Address(std::string, std::string, std::string, int);
-	~Address();
-	void setProvince(std::string);
-	void setstAddr(std::string);
-	void setCity(std::string);
-	void setUnitNo(int);
-	int getUnitNo();
-	std::string getCity();
-	std::string getstAddr();
-	std::string getProvince();
-
+#include "AllHeaders.h"
+int headSize = sizeof(Header);
+int tailSize = sizeof(Tail);
+struct Header {
+	unsigned char Src : 4;
+	unsigned char Dst : 4;
+	unsigned char DType : 4;
+	unsigned char Flags : 4;
+	short unsigned int Datasize;
 };
-void setProvVector(std::vector<std::string>*);
-class Package : public Address{
-protected:
-	std::string ItemName;
-	std::string deliverBy;
-	std::string createdOn;
-public:
-	Package();
-	~Package();
-};
-class Header {
-
+struct Tail {
+	unsigned char Seqnum;
 };
 class DataPkt {
-public:
+protected:
 	Header head;
+	char* TBuf;
+	Tail tail;
+	DataPkt();
+public:
+	DataPkt(char*);
+	void setHead(unsigned char, unsigned char, unsigned char, unsigned char, short unsigned int);
+	void setSrc(unsigned char);
+	void setDst(unsigned char);
+	void setDType(unsigned char);
+	void setFlags(unsigned char);
+	void setDsize(unsigned short int);
 };

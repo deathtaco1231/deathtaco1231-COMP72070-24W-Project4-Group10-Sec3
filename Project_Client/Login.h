@@ -1,4 +1,5 @@
 #pragma once
+#include "AllHeaders.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include "ui_Login.h"

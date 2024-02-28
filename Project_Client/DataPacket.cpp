@@ -1,43 +1,33 @@
 #include "DataPacket.h"
-
-void setProvVector(std::vector<std::string>* a) {
-	std::ifstream lolz;
-	lolz.open("provinces.txt");
-	if (!lolz.is_open()) {
-		std::cout << "\nPROVINCE LIST FILE NOT FOUND. ABORTING...";
-		exit(-1);
-	}
-	for (int i = 0; i <= 13; i++) {
-		std::string tmp;
-		lolz >> tmp;               
-		a->push_back(tmp);
-	}
+DataPkt::DataPkt() {
+	memset(&this->head, 0, headSize);
+	this->TBuf = nullptr;
+	memset(&this->tail, 0, tailSize);
 }
-
-Address::Address() {
-	this->City = "Empty";
-	this->stAddr = "Empty";
-	this->Province = "Empty";
-	this->unitno = NULL;
-}
-Address::Address(std::string streetad, std::string city, std::string prov, int unitno) {
-	this->unitno = unitno;
-	this->stAddr = streetad;
-	this->City = city;
-	this->Province = prov;
-}
-Address::~Address() {
+DataPkt::DataPkt(char* buf) {
 
 }
-void setProvince(std::string);
-void setstAddr(std::string);
-void setCity(std::string);
-void setUnitNo(int);
-int getUnitNo();
-std::string Address::getCity() {
-	return this->City;
+void DataPkt::setHead(unsigned char src, unsigned char dst, unsigned char dt, unsigned char fl, short unsigned int size) {
+	this->head.Src = src;
+	this->head.Dst = dst;
+	this->head.DType = dt;
+	this->head.Flags = fl;
+	this->head.Datasize = size;
 }
-std::string getstAddr();
-std::string Address::getProvince() {
-	return this->Province;
+void DataPkt::setSrc(unsigned char a) {
+	this->head.Src = a;
 }
+void DataPkt::setDst(unsigned char a) {
+	this->head.Dst = a;
+}
+void DataPkt::setDType(unsigned char a) {
+	this->head.DType = a;
+}
+void DataPkt::setFlags(unsigned char a) {
+	this->head.Flags = a;
+}
+void DataPkt::setDsize(unsigned short int a ) {
+	this->head.Datasize = a;
+}
+
+
