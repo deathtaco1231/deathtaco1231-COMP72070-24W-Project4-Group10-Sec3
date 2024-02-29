@@ -1,5 +1,6 @@
 #include "Package.h"
 Package::Package() : Address() {
+	this->ID = NULL;
 	this->ItemName = "UNNAMED";
 	this->weight = 0;
 	this->length = 0;
@@ -9,7 +10,8 @@ Package::Package() : Address() {
 	this->deliverBy = d;
 	this->createdOn = currdate;
 }
-Package::Package(std::string itemname, double weight, double len, double width, double height, date d) : Address(){
+Package::Package(int id, std::string itemname, double weight, double len, double width, double height, date d) : Address(){
+	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
 	this->length = len;
@@ -18,7 +20,8 @@ Package::Package(std::string itemname, double weight, double len, double width, 
 	this->deliverBy = d;
 	this->createdOn = currdate;
 }
-Package::Package(std::string stadd, std::string city, std::string prov, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov) {
+Package::Package(int id, std::string stadd, std::string city, std::string prov, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov) {
+	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
 	this->length = len;
@@ -27,7 +30,8 @@ Package::Package(std::string stadd, std::string city, std::string prov, std::str
 	this->deliverBy = d;
 	this->createdOn = currdate;
 }
-Package::Package(std::string stadd, std::string city, std::string prov, int unitno, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov, unitno) {
+Package::Package(int id, std::string stadd, std::string city, std::string prov, int unitno, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov, unitno) {
+	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
 	this->length = len;
@@ -74,4 +78,10 @@ date Package::getDeliverBy(void) {
 }
 date Package::getCreationDate(void) {
 	return this->createdOn;
+}
+void Package::setID(int id) {
+	this->ID = id;
+}
+int Package::getID(void) {
+	return this->ID;
 }

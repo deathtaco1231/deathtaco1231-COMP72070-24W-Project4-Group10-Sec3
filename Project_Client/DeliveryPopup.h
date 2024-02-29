@@ -5,8 +5,8 @@
 
 class DeliveryPopup : public QDialog {
 
-	Q_OBJECT
-
+	Q_OBJECT;
+	std::string ImgName = "C:/Users/dankp/Downloads/DeliveredPackage.jpg";
 public:
 	DeliveryPopup(QWidget* parent = nullptr);
 	~DeliveryPopup();

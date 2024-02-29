@@ -13,7 +13,7 @@ DeliveryPopup::~DeliveryPopup()
 }
 
 void DeliveryPopup::configUI(void) {
-    QPixmap demo("C:/Users/dankp/Downloads/DeliveredPackage.jpg");
+    QPixmap demo();
     ui.imglabel->setPixmap(demo);
     ui.imglabel->setScaledContents(true);
 }

@@ -1,5 +1,6 @@
 #include "HomePage.h"
 #include "DataPacket.h"
+#include "Address.h"
 
 HomePage::HomePage(QWidget* parent)
     : QMainWindow(parent)
