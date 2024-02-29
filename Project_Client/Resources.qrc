@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="Project_Client">
+    <qresource prefix="/Images">
+        <file>Images/Label.jpg</file>
+        <file>Images/ProjectLogo.png</file>
     </qresource>
 </RCC>

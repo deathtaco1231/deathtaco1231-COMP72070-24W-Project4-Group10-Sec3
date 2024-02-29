@@ -1,9 +1,11 @@
+#define PKGFNAME "Packages.txt"
 #include "AllHeaders.h"
 #include "Address.h"
 #include "Date.h"
 class Package : public Address {
 protected:
 	int ID;
+	bool isAssigned;
 	std::string ItemName;
 	double weight, length, width, height;
 	date deliverBy;
@@ -21,13 +23,18 @@ public:
 	void setWidth(double);
 	void setHeight(double);
 	void setDeliverBy(date);
+	void setAssigned();
 	int getID();
 	std::string getItem();
 	double getWeight();
 	double getLength();
 	double getWidth();
 	double getHeight();
+	bool checkifassigned();
 	date getDeliverBy();
 	date getCreationDate();
+	std::string toString();
 };
-
+std::vector<Package> allPkgs;
+bool initPkgVect(void);
+Package readPkg(std::ifstream&);

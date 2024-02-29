@@ -14,6 +14,7 @@ public:
 	void setday(const int& a) { this->day = a; }
 	void setmonth(const int& a) { this->month = a; }
 	void setyear(const int& a) { this->year = a; }
+	std::string datetos();
 };
 int long_date(date&);
 std::ostream& operator << (std::ostream&, date&);
