@@ -1,5 +1,5 @@
+#pragma once
 #include "AllHeaders.h"
-
 class Address {
 protected:
 	std::string stAddr;
@@ -10,7 +10,6 @@ public:
 	Address();
 	Address(std::string, std::string, std::string);
 	Address(std::string, std::string, std::string, int);
-	~Address();
 	void setProvince(std::string);
 	void setstAddr(std::string);
 	void setCity(std::string);

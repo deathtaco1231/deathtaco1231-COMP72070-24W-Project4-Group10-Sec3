@@ -1,3 +1,4 @@
+#pragma once
 #include "AllHeaders.h"
 class Person {
 protected:

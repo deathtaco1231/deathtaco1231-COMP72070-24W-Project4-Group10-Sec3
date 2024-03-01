@@ -136,5 +136,7 @@ std::string Package::toString(void) {
 		isA = "Yes";
 	else
 		isA = "No";
-	return ID + "" + ItemName + "" +
+	std::stringstream s;
+	s << ID << "" << ItemName << "" << isA << "" << createdOn.datetos() << "" << deliverBy.datetos();
+	return s.str();
 }

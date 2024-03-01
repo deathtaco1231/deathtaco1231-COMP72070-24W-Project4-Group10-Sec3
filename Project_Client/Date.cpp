@@ -16,7 +16,9 @@ bool date::valid(void) {
 	return true;
 }
 std::string date::datetos(void) {
-	return std::string(this->year + '/' + this->month + '/' + this->day);
+	std::stringstream s;
+	s << this->year << "/" << this->month << "/" << this->day;
+	return s.str();
 }
 int long_date(date& d) {
 	if (d.valid())

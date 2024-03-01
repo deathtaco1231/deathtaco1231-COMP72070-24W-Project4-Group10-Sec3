@@ -1,7 +1,5 @@
 #pragma once
 #include "AllHeaders.h"
-int headSize = sizeof(Header);
-int tailSize = sizeof(Tail);
 struct Header {
 	unsigned char Src : 4;
 	unsigned char Dst : 4;
@@ -27,3 +25,5 @@ public:
 	void setFlags(unsigned char);
 	void setDsize(unsigned short int);
 };
+int headSize = sizeof(Header);
+int tailSize = sizeof(Tail);

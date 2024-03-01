@@ -2,5 +2,6 @@
     <qresource prefix="/Images">
         <file>Images/Label.jpg</file>
         <file>Images/ProjectLogo.png</file>
+        <file>Images/DeliveredPackage.jpg</file>
     </qresource>
 </RCC>

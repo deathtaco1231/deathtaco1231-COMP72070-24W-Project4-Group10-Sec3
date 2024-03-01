@@ -20,7 +20,6 @@ Address::Address(std::string streetad, std::string city, std::string prov, int u
 std::string Address::getCity() {
 	return this->City;
 }
-
 std::string Address::getProvince() {
 	return this->Province;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #define DELIM ','
 #include <iostream>
 #include <memory>

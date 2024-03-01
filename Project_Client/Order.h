@@ -1,3 +1,4 @@
+#pragma once
 #include "AllHeaders.h"
 #include "Package.h"
 #include "Date.h"
