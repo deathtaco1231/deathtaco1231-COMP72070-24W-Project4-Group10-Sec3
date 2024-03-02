@@ -1,7 +1,11 @@
 <RCC>
     <qresource prefix="/Images">
-        <file>Images/Label.jpg</file>
-        <file>Images/ProjectLogo.png</file>
-        <file>Images/DeliveredPackage.jpg</file>
+        <file>DeliveredPackage.jpg</file>
+        <file>ProjectLogo.png</file>
+        <file>Label.jpg</file>
+    </qresource>
+    <qresource prefix="/Data">
+        <file>Packages.txt</file>
+        <file>provinces.txt</file>
     </qresource>
 </RCC>

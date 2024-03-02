@@ -23,3 +23,17 @@ std::string Address::getCity() {
 std::string Address::getProvince() {
 	return this->Province;
 }
+
+
+void setProvVector(std::vector<std::string>& a) {
+	QFile lolz(PROVFPATH);
+	if (!lolz.open(QIODevice::ReadOnly)) {
+		qDebug("\nPROVINCE LIST FILE NOT FOUND. ABORTING...");
+		exit(-1);
+	}
+	while (!lolz.atEnd()) {
+		QString tmp = lolz.readLine();
+		a.push_back(tmp.toStdString());
+	}
+	lolz.close();
+}

@@ -1,5 +1,5 @@
 #pragma once
-#define PKGFNAME "Packages.txt"
+#define PKGFNAME ":/Data/Packages.txt"
 #include "AllHeaders.h"
 #include "Address.h"
 #include "Date.h"
@@ -8,15 +8,16 @@ protected:
 	int ID;
 	bool isAssigned;
 	std::string ItemName;
+	std::string LabelImgPath;
 	double weight, length, width, height;
 	date deliverBy;
 	date createdOn;
 	
 public:
 	Package();
-	Package(int, std::string, double, double, double, double, date);
-	Package(int, std::string, std::string, std::string, std::string, double, double, double, double, date);
-	Package(int, std::string, std::string, std::string, int, std::string, double, double, double, double, date);
+	Package(std::string, int, std::string, double, double, double, double, date);
+	Package(std::string, int, std::string, std::string, std::string, std::string, double, double, double, double, date);
+	Package(std::string, int, std::string, std::string, std::string, int, std::string, double, double, double, double, date);
 	void setID(int);
 	void setItem(std::string);
 	void setWeight(double);

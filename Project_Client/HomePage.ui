@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1021</width>
+    <width>1023</width>
     <height>597</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
      <string>Server State:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="showAllBtn">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -40,7 +40,7 @@
      <string>All</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="showActiveBtn">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -53,7 +53,7 @@
      <string>Active</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="showInactiveBtn">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -66,7 +66,7 @@
      <string>Inactive</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="pkgList">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -76,7 +76,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="sortIDBtn">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -89,7 +89,7 @@
      <string>ID</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="sortNameBtn">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -153,12 +153,12 @@
      <string>Sort By:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="currentpkgID">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>80</y>
-      <width>161</width>
+      <x>610</x>
+      <y>60</y>
+      <width>331</width>
       <height>31</height>
      </rect>
     </property>
@@ -169,7 +169,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Current Selection</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -194,10 +194,10 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>120</y>
-      <width>271</width>
-      <height>151</height>
+      <x>620</x>
+      <y>100</y>
+      <width>261</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="text">
@@ -207,39 +207,59 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>360</y>
-      <width>161</width>
+      <x>580</x>
+      <y>250</y>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
     <property name="text">
-     <string>Details Listed Here</string>
+     <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>510</y>
-      <width>251</width>
+      <x>690</x>
+      <y>480</y>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
+      <pointsize>14</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
-     <string>Options Here (Delete, Update, Etc.)</string>
+     <string>Package Options</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="delPkgBtn">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>520</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>520</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit</string>
     </property>
    </widget>
   </widget>
@@ -248,7 +268,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1021</width>
+     <width>1023</width>
      <height>22</height>
     </rect>
    </property>

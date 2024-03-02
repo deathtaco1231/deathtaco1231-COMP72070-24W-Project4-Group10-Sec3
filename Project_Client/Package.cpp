@@ -1,5 +1,6 @@
 #include "Package.h"
 Package::Package() : Address() {
+	this->LabelImgPath = "";
 	this->ID = NULL;
 	this->ItemName = "UNNAMED";
 	this->weight = 0;
@@ -11,7 +12,8 @@ Package::Package() : Address() {
 	this->createdOn = currdate;
 	this->isAssigned = false;
 }
-Package::Package(int id, std::string itemname, double weight, double len, double width, double height, date d) : Address(){
+Package::Package(std::string labelimg, int id, std::string itemname, double weight, double len, double width, double height, date d) : Address(){
+	this->LabelImgPath = labelimg;
 	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
@@ -22,7 +24,8 @@ Package::Package(int id, std::string itemname, double weight, double len, double
 	this->createdOn = currdate;
 	this->isAssigned = false;
 }
-Package::Package(int id, std::string stadd, std::string city, std::string prov, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov) {
+Package::Package(std::string labelimg, int id, std::string stadd, std::string city, std::string prov, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov) {
+	this->LabelImgPath = labelimg;
 	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
@@ -33,7 +36,8 @@ Package::Package(int id, std::string stadd, std::string city, std::string prov, 
 	this->createdOn = currdate;
 	this->isAssigned = false;
 }
-Package::Package(int id, std::string stadd, std::string city, std::string prov, int unitno, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov, unitno) {
+Package::Package(std::string labelimg, int id, std::string stadd, std::string city, std::string prov, int unitno, std::string itemname, double weight, double len, double width, double height, date d) : Address(stadd, city, prov, unitno) {
+	this->LabelImgPath = labelimg;
 	this->ID = id;
 	this->ItemName = itemname;
 	this->weight = weight;
@@ -108,9 +112,10 @@ bool initPkgVect(void) {
 	return true;
 }
 Package readPkg(std::ifstream& in) {
-	std::string line, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
+	std::string line, labelpath, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
 	std::getline(in, line);
 	std::istringstream isline(line);
+	std::getline(isline, labelpath, DELIM);
 	std::getline(isline, id, DELIM);
 	std::getline(isline, stadd, DELIM);
 	std::getline(isline, city, DELIM);
@@ -125,7 +130,7 @@ Package readPkg(std::ifstream& in) {
 	std::getline(isline, year, DELIM);
 	std::getline(isline, isAssigned);
 	date d(std::stoi(day), std::stoi(month), std::stoi(year));
-	Package p(std::stoi(id), stadd, city, prov, itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
+	Package p(labelpath, std::stoi(id), stadd, city, prov, itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
 	if (isAssigned == "true")
 		p.setAssigned();
 	return p;
@@ -137,6 +142,6 @@ std::string Package::toString(void) {
 	else
 		isA = "No";
 	std::stringstream s;
-	s << ID << "" << ItemName << "" << isA << "" << createdOn.datetos() << "" << deliverBy.datetos();
+	s << ID << "	" << ItemName << "	" << isA << "	" << createdOn.datetos() << "	" << deliverBy.datetos();
 	return s.str();
 }

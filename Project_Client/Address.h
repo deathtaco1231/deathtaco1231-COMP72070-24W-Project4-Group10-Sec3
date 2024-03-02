@@ -1,4 +1,5 @@
 #pragma once
+#define PROVFPATH ":/Data/provinces.txt"
 #include "AllHeaders.h"
 class Address {
 protected:
@@ -19,17 +20,5 @@ public:
 	std::string getstAddr();
 	std::string getProvince();
 };
-
-void setProvVector(std::vector<std::string>* a) {
-	std::ifstream lolz;
-	lolz.open("provinces.txt");
-	if (!lolz.is_open()) {
-		std::cout << "\nPROVINCE LIST FILE NOT FOUND. ABORTING...";
-		exit(-1);
-	}
-	for (int i = 0; i <= 13; i++) {
-		std::string tmp;
-		lolz >> tmp;
-		a->push_back(tmp);
-	}
-}
+std::vector<std::string> provvect;
+void setProvVector(std::vector<std::string>&);

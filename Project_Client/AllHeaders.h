@@ -7,3 +7,5 @@
 #include <string>
 #include <algorithm>
 #include <sstream>
+#include <qdebug.h>
+#include <qfile.h>
