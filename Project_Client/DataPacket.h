@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #include "AllHeaders.h"
 struct Header {
 	unsigned char Src : 4;

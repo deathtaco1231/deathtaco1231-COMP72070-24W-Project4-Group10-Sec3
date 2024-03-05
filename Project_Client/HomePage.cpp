@@ -56,4 +56,5 @@ void setCurrPkgSel(QListWidgetItem* item) {
     for (int i = 0; i < allQstrPkgs.size(); i++) 
         if (item->text().toStdString() == allPkgs[i].toString())
             currSelect = allPkgs[i];
+    qDebug("Selected Item.");
 }
