@@ -39,4 +39,4 @@ public:
 };
 std::vector<Package> allPkgs;
 bool initPkgVect(void);
-Package readPkg(std::ifstream&);
+Package readPkg(QFile&);

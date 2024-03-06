@@ -101,20 +101,20 @@ bool Package::checkifassigned(void) {
 }
 
 bool initPkgVect(void) {
-	std::ifstream in;
-	in.open(PKGFNAME);
-	if (!in.is_open())
+	QFile pkgdata(PKGFNAME);
+	if (!pkgdata.open(QIODevice::ReadOnly))
 		return false;
-	while (!in.eof()) {
-		Package p = readPkg(in);
-		allPkgs.push_back(p);
+	while (!pkgdata.atEnd()) {
+		Package tmp = readPkg(pkgdata);
+		allPkgs.push_back(tmp);
 	}
+	pkgdata.close();
 	return true;
 }
-Package readPkg(std::ifstream& in) {
-	std::string line, labelpath, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
-	std::getline(in, line);
-	std::istringstream isline(line);
+Package readPkg(QFile& in) {
+	QString line = in.readLine();
+	std::string labelpath, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
+	std::istringstream isline(line.toStdString());
 	std::getline(isline, labelpath, DELIM);
 	std::getline(isline, id, DELIM);
 	std::getline(isline, stadd, DELIM);
