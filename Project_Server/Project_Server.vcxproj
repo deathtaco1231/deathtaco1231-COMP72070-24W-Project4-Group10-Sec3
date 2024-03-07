@@ -150,11 +150,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="Login.qrc" />
+    <QtRcc Include="Resources.qrc" />
+    <QtUic Include="HomePage.ui" />
     <QtUic Include="Login.ui" />
     <QtMoc Include="Login.h" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllHeaders.h" />
+    <QtMoc Include="HomePage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

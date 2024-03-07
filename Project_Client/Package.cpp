@@ -99,6 +99,9 @@ void Package::setAssigned(void) {
 bool Package::checkifassigned(void) {
 	return isAssigned;
 }
+std::string Package::getImgPath(void) {
+	return this->LabelImgPath;
+}
 
 bool initPkgVect(void) {
 	QFile pkgdata(PKGFNAME);

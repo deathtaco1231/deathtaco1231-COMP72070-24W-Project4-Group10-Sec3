@@ -3,7 +3,7 @@ Address::Address() {
 	this->City = "Empty";
 	this->stAddr = "Empty";
 	this->Province = "Empty";
-	this->unitno = NULL;
+	this->unitno = 0;
 }
 Address::Address(std::string staddr, std::string city, std::string prov) {
 	this->unitno = 0;
@@ -23,8 +23,11 @@ std::string Address::getCity() {
 std::string Address::getProvince() {
 	return this->Province;
 }
-
-
+std::string Address::getstAddr() {
+	if (this->unitno != 0)
+		return this->stAddr + " Unit #" + std::to_string(this->unitno) + ", " + this->City + ", " + this->Province;
+	return this->stAddr + ", " + this->City + ", " + this->Province;
+}
 void setProvVector(std::vector<std::string>& a) {
 	QFile lolz(PROVFPATH);
 	if (!lolz.open(QIODevice::ReadOnly)) {

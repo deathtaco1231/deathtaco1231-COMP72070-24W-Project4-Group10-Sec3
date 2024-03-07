@@ -35,8 +35,11 @@ public:
 	bool checkifassigned();
 	date getDeliverBy();
 	date getCreationDate();
+	std::string getImgPath();
 	std::string toString();
 };
 std::vector<Package> allPkgs;
 bool initPkgVect(void);
 Package readPkg(QFile&);
+
+
