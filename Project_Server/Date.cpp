@@ -60,3 +60,8 @@ bool operator <=(date& d1, date& d2) {
 	if (d1 == d2) { return true; }
 	return (d1 < d2);
 }
+void setcurrdate(void) {
+	time_t today = time(0);
+	char* todaysdate = ctime(&today);
+
+}

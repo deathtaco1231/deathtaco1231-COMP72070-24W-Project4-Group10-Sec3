@@ -76,9 +76,6 @@ double Package::getHeight(void) {
 date Package::getDeliverBy(void) {
 	return this->deliverBy;
 }
-date Package::getCreationDate(void) {
-	return this->createdOn;
-}
 void Package::setID(int id) {
 	this->ID = id;
 }

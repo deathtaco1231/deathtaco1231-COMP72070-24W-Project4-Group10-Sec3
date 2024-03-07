@@ -2,6 +2,7 @@
 #include "AllHeaders.h"
 #include <QtWidgets/QMainWindow>
 #include "ui_HomePage.h"
+#include "Package.h"
 class HomePage : public QMainWindow
 {
     Q_OBJECT
@@ -13,11 +14,9 @@ public:
 private slots:
     void on_sortstatusBtn_clicked();
     void on_delPkgBtn_clicked();
-    void on_pkgList_itemClicked(QListWidgetItem*);
+    
 private:
     Ui::MainWindow ui;
 };
 std::vector<QString> allQstrPkgs;
 Package currSelect;
-QListWidgetItem* currItem;
-void setCurrPkgSel(QListWidgetItem*);

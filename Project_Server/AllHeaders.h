@@ -10,3 +10,4 @@
 #include <sstream>
 #include <qdebug.h>
 #include <qfile.h>
+#include <ctime>
