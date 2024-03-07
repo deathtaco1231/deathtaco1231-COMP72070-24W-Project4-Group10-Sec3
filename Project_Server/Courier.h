@@ -7,7 +7,7 @@ protected:
 public:
 	Courier();
 	Courier(int, int);
-	Courier(int, int, int, int, std::string, std::string, std::string);
+	Courier(int, int, int, int, std::string);
 	void incGoodDeliv();
 	void incLateDeliv();
 	int getGoodDeliv();

@@ -164,6 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Courier.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Package.cpp" />
