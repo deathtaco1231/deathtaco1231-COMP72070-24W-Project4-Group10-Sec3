@@ -5,7 +5,7 @@
 #include "Date.h"
 class Package : public Address {
 protected:
-	int ID;
+	int ID; 
 	std::string ItemName;
 	std::string LabelImgPath;
 	double weight, length, width, height;

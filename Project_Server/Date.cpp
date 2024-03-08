@@ -63,5 +63,7 @@ bool operator <=(date& d1, date& d2) {
 void setcurrdate(void) {
 	time_t today = time(0);
 	char* todaysdate = ctime(&today);
-
+	std::stringstream s(todaysdate);
+	std::string year, month, day;
+	std::getline(s, year, DELIM);
 }
