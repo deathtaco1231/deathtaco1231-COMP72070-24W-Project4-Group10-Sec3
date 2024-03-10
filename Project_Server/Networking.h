@@ -30,12 +30,13 @@ bool initSocket() {
 }
 void sendData(std::string uname, std::string pword) {
 	DataPkt p;
-	p.setHead(LOGINDT, 0, uname.size() + pword.size());
+	p.setHead(LOGINDT, 0, uname.size() + pword.size() + sizeof(DELIM));
 	char dbuf[200];
 	strcpy_s(dbuf, uname.c_str());
 	strcat(dbuf, ",");
-	strcat()
-	p.setTBuf
+	strcat(dbuf, pword.c_str());
+	int size;
+	p.setTBuf(dbuf, size);
 }
 long int GetFileSize(const char* filename)
 {
