@@ -11,3 +11,5 @@
 #include <qdebug.h>
 #include <qfile.h>
 #include <ctime>
+#include <windows.networking.sockets.h>
+#pragma comment(lib, "Ws2_32.lib")
