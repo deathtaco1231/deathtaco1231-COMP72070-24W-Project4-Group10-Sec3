@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="Project_Server">
+    <qresource prefix="/Images">
+        <file>ProjectLogo.png</file>
     </qresource>
 </RCC>

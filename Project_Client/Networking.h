@@ -16,7 +16,7 @@ bool initSocket(void) {
 	sockaddr_in SvrAddr;
 	SvrAddr.sin_family = AF_INET;
 	SvrAddr.sin_addr.s_addr = INADDR_ANY;
-	SvrAddr.sin_port = htons(27000);
+	SvrAddr.sin_port = htons(27500);
 	if (bind(ServerSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr)) == SOCKET_ERROR)
 	{
 		closesocket(ServerSocket);
@@ -31,7 +31,7 @@ bool initSocket(void) {
 	}
 	return true;
 }
-bool connect(void) {
+bool connectSocket(void) {
 	ConnectionSocket = SOCKET_ERROR;
 	if ((ConnectionSocket = accept(ServerSocket, NULL, NULL)) == SOCKET_ERROR) {
 		closesocket(ServerSocket);

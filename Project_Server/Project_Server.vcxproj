@@ -160,8 +160,8 @@
   <ItemGroup>
     <ClCompile Include="Address.cpp" />
     <ClCompile Include="Courier.cpp" />
+    <ClCompile Include="DataPacket.cpp" />
     <ClCompile Include="Date.cpp" />
-    <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Package.cpp" />
     <ClCompile Include="Person.cpp" />
     <QtRcc Include="Resources.qrc" />
@@ -176,6 +176,7 @@
     <ClInclude Include="Address.h" />
     <ClInclude Include="AllHeaders.h" />
     <ClInclude Include="Courier.h" />
+    <ClInclude Include="DataPacket.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Networking.h" />
     <ClInclude Include="Package.h" />

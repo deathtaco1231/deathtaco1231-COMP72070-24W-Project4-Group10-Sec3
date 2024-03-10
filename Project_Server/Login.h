@@ -12,6 +12,7 @@ public:
     Login(QWidget* parent = nullptr);
     ~Login();
     void configUI(void);
+    void tempui(void);
 private slots:
     void on_LoginBtn_clicked();
 

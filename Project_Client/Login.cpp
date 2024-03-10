@@ -21,4 +21,5 @@ void Login::configUI(void) {
 void Login::on_LoginBtn_clicked() {
     mainscrn = new HomePage(this);
     mainscrn->show();
+    this->hide();
 }

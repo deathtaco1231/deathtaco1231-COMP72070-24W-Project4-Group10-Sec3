@@ -12,8 +12,7 @@ public:
     ~HomePage();
     void configUI(void);
 private slots:
-    void on_sortstatusBtn_clicked();
-    void on_delPkgBtn_clicked();
+  
     
 private:
     Ui::MainWindow ui;
