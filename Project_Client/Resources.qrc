@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/Images">
         <file>DeliveredPackage.jpg</file>
-        <file>ProjectLogo.png</file>
         <file>Label.jpg</file>
+        <file>ProjectLogo.png</file>
     </qresource>
     <qresource prefix="/Data">
         <file>Packages.txt</file>
