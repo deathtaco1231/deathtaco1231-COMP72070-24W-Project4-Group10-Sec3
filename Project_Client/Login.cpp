@@ -4,6 +4,7 @@ Login::Login(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    setcurrdate();
     configUI();
 }
 
@@ -19,7 +20,16 @@ void Login::configUI(void) {
 }
 
 void Login::on_LoginBtn_clicked() {
-    mainscrn = new HomePage(this);
-    mainscrn->show();
-    this->hide();
+    std::string uname = ui.usernameline->text().toStdString();
+    std::string pword = ui.passwordline->text().toStdString();
+    std::string authkey = ui.adminline->text().toStdString();
+    if (authMgr(uname, pword, authkey)) {
+        mainscrn = new HomePage(this);
+        mainscrn->show();
+        this->hide();
+    }
+    else {
+        ui.errorLabel->setText(QString::fromStdString("One or more fields not valid!"));
+        ui.errorLabel->setStyleSheet("QLabel { color : red; }");
+    }
 }

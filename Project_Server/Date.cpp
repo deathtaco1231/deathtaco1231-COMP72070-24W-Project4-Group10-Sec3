@@ -61,9 +61,41 @@ bool operator <=(date& d1, date& d2) {
 	return (d1 < d2);
 }
 void setcurrdate(void) {
+	int mon = 0;
 	time_t today = time(0);
 	char* todaysdate = ctime(&today);
 	std::stringstream s(todaysdate);
-	std::string year, month, day;
-	std::getline(s, year, DELIM);
+	std::string year, month, day, garbage;
+	std::getline(s, garbage, ' ');
+	std::getline(s, month, ' ');
+	std::getline(s, day, ' ');
+	std::getline(s, garbage, ' ');
+	std::getline(s, year, '\n');
+	currdate.setday(stoi(day));
+	if (!month.compare("Jan"))
+		currdate.setmonth(mon = 1);
+	else if (!month.compare("Feb"))
+		currdate.setmonth(mon = 2);
+	else if (!month.compare("Mar"))
+		currdate.setmonth(mon = 3);
+	else if (!month.compare("Apr"))
+		currdate.setmonth(mon = 4);
+	else if (!month.compare("May"))
+		currdate.setmonth(mon = 5);
+	else if (!month.compare("Jun"))
+		currdate.setmonth(mon = 6);
+	else if (!month.compare("Jul"))
+		currdate.setmonth(mon = 7);
+	else if (!month.compare("Aug"))
+		currdate.setmonth(mon = 8);
+	else if (!month.compare("Sep"))
+		currdate.setmonth(mon = 9);
+	else if (!month.compare("Oct"))
+		currdate.setmonth(mon = 10);
+	else if (!month.compare("Nov"))
+		currdate.setmonth(mon = 11);
+	else
+		currdate.setmonth(mon = 12);
+
+	currdate.setyear(stoi(year));
 }

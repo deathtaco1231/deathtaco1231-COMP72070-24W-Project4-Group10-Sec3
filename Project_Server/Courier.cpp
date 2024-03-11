@@ -7,7 +7,7 @@ Courier::Courier(int gooddeliv, int latedeliv) : Person(){
 	this->GoodDeliveries = gooddeliv;
 	this->LateDeliveries = latedeliv;
 }
-Courier::Courier(int gooddeliv, int latedeliv, int ID, int Age, std::string Name) : Person(Age, ID, Name){
+Courier::Courier(int gooddeliv, int latedeliv, int Age, int ID, std::string Name) : Person(Age, ID, Name){
 	this->GoodDeliveries = gooddeliv;
 	this->LateDeliveries = latedeliv;
 }

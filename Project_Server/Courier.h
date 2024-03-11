@@ -13,3 +13,4 @@ public:
 	int getGoodDeliv();
 	int getLateDeliv();
 };
+Courier currCourier;

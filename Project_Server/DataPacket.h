@@ -18,8 +18,10 @@ protected:
 	Header head;
 	char* TBuf;
 	Tail tail;
+	
 public:
 	DataPkt();
+	~DataPkt();
 	DataPkt(char*);
 	void setHead(unsigned char, unsigned char, short unsigned int);
 	/*void setSrc(unsigned char);
@@ -27,7 +29,10 @@ public:
 	void setDType(unsigned char);
 	void setFlags(unsigned char);
 	void setDsize(unsigned short int);
-	char* setTBuf(char*, int&);
+	void setTBuf(char*, int&);
+	char* getTBuf();
+	int getDType();
+	int getFlags();
 };
 int headSize = sizeof(Header);
 int tailSize = sizeof(Tail);

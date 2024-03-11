@@ -69,8 +69,8 @@
    <widget class="QListWidget" name="pkgList">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>140</y>
+      <x>11</x>
+      <y>141</y>
       <width>491</width>
       <height>411</height>
      </rect>
@@ -176,7 +176,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>20</y>
+      <y>40</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -201,7 +201,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="itemnameLabel">
@@ -212,6 +212,11 @@
       <width>291</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Item Name:</string>
@@ -271,6 +276,11 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Weight:</string>
     </property>
@@ -283,6 +293,11 @@
       <width>461</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Dimensions:</string>
@@ -310,6 +325,11 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>To:</string>
     </property>
@@ -322,6 +342,11 @@
       <width>201</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Created On:</string>
@@ -336,6 +361,11 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Deliver By:</string>
     </property>
@@ -344,10 +374,15 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>440</y>
+      <y>450</y>
       <width>321</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Is Assigned To:</string>
@@ -356,10 +391,10 @@
    <widget class="QWidget" name="connectingWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>-1</y>
-      <width>1011</width>
-      <height>571</height>
+      <x>10</x>
+      <y>200</y>
+      <width>231</width>
+      <height>371</height>
      </rect>
     </property>
     <widget class="QLabel" name="label_7">
@@ -381,6 +416,48 @@
       <string>Waiting for client connection...</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="infoLabel">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>261</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="courierLabel">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>10</y>
+      <width>451</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

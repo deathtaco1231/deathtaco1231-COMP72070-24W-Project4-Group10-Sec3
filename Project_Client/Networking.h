@@ -1,5 +1,6 @@
 #pragma once
 #include "AllHeaders.h"
+#include "DataPacket.h"
 
 SOCKET ServerSocket, ConnectionSocket;
 bool initSocket(void) {
@@ -54,4 +55,12 @@ long int GetFileSize(const char* filename)
 
 	return size;
 }
-
+void sendToClt(char* Tx, int size) {
+	send(ConnectionSocket, Tx, size, 0);
+}
+DataPkt recvPacket(void) {
+	char Rx[100000];
+	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
+	DataPkt p(Rx);
+	return p;
+}

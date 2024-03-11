@@ -17,10 +17,10 @@ Login::~Login()
 void Login::tempui(void) {
     ui.connectingWidget->setAutoFillBackground(true);
     ui.connectingWidget->show();
-   /* if (!initSocket()) {
+    if (!initSocket()) {
         qDebug("Socket failed to initalize.");
         exit(1);
-    }*/
+    }
     ui.connectingWidget->hide();
 }
 
@@ -32,7 +32,14 @@ void Login::configUI(void) {
 void Login::on_LoginBtn_clicked() {
     std::string uname = ui.usernameline->text().toStdString();
     std::string pword = ui.passwordline->text().toStdString();
-    mainscrn = new HomePage(this);
-    mainscrn->show();
-    this->hide();
+    sendData(uname, pword);
+    if (!authCourier()) {
+        ui.errorLabel->setText(QString::fromStdString("One or more fields not valid!"));
+        ui.errorLabel->setStyleSheet("QLabel { color : red; }");
+    }
+    else {
+        mainscrn = new HomePage(this);
+        mainscrn->show();
+        this->hide();
+    }
 }

@@ -23,4 +23,4 @@ bool operator < (date&, date&);
 bool operator == (date&, date&);
 bool operator <=(date&, date&);
 date currdate; // GLOBAL FOR KEEPING TRACK OF CURRENT DATE
-void setcurrdate();
+void setcurrdate(void);

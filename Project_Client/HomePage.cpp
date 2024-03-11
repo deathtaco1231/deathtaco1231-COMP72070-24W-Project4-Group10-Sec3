@@ -18,14 +18,15 @@ HomePage::~HomePage()
 void HomePage::setTempui(void) {
     ui.connectingWidget->setAutoFillBackground(true);
     ui.connectingWidget->show();
-    /*if (!initSocket()) {
+    if (!initSocket()) {
         qDebug("Server socket failed to initalize.");
         exit(1);
     }
     if (!connectSocket()) {
         qDebug("Connection socket failed.");
         exit(1);
-    }*/
+    }
+    setCurrentCourier();
     ui.connectingWidget->hide();
 }
 
@@ -40,6 +41,8 @@ void HomePage::configUI(void) {
         allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
     for (int i = 0; i < allQstrPkgs.size(); i++)
         ui.pkgList->addItem(allQstrPkgs[i]);  
+    ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
+    ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
 }
 void HomePage::on_sortstatusBtn_clicked() {
     popup = new DeliveryPopup(this);

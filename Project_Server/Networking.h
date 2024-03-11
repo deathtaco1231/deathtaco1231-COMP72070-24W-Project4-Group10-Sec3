@@ -1,5 +1,6 @@
 #include "AllHeaders.h"
 #include "DataPacket.h"
+#include "Courier.h"
 
 SOCKET ClientSocket;
 bool initSocket() {
@@ -37,6 +38,8 @@ void sendData(std::string uname, std::string pword) {
 	strcat(dbuf, pword.c_str());
 	int size;
 	p.setTBuf(dbuf, size);
+	char* Tx = p.getTBuf();
+	sendToSrv(Tx, size);
 }
 long int GetFileSize(const char* filename)
 {
@@ -50,4 +53,27 @@ long int GetFileSize(const char* filename)
 	fclose(f);
 
 	return size;
+}
+void sendToSrv(char* Tx, int size) {
+	send(ClientSocket, Tx, size, 0);
+}
+DataPkt recvPacket(void) {
+	char Rx[100000];
+	recv(ClientSocket, Rx, sizeof(Rx), 0);
+	DataPkt p(Rx);
+	return p;
+}
+bool authCourier(void) {
+	DataPkt p = recvPacket();
+	if (p.getFlags() == 1)
+		return false;
+	std::istringstream isline(p.getTBuf());
+	std::string gooddeliv, latedeliv, age, id, name;
+	std::getline(isline, gooddeliv, DELIM);
+	std::getline(isline, latedeliv, DELIM);
+	std::getline(isline, age, DELIM);
+	std::getline(isline, id, DELIM);
+	std::getline(isline, name);
+	currCourier = Courier(stoi(gooddeliv), stoi(latedeliv), stoi(age), stoi(id), name);
+	return true;
 }

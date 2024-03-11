@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="Courier.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Package.cpp" />
     <ClCompile Include="Person.cpp" />
