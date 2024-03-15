@@ -57,17 +57,18 @@ bool authCourier(std::string uname, std::string pword) {
 	return false;
 }
 void setCurrentCourier(void) {
-	bool isValid = true;
-	while (isValid) {
+	bool isValid = false;
+	while (!isValid) {
 		DataPkt p = recvPacket();
 		std::istringstream isline(p.getTBuf());
 		std::string uname, pword;
 		std::getline(isline, uname, DELIM);
 		std::getline(isline, pword);
-		if (!authCourier(uname, pword)) {
-			DataPkt s;
-			s.setHead()
-			send()
+		if (!authCourier(uname, pword)) 
+			sendData(FAILEDAUTHFLAG);
+		else {
+			isValid = true;
+			sendData(currCourier);
 		}
 	}
 }

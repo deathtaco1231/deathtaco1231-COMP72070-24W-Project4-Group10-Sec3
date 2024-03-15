@@ -15,20 +15,35 @@ void DataPkt::setHead(unsigned char dt, unsigned char fl, short unsigned int siz
 	this->head.Flags = fl;
 	this->head.Datasize = size;
 }
-//void DataPkt::setSrc(unsigned char a) {
-//	this->head.Src = a;
-//}
-//void DataPkt::setDst(unsigned char a) {
-//	this->head.Dst = a;
-//}
 void DataPkt::setDType(unsigned char a) {
 	this->head.DType = a;
 }
 void DataPkt::setFlags(unsigned char a) {
 	this->head.Flags = a;
 }
-void DataPkt::setDsize(unsigned short int a ) {
+void DataPkt::setDsize(unsigned short int a) {
 	this->head.Datasize = a;
 }
-
-
+void DataPkt::setTBuf(char* data, int& size) {
+	if (TBuf)
+		delete TBuf;
+	size = headSize + head.Datasize + tailSize;
+	TBuf = new char[size];
+	memcpy(TBuf, &head, headSize);
+	if (head.Datasize != 0)
+		memcpy(TBuf + headSize, data, head.Datasize);
+	memcpy(TBuf + headSize + head.Datasize, &tail, tailSize);
+}
+char* DataPkt::getTBuf(void) {
+	return this->TBuf;
+}
+DataPkt::~DataPkt() {
+	if (TBuf)
+		delete[] TBuf;
+}
+int DataPkt::getDType(void) {
+	return (int)this->head.DType;
+}
+int DataPkt::getFlags(void) {
+	return (int)this->head.Flags;
+}

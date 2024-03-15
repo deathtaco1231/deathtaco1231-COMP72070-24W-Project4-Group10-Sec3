@@ -1,4 +1,5 @@
 #pragma once
+#define FAILEDAUTHFLAG 1
 #include "AllHeaders.h"
 #include "DataPacket.h"
 
@@ -58,9 +59,50 @@ long int GetFileSize(const char* filename)
 void sendToClt(char* Tx, int size) {
 	send(ConnectionSocket, Tx, size, 0);
 }
+void sentToClt(DataPkt& p) {
+}
 DataPkt recvPacket(void) {
 	char Rx[100000];
 	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
 	DataPkt p(Rx);
 	return p;
+}
+void sendData(int VAL) {
+	switch (VAL) {
+	case 1:
+	{
+		DataPkt s;
+		s.setHead(0, 1, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
+		break;
+	}
+	case 2:
+	{
+		break;
+	}
+	case 3:
+	{
+		break;
+	}
+	case 4:
+	{
+		break;
+	}
+	default:
+	{
+		qDebug("Invalid flag parameter passed. Nothing sent, please reconfigure.");
+		break;
+	}
+	}
+}
+void sendData(Courier c) {
+	DataPkt p;
+	std::string tmp;
+	char cbuf[1000];
+	
+	strcpy_s(cbuf, );
+
+	//p.setHead(COURIERDT, 0, )
 }

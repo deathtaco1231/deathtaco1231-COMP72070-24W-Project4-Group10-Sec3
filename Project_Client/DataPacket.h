@@ -20,10 +20,9 @@ protected:
 	Tail tail;
 public:
 	DataPkt();
+	~DataPkt();
 	DataPkt(char*);
 	void setHead(unsigned char, unsigned char, short unsigned int);
-	/*void setSrc(unsigned char);
-	void setDst(unsigned char);*/
 	void setDType(unsigned char);
 	void setFlags(unsigned char);
 	void setDsize(unsigned short int);
