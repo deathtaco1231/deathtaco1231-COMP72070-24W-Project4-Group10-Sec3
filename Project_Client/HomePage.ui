@@ -388,35 +388,6 @@
      <string>Is Assigned To:</string>
     </property>
    </widget>
-   <widget class="QWidget" name="connectingWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>1011</width>
-      <height>571</height>
-     </rect>
-    </property>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>160</y>
-       <width>701</width>
-       <height>191</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>32</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Waiting for client connection...</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QLabel" name="infoLabel">
     <property name="geometry">
      <rect>

@@ -33,7 +33,7 @@ Courier readCourier(QFile& in) {
 	std::getline(isline, id, DELIM);
 	std::getline(isline, name, DELIM);
 	std::getline(isline, uname, DELIM);
-	std::getline(isline, pword);
+	std::getline(isline, pword, BODYEND);
 	Courier c(stoi(gooddeliv), stoi(latedeliv), stoi(age), stoi(id), name, uname, pword);
 	return c;
 }
@@ -56,6 +56,29 @@ bool authCourier(std::string uname, std::string pword) {
 	courierdata.close();
 	return false;
 }
+void sendCourier(Courier c) {
+	DataPkt p;
+	std::string tmp;
+	char cbuf[1000] = { 0 };
+	tmp = std::to_string(c.getGoodDeliv());
+	strcpy_s(cbuf, tmp.c_str());
+	strcat_s(cbuf, ",");
+	tmp = std::to_string(c.getLateDeliv());
+	strcat_s(cbuf, tmp.c_str());
+	strcat_s(cbuf, ",");
+	tmp = std::to_string(c.getAge());
+	strcat_s(cbuf, tmp.c_str());
+	strcat_s(cbuf, ",");
+	tmp = std::to_string(c.getID());
+	strcat_s(cbuf, tmp.c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, c.getName().c_str());
+	strcat_s(cbuf, ";");
+	p.setHead(COURIERDT, 0, strlen(cbuf));
+	int size;
+	p.setTBuf(cbuf, size);
+	sendToClt(p.getTBuf(), size);
+}
 void setCurrentCourier(void) {
 	bool isValid = false;
 	while (!isValid) {
@@ -63,12 +86,13 @@ void setCurrentCourier(void) {
 		std::istringstream isline(p.getTBuf());
 		std::string uname, pword;
 		std::getline(isline, uname, DELIM);
-		std::getline(isline, pword);
+		std::getline(isline, pword, BODYEND);
 		if (!authCourier(uname, pword)) 
-			sendData(FAILEDAUTHFLAG);
+			sendFlag(FAILEDAUTHFLAG);
 		else {
 			isValid = true;
-			sendData(currCourier);
+			sendCourier(currCourier);
 		}
 	}
 }
+

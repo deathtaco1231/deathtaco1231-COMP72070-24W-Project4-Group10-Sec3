@@ -16,6 +16,7 @@ public:
 	int getLateDeliv();
 };
 Courier readCourier(QFile&);
+void sendCourier(Courier);
 bool authCourier(std::string, std::string);
 void setCurrentCourier(void);
 Courier currCourier;

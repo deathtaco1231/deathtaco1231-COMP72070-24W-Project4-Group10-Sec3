@@ -13,7 +13,22 @@ Login::~Login()
     
 }
 
+void Login::setTempUI(void) {
+    if (!initSocket()) {
+        qDebug("Server socket failed to initalize.");
+        exit(1);
+    }
+    if (!connectSocket()) {
+        qDebug("Connection socket failed.");
+        exit(1);
+    }
+    setCurrentCourier();
+    ui.connectingWidget->hide();
+}
+
 void Login::configUI(void) {
+    QWidget::setWindowTitle(QString::fromStdString("Server Login"));
+    ui.connectingWidget->setVisible(false);
     ui.usernameline->setPlaceholderText(QString("Enter username here"));
     ui.passwordline->setPlaceholderText(QString("Enter password here"));
     ui.adminline->setPlaceholderText(QString("FOR SERVER ONLY: 2FA Code"));
@@ -24,6 +39,10 @@ void Login::on_LoginBtn_clicked() {
     std::string pword = ui.passwordline->text().toStdString();
     std::string authkey = ui.adminline->text().toStdString();
     if (authMgr(uname, pword, authkey)) {
+        ui.connectingWidget->setAutoFillBackground(true);
+        ui.connectingWidget->show();
+        QApplication::processEvents();
+        setTempUI();
         mainscrn = new HomePage(this);
         mainscrn->show();
         this->hide();

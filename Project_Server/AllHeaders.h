@@ -1,5 +1,6 @@
 #pragma once
 #define DELIM ','
+#define BODYEND ';'
 #include <format>
 #include <iostream>
 #include <memory>

@@ -14,6 +14,7 @@ HomePage::~HomePage()
 }
 
 void HomePage::configUI(void) {
+    QWidget::setWindowTitle(QString::fromStdString("Client"));
   /*  ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
     if (!initPkgVect()) {
         qDebug("PACKAGE VECTOR INIT FAILURE. ABORTING...");

@@ -29,13 +29,17 @@ bool initSocket() {
 	}
 	return true;
 }
+void sendToSrv(char* Tx, int size) {
+	send(ClientSocket, Tx, size, 0);
+}
 void sendData(std::string uname, std::string pword) {
 	DataPkt p;
-	p.setHead(LOGINDT, 0, uname.size() + pword.size() + sizeof(DELIM));
+	p.setHead(LOGINDT, 0, uname.size() + pword.size() + sizeof(DELIM) + sizeof(BODYEND));
 	char dbuf[200];
 	strcpy_s(dbuf, uname.c_str());
 	strcat(dbuf, ",");
 	strcat(dbuf, pword.c_str());
+	strcat(dbuf, ";");
 	int size;
 	p.setTBuf(dbuf, size);
 	char* Tx = p.getTBuf();
@@ -54,9 +58,6 @@ long int GetFileSize(const char* filename)
 
 	return size;
 }
-void sendToSrv(char* Tx, int size) {
-	send(ClientSocket, Tx, size, 0);
-}
 DataPkt recvPacket(void) {
 	char Rx[100000];
 	recv(ClientSocket, Rx, sizeof(Rx), 0);
@@ -73,7 +74,7 @@ bool authCourier(void) {
 	std::getline(isline, latedeliv, DELIM);
 	std::getline(isline, age, DELIM);
 	std::getline(isline, id, DELIM);
-	std::getline(isline, name);
+	std::getline(isline, name, BODYEND);
 	currCourier = Courier(stoi(gooddeliv), stoi(latedeliv), stoi(age), stoi(id), name);
 	return true;
 }

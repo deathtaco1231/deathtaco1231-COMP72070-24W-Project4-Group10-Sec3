@@ -14,7 +14,6 @@ public:
     HomePage(QWidget* parent = nullptr);
     ~HomePage();
     void configUI(void);
-    void setTempui(void);
 private slots:
     void on_sortstatusBtn_clicked();
     void on_delPkgBtn_clicked(); 

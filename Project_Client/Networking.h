@@ -18,7 +18,7 @@ bool initSocket(void) {
 	sockaddr_in SvrAddr;
 	SvrAddr.sin_family = AF_INET;
 	SvrAddr.sin_addr.s_addr = INADDR_ANY;
-	SvrAddr.sin_port = htons(27500);
+	SvrAddr.sin_port = htons(27000);
 	if (bind(ServerSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr)) == SOCKET_ERROR)
 	{
 		closesocket(ServerSocket);
@@ -42,7 +42,6 @@ bool connectSocket(void) {
 	}
 	return true;
 }
-
 long int GetFileSize(const char* filename)
 {
 	long int size;
@@ -59,16 +58,15 @@ long int GetFileSize(const char* filename)
 void sendToClt(char* Tx, int size) {
 	send(ConnectionSocket, Tx, size, 0);
 }
-void sentToClt(DataPkt& p) {
-}
 DataPkt recvPacket(void) {
 	char Rx[100000];
 	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
 	DataPkt p(Rx);
 	return p;
 }
-void sendData(int VAL) {
-	switch (VAL) {
+void sendFlag(int VAL) {
+	switch (VAL) 
+	{
 	case 1:
 	{
 		DataPkt s;
@@ -97,12 +95,4 @@ void sendData(int VAL) {
 	}
 	}
 }
-void sendData(Courier c) {
-	DataPkt p;
-	std::string tmp;
-	char cbuf[1000];
-	
-	strcpy_s(cbuf, );
 
-	//p.setHead(COURIERDT, 0, )
-}

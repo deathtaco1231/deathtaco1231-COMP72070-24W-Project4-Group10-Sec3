@@ -6,7 +6,6 @@ HomePage::HomePage(QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    setTempui();
     configUI();
 }
 
@@ -15,22 +14,8 @@ HomePage::~HomePage()
 
 }
 
-void HomePage::setTempui(void) {
-    ui.connectingWidget->setAutoFillBackground(true);
-    ui.connectingWidget->show();
-    if (!initSocket()) {
-        qDebug("Server socket failed to initalize.");
-        exit(1);
-    }
-    if (!connectSocket()) {
-        qDebug("Connection socket failed.");
-        exit(1);
-    }
-    setCurrentCourier();
-    ui.connectingWidget->hide();
-}
-
 void HomePage::configUI(void) {
+    QWidget::setWindowTitle(QString::fromStdString("Server"));
     setProvVector(provvect);
     ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
     if (!initPkgVect()) {

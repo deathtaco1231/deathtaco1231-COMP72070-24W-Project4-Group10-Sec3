@@ -25,6 +25,7 @@ void Login::tempui(void) {
 }
 
 void Login::configUI(void) {
+    QWidget::setWindowTitle(QString::fromStdString("Client Login"));
     ui.usernameline->setPlaceholderText(QString("Enter username here"));
     ui.passwordline->setPlaceholderText(QString("Enter password here"));
 }
