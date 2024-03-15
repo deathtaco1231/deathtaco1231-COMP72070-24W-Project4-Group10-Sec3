@@ -73,7 +73,7 @@ void sendCourier(Courier c) {
 	strcat_s(cbuf, tmp.c_str());
 	strcat_s(cbuf, ",");
 	strcat_s(cbuf, c.getName().c_str());
-	strcat_s(cbuf, ";");
+	strcat_s(cbuf, ";\n");
 	p.setHead(COURIERDT, 0, strlen(cbuf));
 	int size;
 	p.setTBuf(cbuf, size);
