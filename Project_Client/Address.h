@@ -19,6 +19,7 @@ public:
 	std::string getCity();
 	std::string getstAddr();
 	std::string getProvince();
+	std::string getOnlySt();
 };
 std::vector<std::string> provvect;
 void setProvVector(std::vector<std::string>&);

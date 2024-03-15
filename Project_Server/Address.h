@@ -18,4 +18,5 @@ public:
 	std::string getCity();
 	std::string getstAddr();
 	std::string getProvince();
+	std::string getOnlySt();
 };

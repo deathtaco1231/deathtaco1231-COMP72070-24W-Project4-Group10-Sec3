@@ -3,6 +3,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_HomePage.h"
 #include "Package.h"
+#include "Courier.h"
+#include "Networking.h"
 class HomePage : public QMainWindow
 {
     Q_OBJECT

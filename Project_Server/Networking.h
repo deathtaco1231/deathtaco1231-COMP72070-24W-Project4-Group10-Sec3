@@ -1,6 +1,10 @@
+#pragma once
+#define FAILEDAUTHFLAG 1
+#define PKGENDFLAG 2
 #include "AllHeaders.h"
 #include "DataPacket.h"
 #include "Courier.h"
+#include "Package.h"
 
 SOCKET ClientSocket;
 bool initSocket() {
@@ -29,52 +33,10 @@ bool initSocket() {
 	}
 	return true;
 }
-void sendToSrv(char* Tx, int size) {
-	send(ClientSocket, Tx, size, 0);
-}
-void sendData(std::string uname, std::string pword) {
-	DataPkt p;
-	p.setHead(LOGINDT, 0, uname.size() + pword.size() + sizeof(DELIM) + sizeof(BODYEND));
-	char dbuf[200];
-	strcpy_s(dbuf, uname.c_str());
-	strcat(dbuf, ",");
-	strcat(dbuf, pword.c_str());
-	strcat(dbuf, ";");
-	int size;
-	p.setTBuf(dbuf, size);
-	char* Tx = p.getTBuf();
-	sendToSrv(Tx, size);
-}
-long int GetFileSize(const char* filename)
-{
-	long int size;
-	FILE* f;
-
-	f = fopen(filename, "rb");
-	if (f == NULL) return -1;
-	fseek(f, 0, SEEK_END);
-	size = ftell(f);
-	fclose(f);
-
-	return size;
-}
-DataPkt recvPacket(void) {
-	char Rx[100000];
-	recv(ClientSocket, Rx, sizeof(Rx), 0);
-	DataPkt p(Rx);
-	return p;
-}
-bool authCourier(void) {
-	DataPkt p = recvPacket();
-	if (p.getFlags() == 1)
-		return false;
-	std::istringstream isline(p.getTBuf());
-	std::string gooddeliv, latedeliv, age, id, name;
-	std::getline(isline, gooddeliv, DELIM);
-	std::getline(isline, latedeliv, DELIM);
-	std::getline(isline, age, DELIM);
-	std::getline(isline, id, DELIM);
-	std::getline(isline, name, BODYEND);
-	currCourier = Courier(stoi(gooddeliv), stoi(latedeliv), stoi(age), stoi(id), name);
-	return true;
-}
+void sendToSrv(char* Tx, int size);
+void sendData(std::string uname, std::string pword);
+long int GetFileSize(const char* filename);
+void logRecv(DataPkt& p);
+DataPkt recvPacket(void);
+bool authCourier(void);
+void initPkgVect(void);

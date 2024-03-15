@@ -82,7 +82,6 @@ void Package::setID(int id) {
 int Package::getID(void) {
 	return this->ID;
 }
-
 std::string Package::getImgPath(void) {
 	return this->LabelImgPath;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #define FAILEDAUTHFLAG 1
+#define PKGENDFLAG 2
 #include "AllHeaders.h"
 #include "DataPacket.h"
 
@@ -42,57 +43,10 @@ bool connectSocket(void) {
 	}
 	return true;
 }
-long int GetFileSize(const char* filename)
-{
-	long int size;
-	FILE* f;
-
-	f = fopen(filename, "rb");
-	if (f == NULL) return -1;
-	fseek(f, 0, SEEK_END);
-	size = ftell(f);
-	fclose(f);
-
-	return size;
-}
-void sendToClt(char* Tx, int size) {
-	send(ConnectionSocket, Tx, size, 0);
-}
-DataPkt recvPacket(void) {
-	char Rx[100000];
-	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
-	DataPkt p(Rx);
-	return p;
-}
-void sendFlag(int VAL) {
-	switch (VAL) 
-	{
-	case 1:
-	{
-		DataPkt s;
-		s.setHead(0, 1, 0);
-		int size;
-		s.setTBuf(NULL, size);
-		sendToClt(s.getTBuf(), size);
-		break;
-	}
-	case 2:
-	{
-		break;
-	}
-	case 3:
-	{
-		break;
-	}
-	case 4:
-	{
-		break;
-	}
-	default:
-	{
-		qDebug("Invalid flag parameter passed. Nothing sent, please reconfigure.");
-		break;
-	}
-	}
-}
+void sendFlag(int);	
+long int GetFileSize(const char* filename); 
+void sendToClt(char* Tx, int size);
+void logRecv(DataPkt& p);
+DataPkt recvPacket(void);
+void sendCltPackages(void);
 

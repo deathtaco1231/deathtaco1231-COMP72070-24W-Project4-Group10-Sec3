@@ -79,7 +79,7 @@
    <widget class="QPushButton" name="sortIDBtn">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>160</x>
       <y>110</y>
       <width>75</width>
       <height>24</height>
@@ -92,7 +92,7 @@
    <widget class="QPushButton" name="sortNameBtn">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>260</x>
       <y>110</y>
       <width>75</width>
       <height>24</height>
@@ -100,19 +100,6 @@
     </property>
     <property name="text">
      <string>Name</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sortstatusBtn">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>110</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Status</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

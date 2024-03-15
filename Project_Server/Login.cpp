@@ -1,5 +1,4 @@
 #include "Login.h"
-#include "Networking.h"
 
 Login::Login(QWidget* parent)
     : QMainWindow(parent)

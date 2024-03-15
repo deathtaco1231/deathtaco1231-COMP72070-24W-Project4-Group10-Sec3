@@ -36,3 +36,4 @@ public:
 	std::string getImgPath();
 	std::string toString();
 };
+std::vector<Package> allPkgs;

@@ -30,6 +30,8 @@ public:
 	char* getTBuf();
 	int getDType();
 	int getFlags();
+	int getDSize();
+	int getSeqNum();
 };
 int headSize = sizeof(Header);
 int tailSize = sizeof(Tail);

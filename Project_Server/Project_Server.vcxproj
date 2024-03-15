@@ -162,6 +162,7 @@
     <ClCompile Include="Courier.cpp" />
     <ClCompile Include="DataPacket.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Package.cpp" />
     <ClCompile Include="Person.cpp" />
     <QtRcc Include="Resources.qrc" />

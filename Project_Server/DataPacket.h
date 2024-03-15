@@ -3,7 +3,6 @@
 #define IMGDT 2
 #define PKGDT 3
 #define COURIERDT 4
-#define FLAGONLYDT 5
 #include "AllHeaders.h"
 struct Header {
 	unsigned char DType : 4;
@@ -33,6 +32,8 @@ public:
 	char* getTBuf();
 	int getDType();
 	int getFlags();
+	int getDSize();
+	int getSeqNum();
 };
 int headSize = sizeof(Header);
 int tailSize = sizeof(Tail);

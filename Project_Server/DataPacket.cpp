@@ -15,12 +15,6 @@ void DataPkt::setHead(unsigned char dt, unsigned char fl, short unsigned int siz
 	this->head.Flags = fl;
 	this->head.Datasize = size;
 }
-//void DataPkt::setSrc(unsigned char a) {
-//	this->head.Src = a;
-//}
-//void DataPkt::setDst(unsigned char a) {
-//	this->head.Dst = a;
-//}
 void DataPkt::setDType(unsigned char a) {
 	this->head.DType = a;
 }
@@ -51,4 +45,10 @@ int DataPkt::getDType(void) {
 }
 int DataPkt::getFlags(void) {
 	return (int)this->head.Flags;
+}
+int DataPkt::getDSize(void) {
+	return this->head.Datasize;
+}
+int DataPkt::getSeqNum(void) {
+	return (int)this->tail.Seqnum;
 }

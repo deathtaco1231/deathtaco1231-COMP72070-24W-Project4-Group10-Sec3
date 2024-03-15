@@ -47,3 +47,9 @@ int DataPkt::getDType(void) {
 int DataPkt::getFlags(void) {
 	return (int)this->head.Flags;
 }
+int DataPkt::getDSize(void) {
+	return this->head.Datasize;
+}
+int DataPkt::getSeqNum(void) {
+	return (int)this->tail.Seqnum;
+}

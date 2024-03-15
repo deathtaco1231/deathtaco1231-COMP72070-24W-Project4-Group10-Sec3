@@ -28,6 +28,13 @@ std::string Address::getstAddr() {
 		return this->stAddr + " Unit #" + std::to_string(this->unitno) + ", " + this->City + ", " + this->Province;
 	return this->stAddr + ", " + this->City + ", " + this->Province;
 }
+int Address::getUnitNo() {
+	return this->unitno;
+}
+std::string Address::getOnlySt() {
+	return this->stAddr;
+}
+	
 void setProvVector(std::vector<std::string>& a) {
 	QFile lolz(PROVFPATH);
 	if (!lolz.open(QIODevice::ReadOnly)) {
