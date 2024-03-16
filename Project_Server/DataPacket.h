@@ -7,7 +7,7 @@
 struct Header {
 	unsigned char DType : 4;
 	unsigned char Flags : 4;
-	short unsigned int Datasize;
+	unsigned int Datasize;
 };
 struct Tail {
 	unsigned char Seqnum;
@@ -22,12 +22,12 @@ public:
 	DataPkt();
 	~DataPkt();
 	DataPkt(char*);
-	void setHead(unsigned char, unsigned char, short unsigned int);
+	void setHead(unsigned char, unsigned char, unsigned int);
 	/*void setSrc(unsigned char);
 	void setDst(unsigned char);*/
 	void setDType(unsigned char);
 	void setFlags(unsigned char);
-	void setDsize(unsigned short int);
+	void setDsize(unsigned int);
 	void setTBuf(char*, int&);
 	char* getTBuf();
 	int getDType();

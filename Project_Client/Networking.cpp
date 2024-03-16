@@ -7,7 +7,7 @@ void sendFlag(int VAL) {
 	case 1:
 	{
 		DataPkt s;
-		s.setHead(0, 1, 0);
+		s.setHead(0, FAILEDAUTHFLAG, 0);
 		int size;
 		s.setTBuf(NULL, size);
 		sendToClt(s.getTBuf(), size);
@@ -15,6 +15,11 @@ void sendFlag(int VAL) {
 	}
 	case 2:
 	{
+		DataPkt s;
+		s.setHead(0, PKGENDFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
 		break;
 	}
 	case 3:
@@ -37,6 +42,7 @@ void sendCltPackages(void) {
 	std::string tmp;
 	for (int i = 0; i < allPkgs.size(); i++) {
 		if (allPkgs[i].checkifassigned() == true) {
+			Sleep(50);
 			char cbuf[5000] = { 0 };
 			strcpy_s(cbuf, std::to_string(allPkgs[i].getID()).c_str());
 			strcat_s(cbuf, ",");
@@ -67,9 +73,25 @@ void sendCltPackages(void) {
 			strcat_s(cbuf, allPkgs[i].getProvince().c_str());
 			strcat_s(cbuf, ";\n");
 			p.setHead(PKGDT, 0, strlen(cbuf));
-
+			int size = 0;
+			p.setTBuf(cbuf, size);
+			Sleep(50);
+			sendToClt(p.getTBuf(), size);
+			
+			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());
+			FILE* in = fopen(allPkgs[i].getImgPath().c_str(), "rb");
+			char buf[100000] = { 0 };
+			fread(buf, 1, len, in);
+			fclose(in);
+			char strlen[8] = { 0 };
+			_itoa(len, strlen, 10);
+			Sleep(50);
+			sendToClt(strlen, sizeof(strlen));
+			Sleep(50);
+			sendToClt(buf, len);
 		}
 	}
+	sendFlag(PKGENDFLAG);
 }
 long int GetFileSize(const char* filename)
 {

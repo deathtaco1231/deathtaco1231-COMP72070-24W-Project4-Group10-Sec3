@@ -94,7 +94,7 @@ int Package::getID(void) {
 	return this->ID;
 }
 void Package::setAssigned(void) {
-	isAssigned = true;
+	this->isAssigned = true;
 }
 bool Package::checkifassigned(void) {
 	return isAssigned;
@@ -134,7 +134,7 @@ Package readPkg(QFile& in) {
 	std::getline(isline, isAssigned);
 	date d(std::stoi(day), std::stoi(month), std::stoi(year));
 	Package p(labelpath, std::stoi(id), stadd, city, prov, itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
-	if (isAssigned == "true")
+	if (strncmp(isAssigned.c_str(), "true", 4) == 0)
 		p.setAssigned();
 	return p;
 }

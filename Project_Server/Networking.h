@@ -1,6 +1,7 @@
 #pragma once
 #define FAILEDAUTHFLAG 1
 #define PKGENDFLAG 2
+#define ACKFLAG 3
 #include "AllHeaders.h"
 #include "DataPacket.h"
 #include "Courier.h"
@@ -33,6 +34,10 @@ bool initSocket() {
 	}
 	return true;
 }
+void recvBuf(char* buf, int len) {
+	recv(ClientSocket, buf, len, 0);
+}
+void sendFlag(int);
 void sendToSrv(char* Tx, int size);
 void sendData(std::string uname, std::string pword);
 long int GetFileSize(const char* filename);

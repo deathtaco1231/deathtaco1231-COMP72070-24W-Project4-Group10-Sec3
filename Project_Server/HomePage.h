@@ -14,10 +14,12 @@ public:
     ~HomePage();
     void configUI(void);
 private slots:
-  
+    void on_pkgList_itemClicked(QListWidgetItem*);
     
 private:
     Ui::MainWindow ui;
 };
 std::vector<QString> allQstrPkgs;
 Package currSelect;
+QListWidgetItem* currItem;
+void setCurrPkgSel(QListWidgetItem*);

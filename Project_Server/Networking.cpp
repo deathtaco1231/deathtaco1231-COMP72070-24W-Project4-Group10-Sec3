@@ -3,6 +3,7 @@
 void initPkgVect(void) {
 	bool morePkg = true;
 	while (morePkg) {
+		
 		DataPkt p = recvPacket();
 		if (p.getFlags() == PKGENDFLAG)
 			morePkg = false;
@@ -26,15 +27,57 @@ void initPkgVect(void) {
 			date d(std::stoi(day), std::stoi(month), std::stoi(year));
 			Package p(labelpath, std::stoi(id), st, city, prov, std::stoi(unit), itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
 			allPkgs.push_back(p);
-			DataPkt img = recvPacket();
-			std::istringstream imgline(img.getTBuf());
-			std::string imgdata;
-			std::getline(imgline, imgdata, BODYEND);
-			int size = img.getDSize();
+			
+			char len[8] = { 0 };
+			recvBuf(len, sizeof(len));
+			long int reallen = atoi(len);
+			char buf[100000] = { 0 };
+			recvBuf(buf, reallen);
 			FILE* fp = fopen(labelpath.c_str(), "wb");
-			fwrite(imgdata.c_str(), size, 1, fp);
+			fwrite(buf, reallen, 1, fp);
 			fclose(fp);
 		}
+	}
+}
+void sendFlag(int VAL) {
+	switch (VAL)
+	{
+	case 1:
+	{
+		DataPkt s;
+		s.setHead(0, FAILEDAUTHFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
+		break;
+	}
+	case 2:
+	{
+		DataPkt s;
+		s.setHead(0, PKGENDFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
+		break;
+	}
+	case 3:
+	{
+		DataPkt s;
+		s.setHead(0, ACKFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
+		break;
+	}
+	case 4:
+	{
+		break;
+	}
+	default:
+	{
+		qDebug("Invalid flag parameter passed. Nothing sent, please reconfigure.");
+		break;
+	}
 	}
 }
 bool authCourier(void) {

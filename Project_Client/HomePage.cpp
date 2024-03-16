@@ -29,6 +29,7 @@ void HomePage::configUI(void) {
         ui.pkgList->addItem(allQstrPkgs[i]);  
     ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
+    
 }
 void HomePage::on_sortstatusBtn_clicked() {
     popup = new DeliveryPopup(this);

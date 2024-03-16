@@ -10,7 +10,7 @@ DataPkt::DataPkt(char* buf) {
 	memcpy(TBuf, buf + sizeof(head), head.Datasize);
 	memcpy(&tail, buf + sizeof(head) + head.Datasize, sizeof(tail));
 }
-void DataPkt::setHead(unsigned char dt, unsigned char fl, short unsigned int size) {
+void DataPkt::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
 	this->head.DType = dt;
 	this->head.Flags = fl;
 	this->head.Datasize = size;
@@ -21,7 +21,7 @@ void DataPkt::setDType(unsigned char a) {
 void DataPkt::setFlags(unsigned char a) {
 	this->head.Flags = a;
 }
-void DataPkt::setDsize(unsigned short int a) {
+void DataPkt::setDsize(unsigned int a) {
 	this->head.Datasize = a;
 }
 void DataPkt::setTBuf(char* data, int& size) {
