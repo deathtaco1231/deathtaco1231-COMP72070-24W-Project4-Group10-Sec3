@@ -14,6 +14,7 @@ HomePage::~HomePage()
 
 void HomePage::configUI(void) {
     QWidget::setWindowTitle(QString::fromStdString("Client"));
+    ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
     initPkgVect();
     for (int i = 0; i < allPkgs.size(); i++)
@@ -33,6 +34,31 @@ void HomePage::on_pkgList_itemClicked(QListWidgetItem* item) {
     ui.weightLabel->setText(QString::fromStdString("Weight: " + std::format("{:.2f}", currSelect.getWeight()) + " LBS"));
     ui.toaddrLabel->setText(QString::fromStdString("To: " + currSelect.getstAddr()));
     ui.deliverdateLabel->setText(QString::fromStdString("Deliver By: " + currSelect.getDeliverBy().datetos()));
+}
+void HomePage::on_deliveredBtn_clicked() {
+    std::string label = ui.deliveryimgline->text().toStdString();
+    if (!std::filesystem::exists(label)) {
+        ui.errorLabel->setText(QString::fromStdString("File not found!"));
+        ui.errorLabel->setStyleSheet("QLabel { color : red; }");
+    }
+    else {
+        if (currSelect.getID() != 0) {
+            ui.errorLabel->setText("Waiting for response...");
+            QApplication::processEvents();
+            if (!sendDelivered(label, currSelect)) {
+                ui.errorLabel->setText(QString::fromStdString("Server rejected delivery."));
+                ui.errorLabel->setStyleSheet("QLabel { color : red; }");
+            }
+            else {
+                ui.errorLabel->setText("");
+                ui.pkgList->takeItem(ui.pkgList->row(currItem));
+                int index = std::distance(allQstrPkgs.begin(), std::find(allQstrPkgs.begin(), allQstrPkgs.end(), currItem->text()));
+                allQstrPkgs.erase(allQstrPkgs.begin() + index);
+                allPkgs.erase(allPkgs.begin() + index);
+                currSelect.setID(0);
+            }
+        }  
+    }
 }
 void setCurrPkgSel(QListWidgetItem* item) {
     for (int i = 0; i < allQstrPkgs.size(); i++)

@@ -14,6 +14,8 @@ public:
     HomePage(QWidget* parent = nullptr);
     ~HomePage();
     void configUI(void);
+    void waitforClt(void);
+    
 private slots:
     void on_sortstatusBtn_clicked();
     void on_delPkgBtn_clicked(); 
@@ -26,3 +28,4 @@ std::vector<QString> allQstrPkgs;
 Package currSelect;
 QListWidgetItem* currItem;
 void setCurrPkgSel(QListWidgetItem*);
+

@@ -2,6 +2,7 @@
 #define FAILEDAUTHFLAG 1
 #define PKGENDFLAG 2
 #define ACKFLAG 3
+#define DELIVFLAG 4
 #include "AllHeaders.h"
 #include "DataPacket.h"
 #include "Courier.h"
@@ -37,6 +38,7 @@ bool initSocket() {
 void recvBuf(char* buf, int len) {
 	recv(ClientSocket, buf, len, 0);
 }
+bool sendDelivered(std::string label, Package& p);
 void sendFlag(int);
 void sendToSrv(char* Tx, int size);
 void sendData(std::string uname, std::string pword);

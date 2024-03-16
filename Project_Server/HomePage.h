@@ -15,7 +15,7 @@ public:
     void configUI(void);
 private slots:
     void on_pkgList_itemClicked(QListWidgetItem*);
-    
+    void on_deliveredBtn_clicked();
 private:
     Ui::MainWindow ui;
 };

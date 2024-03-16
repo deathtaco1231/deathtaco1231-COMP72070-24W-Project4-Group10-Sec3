@@ -148,3 +148,25 @@ std::string Package::toString(void) {
 	s << ID << "	" << ItemName << "	" << isA << "	" << createdOn.datetos() << "	" << deliverBy.datetos();
 	return s.str();
 }
+Package matchbyID(int i) {
+	for (int a = 0; a < allPkgs.size(); a++) {
+		if (allPkgs[a].getID() == i)
+			return allPkgs[a];
+	}
+}
+//std::string Package::toStringConst(void)const {
+//	std::string isA;
+//	if (isAssigned == true)
+//		isA = "Yes";
+//	else
+//		isA = "No";
+//	std::stringstream s;
+//	s << ID << "	" << ItemName << "	" << isA;
+//	return s.str();
+//}
+//inline bool operator == (const Package& a, const Package& b) {
+//	if (a.toStringConst() == b.toStringConst())
+//		return true;
+//	else
+//		return false;
+//}

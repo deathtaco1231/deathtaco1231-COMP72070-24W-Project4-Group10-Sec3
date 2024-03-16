@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>388</height>
+    <width>677</width>
+    <height>381</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,15 +42,15 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>440</x>
      <y>10</y>
-     <width>161</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -64,11 +64,11 @@
     <string>Details:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="acceptBtn">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>350</y>
+     <x>440</x>
+     <y>340</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -84,11 +84,11 @@
     <string>Approve</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="deniedBtn">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>350</y>
+     <x>560</x>
+     <y>340</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -102,6 +102,132 @@
    </property>
    <property name="text">
     <string>Deny</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="weightLabel">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>90</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Weight:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="deliverdateLabel">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>290</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Deliver By:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="dimensionsLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>190</y>
+     <width>461</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Dimensions:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="toaddrLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>240</y>
+     <width>471</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>To:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="itemnameLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>140</y>
+     <width>291</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Item Name:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="creationdateLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>290</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Created On:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="idLabel">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>90</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Package ID:</string>
    </property>
   </widget>
  </widget>

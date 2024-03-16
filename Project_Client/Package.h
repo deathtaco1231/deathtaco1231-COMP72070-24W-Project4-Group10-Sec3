@@ -37,9 +37,15 @@ public:
 	date getCreationDate();
 	std::string getImgPath();
 	std::string toString();
+	/*std::string toStringConst()const;*/
 };
+//inline bool operator == (const Package&, const Package&);
 std::vector<Package> allPkgs;
+Package tmpPkg;
+bool isDel;
 bool initPkgVect(void);
 Package readPkg(QFile&);
+Package matchbyID(int i);
+
 
 

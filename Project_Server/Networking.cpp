@@ -71,6 +71,11 @@ void sendFlag(int VAL) {
 	}
 	case 4:
 	{
+		DataPkt s;
+		s.setHead(0, DELIVFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
 		break;
 	}
 	default:
@@ -140,4 +145,32 @@ DataPkt recvPacket(void) {
 	DataPkt p(Rx);
 	logRecv(p);
 	return p;
+}
+bool sendDelivered(std::string label, Package& p) {
+	sendFlag(DELIVFLAG);
+	char cbuf[5000] = { 0 };
+	strcpy_s(cbuf, std::to_string(p.getID()).c_str());
+	strcat_s(cbuf, ";\n");
+	DataPkt d;
+	d.setHead(PKGDT, DELIVFLAG, strlen(cbuf));
+	int size = 0;
+	d.setTBuf(cbuf, size);
+	Sleep(50);
+	sendToSrv(d.getTBuf(), size);
+	long int len = GetFileSize(label.c_str());
+	FILE* in = fopen(label.c_str(), "rb");
+	char buf[100000] = { 0 };
+	fread(buf, 1, len, in);
+	fclose(in);
+	char strlen[8] = { 0 };
+	_itoa(len, strlen, 10);
+	Sleep(50);
+	sendToSrv(strlen, sizeof(strlen));
+	Sleep(50);
+	sendToSrv(buf, len);
+	DataPkt n = recvPacket();
+	if (n.getFlags() == ACKFLAG)
+		return true;
+	else
+		return false;
 }

@@ -1,6 +1,10 @@
 #pragma once
 #define FAILEDAUTHFLAG 1
 #define PKGENDFLAG 2
+#define ACKFLAG 3
+#define DELIVFLAG 4
+#define REJECTFLAG 5
+#define TMPIMG "TEMP.jpg"
 #include "AllHeaders.h"
 #include "DataPacket.h"
 
@@ -42,6 +46,9 @@ bool connectSocket(void) {
 		return false;;
 	}
 	return true;
+}
+void recvBuf(char* buf, int len) {
+	recv(ConnectionSocket, buf, len, 0);
 }
 void sendFlag(int);	
 long int GetFileSize(const char* filename); 

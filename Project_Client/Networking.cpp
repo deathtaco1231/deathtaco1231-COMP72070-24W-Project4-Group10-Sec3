@@ -24,10 +24,29 @@ void sendFlag(int VAL) {
 	}
 	case 3:
 	{
+		DataPkt s;
+		s.setHead(0, ACKFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
 		break;
 	}
 	case 4:
 	{
+		DataPkt s;
+		s.setHead(0, DELIVFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
+		break;
+	} 
+	case 5:
+	{
+		DataPkt s;
+		s.setHead(0, REJECTFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
 		break;
 	}
 	default:
@@ -77,7 +96,6 @@ void sendCltPackages(void) {
 			p.setTBuf(cbuf, size);
 			Sleep(50);
 			sendToClt(p.getTBuf(), size);
-			
 			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());
 			FILE* in = fopen(allPkgs[i].getImgPath().c_str(), "rb");
 			char buf[100000] = { 0 };
