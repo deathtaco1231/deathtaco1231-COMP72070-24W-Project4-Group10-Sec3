@@ -30,7 +30,7 @@ void HomePage::configUI(void) {
     ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
     QApplication::processEvents();
-    waitforClt();
+   /* waitforClt();*/
 }
 void HomePage::on_sortstatusBtn_clicked() {
     
@@ -61,36 +61,36 @@ void setCurrPkgSel(QListWidgetItem* item) {
         if (item->text().toStdString() == allPkgs[i].toString())
             currSelect = allPkgs[i];
 }
-void HomePage::waitforClt(void) {
-    DataPkt p = recvPacket();
-    switch (p.getFlags()) {
-    case DELIVFLAG: {
-        DataPkt p = recvPacket();
-        std::istringstream issline(p.getTBuf());
-        std::string id;
-        std::getline(issline, id, BODYEND);
-        tmpPkg = matchbyID(std::stoi(id));
-        char len[8] = { 0 };
-        recvBuf(len, sizeof(len));
-        long int reallen = atoi(len);
-        char buf[100000] = { 0 };
-        recvBuf(buf, reallen);
-        FILE* fp = fopen(TMPIMG, "wb");
-        fwrite(buf, reallen, 1, fp);
-        fclose(fp);
-        popup = new DeliveryPopup(this);
-        popup->show();
-        if (isDel) {
-            int index = 0;
-            for (int i = 0; i < allPkgs.size(); i++)
-                if (allPkgs[i].getID() == tmpPkg.getID())
-                    index = i; 
-            ui.pkgList->takeItem(index);
-            allQstrPkgs.erase(allQstrPkgs.begin() + index);
-            allPkgs.erase(allPkgs.begin() + index);
-            isDel = false;
-        }
-        break;
-    }
-    }
-}
+//void HomePage::waitforClt(void) {
+//    DataPkt p = recvPacket();
+//    switch (p.getFlags()) {
+//    case DELIVFLAG: {
+//        DataPkt p = recvPacket();
+//        std::istringstream issline(p.getTBuf());
+//        std::string id;
+//        std::getline(issline, id, BODYEND);
+//        tmpPkg = matchbyID(std::stoi(id));
+//        char len[8] = { 0 };
+//        recvBuf(len, sizeof(len));
+//        long int reallen = atoi(len);
+//        char buf[100000] = { 0 };
+//        recvBuf(buf, reallen);
+//        FILE* fp = fopen(TMPIMG, "wb");
+//        fwrite(buf, reallen, 1, fp);
+//        fclose(fp);
+//        popup = new DeliveryPopup(this);
+//        popup->show();
+//        if (isDel) {
+//            int index = 0;
+//            for (int i = 0; i < allPkgs.size(); i++)
+//                if (allPkgs[i].getID() == tmpPkg.getID())
+//                    index = i; 
+//            ui.pkgList->takeItem(index);
+//            allQstrPkgs.erase(allQstrPkgs.begin() + index);
+//            allPkgs.erase(allPkgs.begin() + index);
+//            isDel = false;
+//        }
+//        break;
+//    }
+//    }
+//}
