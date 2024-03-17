@@ -12,7 +12,7 @@ protected:
 	double weight, length, width, height;
 	date deliverBy;
 	date createdOn;
-	
+
 public:
 	Package();
 	Package(std::string, int, std::string, double, double, double, double, date);
@@ -46,6 +46,3 @@ bool isDel;
 bool initPkgVect(void);
 Package readPkg(std::ifstream&);
 Package matchbyID(int i);
-
-
-

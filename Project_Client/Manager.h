@@ -1,5 +1,5 @@
 #pragma once
-#define MGRFNAME ":/Data/Managers.txt"
+#define MGRFNAME "Managers.txt"
 #include "AllHeaders.h"
 #include "Person.h"
 
