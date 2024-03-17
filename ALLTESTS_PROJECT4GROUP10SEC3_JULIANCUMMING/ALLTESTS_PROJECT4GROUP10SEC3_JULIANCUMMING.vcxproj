@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)CLIENTCONTAINER\$(IntDir)*.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)CLIENTCONTAINER\$(IntDir)*.obj;$(SolutionDir)SERVERCONTAINER\$(IntDir)*.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -173,6 +173,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CLIENTCONTAINER\CLIENTCONTAINER.vcxproj">
       <Project>{d9302051-3754-4550-8f7e-4827db88e220}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SERVERCONTAINER\SERVERCONTAINER.vcxproj">
+      <Project>{0dcd307c-3193-4bac-b758-b67c168b205a}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,55 +1,55 @@
 #include "DataPacket.h"
-DataPkt::DataPkt() {
-	memset(&this->head, 0, headSize);
+DataPkt2::DataPkt2() {
+	memset(&this->head, 0, head2Size);
 	this->TBuf = nullptr;
-	memset(&this->tail, 0, tailSize);
+	memset(&this->tail, 0, tail2Size);
 }
-DataPkt::DataPkt(char* buf) {
+DataPkt2::DataPkt2(char* buf) {
 	memcpy(&head, buf, sizeof(head));
 	TBuf = new char[head.Datasize];
 	memcpy(TBuf, buf + sizeof(head), head.Datasize);
 	memcpy(&tail, buf + sizeof(head) + head.Datasize, sizeof(tail));
 }
-void DataPkt::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
+void DataPkt2::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
 	this->head.DType = dt;
 	this->head.Flags = fl;
 	this->head.Datasize = size;
 }
-void DataPkt::setDType(unsigned char a) {
+void DataPkt2::setDType(unsigned char a) {
 	this->head.DType = a;
 }
-void DataPkt::setFlags(unsigned char a) {
+void DataPkt2::setFlags(unsigned char a) {
 	this->head.Flags = a;
 }
-void DataPkt::setDsize(unsigned int a) {
+void DataPkt2::setDsize(unsigned int a) {
 	this->head.Datasize = a;
 }
-void DataPkt::setTBuf(char* data, int& size) {
+void DataPkt2::setTBuf(char* data, int& size) {
 	if (TBuf)
 		delete TBuf;
-	size = headSize + head.Datasize + tailSize;
+	size = head2Size + head.Datasize + tail2Size;
 	TBuf = new char[size];
-	memcpy(TBuf, &head, headSize);
+	memcpy(TBuf, &head, head2Size);
 	if (head.Datasize != 0)
-		memcpy(TBuf + headSize, data, head.Datasize);
-	memcpy(TBuf + headSize + head.Datasize, &tail, tailSize);
+		memcpy(TBuf + head2Size, data, head.Datasize);
+	memcpy(TBuf + head2Size + head.Datasize, &tail, tail2Size);
 }
-char* DataPkt::getTBuf(void) {
+char* DataPkt2::getTBuf(void) {
 	return this->TBuf;
 }
-DataPkt::~DataPkt() {
+DataPkt2::~DataPkt2() {
 	if (TBuf)
 		delete[] TBuf;
 }
-int DataPkt::getDType(void) {
+int DataPkt2::getDType(void) {
 	return (int)this->head.DType;
 }
-int DataPkt::getFlags(void) {
+int DataPkt2::getFlags(void) {
 	return (int)this->head.Flags;
 }
-int DataPkt::getDSize(void) {
+int DataPkt2::getDSize(void) {
 	return this->head.Datasize;
 }
-int DataPkt::getSeqNum(void) {
+int DataPkt2::getSeqNum(void) {
 	return (int)this->tail.Seqnum;
 }

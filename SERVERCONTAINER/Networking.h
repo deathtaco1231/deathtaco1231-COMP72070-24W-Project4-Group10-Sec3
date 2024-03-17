@@ -10,7 +10,7 @@
 #include "DataPacket.h"
 
 SOCKET ServerSocket, ConnectionSocket;
-bool initSocket(void) {
+bool initSrvSocket(void) {
 	WSADATA wsaData;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 		return false;
@@ -39,7 +39,7 @@ bool initSocket(void) {
 	}
 	return true;
 }
-bool connectSocket(void) {
+bool connectSrvSocket(void) {
 	ConnectionSocket = SOCKET_ERROR;
 	if ((ConnectionSocket = accept(ServerSocket, NULL, NULL)) == SOCKET_ERROR) {
 		closesocket(ServerSocket);

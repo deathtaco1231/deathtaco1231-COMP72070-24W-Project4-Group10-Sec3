@@ -1,5 +1,4 @@
 #pragma once
-#define PKGFNAME ":/Data/Packages.txt"
 #include "AllHeaders.h"
 #include "Address.h"
 #include "Date.h"

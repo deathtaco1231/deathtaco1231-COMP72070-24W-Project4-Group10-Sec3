@@ -1,16 +1,15 @@
 #pragma once
-#define PROVFPATH "provinces.txt"
 #include "AllHeaders.h"
-class Address {
+class Address2 {
 protected:
 	std::string stAddr;
 	int unitno;
 	std::string City;
 	std::string Province;
 public:
-	Address();
-	Address(std::string, std::string, std::string);
-	Address(std::string, std::string, std::string, int);
+	Address2();
+	Address2(std::string, std::string, std::string);
+	Address2(std::string, std::string, std::string, int);
 	void setProvince(std::string);
 	void setstAddr(std::string);
 	void setCity(std::string);
@@ -21,5 +20,3 @@ public:
 	std::string getProvince();
 	std::string getOnlySt();
 };
-std::vector<std::string> provvect;
-void setProvVector(std::vector<std::string>&);

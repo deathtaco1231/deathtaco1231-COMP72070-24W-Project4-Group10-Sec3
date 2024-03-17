@@ -1,5 +1,5 @@
 #include "Date.h"
-bool date::valid(void) {
+bool date2::valid(void) {
 	if (year < 0) return false;
 	if (month > 12 || month < 1) return false;
 	if (day > 31 || day < 1) return false;
@@ -14,22 +14,22 @@ bool date::valid(void) {
 	};
 	return true;
 }
-std::string date::datetos(void) {
+std::string date2::datetos(void) {
 	std::stringstream s;
 	s << this->year << "/" << this->month << "/" << this->day;
 	return s.str();
 }
-int long_date(date& d) {
+int long_date(date2& d) {
 	if (d.valid())
 		return d.getyear() * 10000 + d.getmonth() * 100 + d.getday();
 	return -1;
 };
-std::ostream& operator << (std::ostream& os, date& d) {
+std::ostream& operator << (std::ostream& os, date2& d) {
 	if (d.valid()) { os << " " << long_date(d) << " "; }
 	else { os << " invalid date "; };
 	return os;
 }
-bool operator < (date& d1, date& d2) {
+bool operator < (date2& d1, date2& d2) {
 	if (!d1.valid()) { return false; }; // not meaningful, return anything
 	if (!d2.valid()) { return false; }; // should really be an exception, but ?
 	if (d1.getyear() < d2.getyear()) { return true; }
@@ -44,7 +44,7 @@ bool operator < (date& d1, date& d2) {
 	};
 	return false;
 };
-bool operator == (date& d1, date& d2) {
+bool operator == (date2& d1, date2& d2) {
 	// check for equality
 	if (!d1.valid()) { return false; };
 	if (!d2.valid()) { return false; };
@@ -55,11 +55,11 @@ bool operator == (date& d1, date& d2) {
 	};
 	return false;
 }
-bool operator <=(date& d1, date& d2) {
+bool operator <=(date2& d1, date2& d2) {
 	if (d1 == d2) { return true; }
 	return (d1 < d2);
 }
-void setcurrdate(void) {
+void setcurrdate2(void) {
 	int mon = 0;
 	time_t today = time(0);
 	char todaysdate[100] = {0};
@@ -71,31 +71,31 @@ void setcurrdate(void) {
 	std::getline(s, day, ' ');
 	std::getline(s, garbage, ' ');
 	std::getline(s, year, '\n');
-	currdate.setday(stoi(day));
+	currdate2.setday(stoi(day));
 	if (!month.compare("Jan"))
-		currdate.setmonth(mon = 1);
+		currdate2.setmonth(mon = 1);
 	else if (!month.compare("Feb"))
-		currdate.setmonth(mon = 2);
+		currdate2.setmonth(mon = 2);
 	else if (!month.compare("Mar"))
-		currdate.setmonth(mon = 3);
+		currdate2.setmonth(mon = 3);
 	else if (!month.compare("Apr"))
-		currdate.setmonth(mon = 4);
+		currdate2.setmonth(mon = 4);
 	else if (!month.compare("May"))
-		currdate.setmonth(mon = 5);
+		currdate2.setmonth(mon = 5);
 	else if (!month.compare("Jun"))
-		currdate.setmonth(mon = 6);
+		currdate2.setmonth(mon = 6);
 	else if (!month.compare("Jul"))
-		currdate.setmonth(mon = 7);
+		currdate2.setmonth(mon = 7);
 	else if (!month.compare("Aug"))
-		currdate.setmonth(mon = 8);
+		currdate2.setmonth(mon = 8);
 	else if (!month.compare("Sep"))
-		currdate.setmonth(mon = 9);
+		currdate2.setmonth(mon = 9);
 	else if (!month.compare("Oct"))
-		currdate.setmonth(mon = 10);
+		currdate2.setmonth(mon = 10);
 	else if (!month.compare("Nov"))
-		currdate.setmonth(mon = 11);
+		currdate2.setmonth(mon = 11);
 	else
-		currdate.setmonth(mon = 12);
+		currdate2.setmonth(mon = 12);
 
-	currdate.setyear(stoi(year));
+	currdate2.setyear(stoi(year));
 }

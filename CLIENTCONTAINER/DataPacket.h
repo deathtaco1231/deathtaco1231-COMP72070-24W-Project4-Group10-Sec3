@@ -5,23 +5,23 @@
 #define COURIERDT 4
 #define FLAGONLYDT 5
 #include "AllHeaders.h"
-struct Header {
+struct Header2 {
 	unsigned char DType : 4;
 	unsigned char Flags : 4;
 	unsigned int Datasize;
 };
-struct Tail {
+struct Tail2 {
 	unsigned char Seqnum;
 };
-class DataPkt {
+class DataPkt2 {
 protected:
-	Header head;
+	Header2 head;
 	char* TBuf;
-	Tail tail;
+	Tail2 tail;
 public:
-	DataPkt();
-	~DataPkt();
-	DataPkt(char*);
+	DataPkt2();
+	~DataPkt2();
+	DataPkt2(char*);
 	void setHead(unsigned char, unsigned char, unsigned int);
 	void setDType(unsigned char);
 	void setFlags(unsigned char);
@@ -33,5 +33,5 @@ public:
 	int getDSize();
 	int getSeqNum();
 };
-int headSize = sizeof(Header);
-int tailSize = sizeof(Tail);
+int head2Size = sizeof(Header2);
+int tail2Size = sizeof(Tail2);

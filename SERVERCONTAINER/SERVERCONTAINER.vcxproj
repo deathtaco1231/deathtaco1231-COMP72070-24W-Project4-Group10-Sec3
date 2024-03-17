@@ -131,17 +131,21 @@
   <ItemGroup>
     <ClInclude Include="Address.h" />
     <ClInclude Include="AllHeaders.h" />
+    <ClInclude Include="Courier.h" />
     <ClInclude Include="DataPacket.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Networking.h" />
     <ClInclude Include="Package.h" />
+    <ClInclude Include="Person.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Address.cpp" />
+    <ClCompile Include="Courier.cpp" />
     <ClCompile Include="DataPkt.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Package.cpp" />
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
