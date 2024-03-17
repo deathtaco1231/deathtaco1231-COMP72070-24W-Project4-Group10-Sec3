@@ -80,7 +80,11 @@ void sendFlag(int VAL) {
 	}
 	default:
 	{
-		qDebug("Invalid flag parameter passed. Nothing sent, please reconfigure.");
+		DataPkt s;
+		s.setHead(0, ERRFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
 		break;
 	}
 	}

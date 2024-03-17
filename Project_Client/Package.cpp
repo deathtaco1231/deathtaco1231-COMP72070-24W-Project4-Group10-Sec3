@@ -104,20 +104,21 @@ std::string Package::getImgPath(void) {
 }
 
 bool initPkgVect(void) {
-	QFile pkgdata(PKGFNAME);
-	if (!pkgdata.open(QIODevice::ReadOnly))
+	std::ifstream pkgdata;
+	pkgdata.open(PKGFNAME);
+	if (!pkgdata.is_open())
 		return false;
-	while (!pkgdata.atEnd()) {
+	while (!pkgdata.eof()) {
 		Package tmp = readPkg(pkgdata);
 		allPkgs.push_back(tmp);
 	}
 	pkgdata.close();
 	return true;
 }
-Package readPkg(QFile& in) {
-	QString line = in.readLine();
-	std::string labelpath, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
-	std::istringstream isline(line.toStdString());
+Package readPkg(std::ifstream& in) {
+	std::string tmpline, labelpath, id, stadd, city, prov, itemname, weight, length, width, height, day, month, year, isAssigned;
+	std::getline(in, tmpline);
+	std::istringstream isline(tmpline);
 	std::getline(isline, labelpath, DELIM);
 	std::getline(isline, id, DELIM);
 	std::getline(isline, stadd, DELIM);

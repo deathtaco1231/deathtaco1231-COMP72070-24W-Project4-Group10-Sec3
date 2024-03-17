@@ -1,4 +1,3 @@
-#include "AllHeaders.h"
 #include "Date.h"
 bool date::valid(void) {
 	if (year < 0) return false;

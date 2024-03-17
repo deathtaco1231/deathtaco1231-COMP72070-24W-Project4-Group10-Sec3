@@ -51,7 +51,11 @@ void sendFlag(int VAL) {
 	}
 	default:
 	{
-		qDebug("Invalid flag parameter passed. Nothing sent, please reconfigure.");
+		DataPkt s;
+		s.setHead(0, ERRFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToClt(s.getTBuf(), size);
 		break;
 	}
 	}
@@ -97,12 +101,13 @@ void sendCltPackages(void) {
 			Sleep(50);
 			sendToClt(p.getTBuf(), size);
 			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());
-			FILE* in = fopen(allPkgs[i].getImgPath().c_str(), "rb");
+			FILE* in;
+			fopen_s(&in, allPkgs[i].getImgPath().c_str(), "rb");
 			char buf[100000] = { 0 };
 			fread(buf, 1, len, in);
 			fclose(in);
 			char strlen[8] = { 0 };
-			_itoa(len, strlen, 10);
+			_itoa_s(len, strlen, 10);
 			Sleep(50);
 			sendToClt(strlen, sizeof(strlen));
 			Sleep(50);
@@ -116,7 +121,7 @@ long int GetFileSize(const char* filename)
 	long int size;
 	FILE* f;
 
-	f = fopen(filename, "rb");
+	fopen_s(&f, filename, "rb");
 	if (f == NULL) return -1;
 	fseek(f, 0, SEEK_END);
 	size = ftell(f);
@@ -129,7 +134,8 @@ void sendToClt(char* Tx, int size) {
 }
 void logRecv(DataPkt& p) {
 	time_t now = time(0);
-	char* dt = ctime(&now);
+	char dt[100] = { 0 };
+	ctime_s(dt, sizeof(now), &now);
 	std::ofstream out("DataLog.txt", std::ios::app);
 	out << "Date & Time: " << dt << std::endl;
 	out << "Type: " << std::to_string(p.getDType()) << std::endl;

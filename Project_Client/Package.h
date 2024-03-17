@@ -44,7 +44,7 @@ std::vector<Package> allPkgs;
 Package tmpPkg;
 bool isDel;
 bool initPkgVect(void);
-Package readPkg(QFile&);
+Package readPkg(std::ifstream&);
 Package matchbyID(int i);
 
 

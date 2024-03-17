@@ -23,10 +23,10 @@ int Courier::getGoodDeliv() {
 int Courier::getLateDeliv() {
 	return this->LateDeliveries;
 }
-Courier readCourier(QFile& in) {
-	QString line = in.readLine();
-	std::string gooddeliv, latedeliv, age, id, name, uname, pword;
-	std::istringstream isline(line.toStdString());
+Courier readCourier(std::ifstream& in) {
+	std::string tmpline, gooddeliv, latedeliv, age, id, name, uname, pword;
+	std::getline(in, tmpline);
+	std::istringstream isline(tmpline);
 	std::getline(isline, gooddeliv, DELIM);
 	std::getline(isline, latedeliv, DELIM);
 	std::getline(isline, age, DELIM);
@@ -38,12 +38,12 @@ Courier readCourier(QFile& in) {
 	return c;
 }
 bool authCourier(std::string uname, std::string pword) {
-	QFile courierdata(COURIERFNAME);
-	if (!courierdata.open(QIODevice::ReadOnly)) {
-		qDebug("Failed to open manager data file.");
+	std::ifstream courierdata;
+	courierdata.open(COURIERFNAME);
+	if (!courierdata.is_open()) {
 		return false;
 	}
-	while (!courierdata.atEnd()) {
+	while (!courierdata.eof()) {
 		Courier tmp = readCourier(courierdata);
 		if (tmp.getUsername() == uname) {
 			if (tmp.getPassword() == pword) {
