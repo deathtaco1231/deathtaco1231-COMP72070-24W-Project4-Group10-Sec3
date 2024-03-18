@@ -135,9 +135,9 @@ void sendToClt(char* Tx, int size) {
 void logRecv(DataPkt& p) {
 	time_t now = time(0);
 	char dt[100] = { 0 };
-	ctime_s(dt, sizeof(now), &now);
+	ctime_s(dt, sizeof(dt), &now);
 	std::ofstream out("DataLog.txt", std::ios::app);
-	out << "Date & Time: " << dt << std::endl;
+	out << "RECV Date & Time: " << dt;
 	out << "Type: " << std::to_string(p.getDType()) << std::endl;
 	out << "Flag: " << std::to_string(p.getFlags()) << std::endl;
 	out << "Size: " << std::to_string(p.getDSize()) << std::endl;
