@@ -1,11 +1,11 @@
 #pragma once
+#include <QtWidgets/QMainWindow>
+#include "ui_HomePage.h"
+#include "DeliveryPopup.h"
 #include "AllHeaders.h"
 #include "Package.h"
 #include "Manager.h"
 #include "Courier.h"
-#include <QtWidgets/QMainWindow>
-#include "ui_HomePage.h"
-#include "DeliveryPopup.h"
 class HomePage : public QMainWindow
 {
     Q_OBJECT

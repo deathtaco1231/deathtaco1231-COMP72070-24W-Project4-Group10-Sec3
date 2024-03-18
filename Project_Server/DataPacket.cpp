@@ -16,13 +16,16 @@ void DataPkt::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
 	this->head.Datasize = size;
 }
 void DataPkt::setDType(unsigned char a) {
-	this->head.DType = a;
+	if (a >= 0 && a <= 15)
+		this->head.DType = a;
 }
 void DataPkt::setFlags(unsigned char a) {
-	this->head.Flags = a;
+	if (a >= 0 && a <= 15)
+		this->head.Flags = a;
 }
 void DataPkt::setDsize(unsigned int a) {
-	this->head.Datasize = a;
+	if (a >= 0 && a <= 1000000)
+		this->head.Datasize = a;
 }
 void DataPkt::setTBuf(char* data, int& size) {
 	if (TBuf)

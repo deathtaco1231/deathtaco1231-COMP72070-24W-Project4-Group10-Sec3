@@ -1,5 +1,5 @@
 #pragma once
-#define PKGFNAME ":/Data/Packages.txt"
+#define PKGFNAME "Packages.txt"
 #include "AllHeaders.h"
 #include "Address.h"
 #include "Date.h"
@@ -44,7 +44,7 @@ std::vector<Package> allPkgs;
 Package tmpPkg;
 bool isDel;
 bool initPkgVect(void);
-Package readPkg(QFile&);
+Package readPkg(std::ifstream&);
 Package matchbyID(int i);
 
 

@@ -36,14 +36,15 @@ std::string Address::getOnlySt() {
 }
 	
 void setProvVector(std::vector<std::string>& a) {
-	QFile lolz(PROVFPATH);
-	if (!lolz.open(QIODevice::ReadOnly)) {
-		qDebug("\nPROVINCE LIST FILE NOT FOUND. ABORTING...");
+	std::ifstream lolz;
+	lolz.open(PROVFPATH);
+	if (!lolz.is_open()) 
 		exit(-1);
-	}
-	while (!lolz.atEnd()) {
-		QString tmp = lolz.readLine();
-		a.push_back(tmp.toStdString());
+	
+	while (!lolz.eof()) {
+		std::string tmp;
+		std::getline(lolz, tmp);
+		a.push_back(tmp);
 	}
 	lolz.close();
 }
