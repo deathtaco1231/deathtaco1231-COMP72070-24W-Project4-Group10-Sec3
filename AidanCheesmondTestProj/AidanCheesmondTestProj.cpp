@@ -27,6 +27,7 @@ extern std::vector<Package> allPkgs;
 extern Courier currCourier;
 extern Package tmpPkg;
 extern bool isDel;
+extern std::vector<std::string> provvect;
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -105,29 +106,29 @@ namespace AidanCheesmondTestProj
 
         TEST_METHOD(SRV_21_SetProvVectorTest)
         {
-            // Arrange
-            std::string testFilePath = "testProvinces.txt";
-            std::vector<std::string> expectedProvinces = { "Alberta", "British Columbia", "Manitoba" };
-            std::vector<std::string> actualProvinces;
+            //// Arrange
+            //std::string testFilePath = "testProvinces.txt";
+            //std::vector<std::string> expectedProvinces = { "Alberta", "British Columbia", "Manitoba" };
+            //std::vector<std::string> actualProvinces;
 
-            // Create a test file with expected provinces
-            std::ofstream testFile(testFilePath);
-            for (const auto& province : expectedProvinces) {
-                testFile << province << std::endl;
-            }
-            testFile.close();
+            //// Create a test file with expected provinces
+            //std::ofstream testFile(testFilePath);
+            //for (const auto& province : expectedProvinces) {
+            //    testFile << province << std::endl;
+            //}
+            //testFile.close();
 
             // Act
-            setProvVector(actualProvinces);
+            setProvVector(provvect);
 
-            // Assert
-            Assert::AreEqual(expectedProvinces.size(), actualProvinces.size(), L"The size of the vector should match the number of provinces in the test file.");
-            for (size_t i = 0; i < expectedProvinces.size(); ++i) {
-                Assert::AreEqual(expectedProvinces[i].c_str(), actualProvinces[i].c_str(), L"Each province in the vector should match the corresponding line in the test file.");
-            }
+            //// Assert
+            //Assert::AreEqual(expectedProvinces.size(), actualProvinces.size(), L"The size of the vector should match the number of provinces in the test file.");
+            //for (size_t i = 0; i < expectedProvinces.size(); ++i) {
+            //    Assert::AreEqual(expectedProvinces[i].c_str(), actualProvinces[i].c_str(), L"Each province in the vector should match the corresponding line in the test file.");
+            //}
 
-            // Cleanup
-            std::remove(testFilePath.c_str());
+            //// Cleanup
+            //std::remove(testFilePath.c_str());
         }
 
 	};

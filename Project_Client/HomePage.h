@@ -15,6 +15,7 @@ public:
     ~HomePage();
     void configUI(void);
     void waitforClt(void);
+    void setupClt(void);
     
 private slots:
     void on_sortstatusBtn_clicked();
