@@ -8,6 +8,7 @@
 #include "../SERVERCONTAINER/Package.cpp"
 #include "../SERVERCONTAINER/Person.cpp"
 #include "../SERVERCONTAINER/Courier.cpp"
+#include "../SERVERCONTAINER/Order.cpp"
 // Client container classes are marked with a '2' to avoid duplicity
 #include "../CLIENTCONTAINER/Address.cpp"
 #include "../CLIENTCONTAINER/DataPkt.cpp"
@@ -55,7 +56,7 @@ namespace AidanCheesmondTestProj
             Assert::AreEqual(0, unitNo);
         }
 
-        TEST_METHOD(SRV_21_ParameterizedConstructor)
+        TEST_METHOD(SRV_22_ParameterizedConstructor)
         {
             // Arrange
             Address address("123 Main St", "Toronto", "ON");
@@ -73,7 +74,7 @@ namespace AidanCheesmondTestProj
             Assert::AreEqual(0, unitNo);
         }
 
-        TEST_METHOD(SRV_21_FullConstructor)
+        TEST_METHOD(SRV_23_FullConstructor)
         {
             // Arrange
             Address address("123 Main St", "Toronto", "ON", 4);
@@ -91,7 +92,7 @@ namespace AidanCheesmondTestProj
             Assert::AreEqual(4, unitNo);
         }
 
-        TEST_METHOD(SRV_21_GetOnlySt)
+        TEST_METHOD(SRV_24_GetOnlySt)
         {
             // Arrange
             Address address("123 Main St", "Toronto", "ON", 4);
@@ -103,7 +104,7 @@ namespace AidanCheesmondTestProj
             Assert::AreEqual(std::string("123 Main St"), onlySt);
         }
 
-        TEST_METHOD(SRV_21_SetProvVectorTest)
+        TEST_METHOD(SRV_25_SetProvVectorTest)
         {
             // Arrange
             std::string testFilePath = "testProvinces.txt";
@@ -128,6 +129,11 @@ namespace AidanCheesmondTestProj
 
             // Cleanup
             std::remove(testFilePath.c_str());
+        }
+
+        TEST_METHOD(SRV_26_Package)
+        {
+
         }
 
 	};
