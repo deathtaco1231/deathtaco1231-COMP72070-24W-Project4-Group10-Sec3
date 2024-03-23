@@ -55,6 +55,8 @@ void HomePage::on_pkgList_itemClicked(QListWidgetItem* item) {
     ui.toaddrLabel->setText(QString::fromStdString("To: " + currSelect.getstAddr()));
     ui.creationdateLabel->setText(QString::fromStdString("Created On: " + currSelect.getCreationDate().datetos()));
     ui.deliverdateLabel->setText(QString::fromStdString("Deliver By: " + currSelect.getDeliverBy().datetos()));
+
+    
 }
 void setCurrPkgSel(QListWidgetItem* item) {
     for (int i = 0; i < allQstrPkgs.size(); i++) 

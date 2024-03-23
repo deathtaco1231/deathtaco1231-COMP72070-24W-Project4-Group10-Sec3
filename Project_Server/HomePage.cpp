@@ -34,6 +34,24 @@ void HomePage::on_pkgList_itemClicked(QListWidgetItem* item) {
     ui.weightLabel->setText(QString::fromStdString("Weight: " + std::format("{:.2f}", currSelect.getWeight()) + " LBS"));
     ui.toaddrLabel->setText(QString::fromStdString("To: " + currSelect.getstAddr()));
     ui.deliverdateLabel->setText(QString::fromStdString("Deliver By: " + currSelect.getDeliverBy().datetos()));
+
+    date currentDate;
+    setcurrdate();
+
+    for (int i = 0; i < allQstrPkgs.size(); i++) {
+        if (item->text().toStdString() == allPkgs[i].toString()) {
+            currentDate = allPkgs[i].getDeliverBy();
+            break;
+        }
+    }
+
+    // Highlight in red if the delivery date is before the current date
+    if (currentDate < currdate) {
+        ui.deliverdateLabel->setStyleSheet("QLabel { color: red; }");
+    }
+    else {
+        ui.deliverdateLabel->setStyleSheet("");
+    }
 }
 void HomePage::on_deliveredBtn_clicked() {
     std::string label = ui.deliveryimgline->text().toStdString();
