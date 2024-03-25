@@ -1,5 +1,5 @@
 #include "Order.h"
-Completed::Completed() {
+Order:: Order() {
 	Package p;
 	date d;
 	Courier c;
@@ -7,26 +7,26 @@ Completed::Completed() {
 	this->completedOn = d;
 	this->deliveredBy = c;
 }
-Completed::Completed(Package& p, date& d, Courier& c) {
+Order::Order(Package& p, date& d, Courier& c) {
 	this->p = p;
 	this->completedOn = d;
 	this->deliveredBy = c;
 }
-void Completed::setPackage(Package& p) {
+void Order::setPackage(Package& p) {
 	this->p = p;
 }
-void Completed::setDate(date& d) {
+void Order::setDate(date& d) {
 	this->completedOn = d;
 }
-void Completed::setCourier(Courier& c) {
+void Order::setCourier(Courier& c) {
 	this->deliveredBy = c;
 }
-Package Completed::getPackage() {
+Package Order::getPackage() {
 	return this->p;
 }
-date Completed::getDate() {
+date Order::getDate() {
 	return this->completedOn;
 }
-Courier Completed::getCourier() {
+Courier Order::getCourier() {
 	return this->deliveredBy;
 }
