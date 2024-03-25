@@ -74,6 +74,25 @@ void HomePage::on_pkgList_itemClicked(QListWidgetItem* item) {
     ui.creationdateLabel->setText(QString::fromStdString("Created On: " + currSelect.getCreationDate().datetos()));
     ui.deliverdateLabel->setText(QString::fromStdString("Deliver By: " + currSelect.getDeliverBy().datetos()));
 
+
+    date currentDate;
+    setcurrdate();
+
+    for (int i = 0; i < allQstrPkgs.size(); i++) {
+        if (item->text().toStdString() == allPkgs[i].toString()) {
+            currentDate = allPkgs[i].getDeliverBy();
+            break;
+        }
+    }
+
+    // Highlight in red if the delivery date is before the current date
+    if (currentDate < currdate) {
+        ui.deliverdateLabel->setStyleSheet("QLabel { color: red; }");
+    }
+    else {
+        ui.deliverdateLabel->setStyleSheet("");
+    }
+
     
 }
 void setCurrPkgSel(QListWidgetItem* item) {
