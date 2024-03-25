@@ -6,6 +6,7 @@ HomePage::HomePage(QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    setupClt();
     configUI();
 }
 
@@ -14,8 +15,25 @@ HomePage::~HomePage()
 
 }
 
-void HomePage::configUI(void) {
+void HomePage::setupClt(void) {
     QWidget::setWindowTitle(QString::fromStdString("Server"));
+    setProvVector(provvect);
+    ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
+    if (!initPkgVect()) {
+        qDebug("PACKAGE VECTOR INIT FAILURE. ABORTING...");
+        exit(-1);
+    }
+    sendCltPackages();
+    for (int i = 0; i < allPkgs.size(); i++)
+        allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
+    for (int i = 0; i < allQstrPkgs.size(); i++)
+        ui.pkgList->addItem(allQstrPkgs[i]);
+    ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
+    ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
+}
+
+void HomePage::configUI(void) {
+    /*QWidget::setWindowTitle(QString::fromStdString("Server"));
     setProvVector(provvect);
     ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
     if (!initPkgVect()) {
@@ -26,7 +44,7 @@ void HomePage::configUI(void) {
     for (int i = 0; i < allPkgs.size(); i++) 
         allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
     for (int i = 0; i < allQstrPkgs.size(); i++)
-        ui.pkgList->addItem(allQstrPkgs[i]);  
+        ui.pkgList->addItem(allQstrPkgs[i]);  */
     ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
     QApplication::processEvents();
@@ -81,7 +99,7 @@ void HomePage::waitforClt(void) {
         fwrite(buf, reallen, 1, fp);
         fclose(fp);
         popup = new DeliveryPopup(this);
-        popup->show();
+        popup->exec();
         if (isDel) {
             int index = 0;
             for (int i = 0; i < allPkgs.size(); i++)
@@ -95,4 +113,5 @@ void HomePage::waitforClt(void) {
         break;
     }
     }
+    
 }

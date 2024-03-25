@@ -44,8 +44,11 @@ void Login::on_LoginBtn_clicked() {
         QApplication::processEvents();
         setTempUI();
         mainscrn = new HomePage(this);
-        mainscrn->show();
+        mainscrn->setWindowModality(Qt::WindowModal);
         this->hide();
+        mainscrn->show();
+        
+        
     }
     else {
         ui.errorLabel->setText(QString::fromStdString("One or more fields not valid!"));
