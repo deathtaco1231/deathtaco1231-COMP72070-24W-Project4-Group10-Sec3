@@ -1,5 +1,5 @@
 Label.jpg,1,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,true
-C:\Users\Aeche\OneDrive\Pictures\Screenshots\Screenshot 2024-03-21 212533.png,2,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2025,true
+Aidan.jpg,2,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2025,true
 Label.jpg,3,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,false
 Label.jpg,4,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,false
 Label.jpg,5,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,false
