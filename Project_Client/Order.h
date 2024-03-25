@@ -1,4 +1,5 @@
 #pragma once
+#define ORDERFNAME "Orders.txt"
 #include "AllHeaders.h"
 #include "Package.h"
 #include "Date.h"
