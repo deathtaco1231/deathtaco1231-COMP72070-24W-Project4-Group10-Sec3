@@ -170,16 +170,18 @@ namespace JulianTestProj
 		{
 			// Arrange
 			int DataSize = 7500; // Arbitrary Valid Number
-			DataPkt tmp;
-			tmp.setHead(0, 0, DataSize);
+			DataPkt tst;
+			tst.setDType(0);
+			tst.setFlags(0);
+			tst.setDsize(DataSize);
 			char data[7500] = { "Hello World!" }; // data buffer must be same size
 
 			// Act
 			int size = 0;
-			tmp.setTBuf(data, size);
+			tst.setTBuf(data, size);
 
 			// Assert
-			Assert::IsTrue(size == 7500 + sizeof(Header) + sizeof(Tail) && tmp.getTBuf() != NULL);
+			Assert::IsTrue(size == 7500 + sizeof(Header) + sizeof(Tail) && tst.getTBuf() != NULL);
 		}
 		TEST_METHOD(TST_CLT007_CREATEINVALIDTBUF)
 		{
@@ -258,7 +260,7 @@ namespace JulianTestProj
 			// Act
 			DataPkt tmp(data);
 			char* test = tmp.getTBuf();
-			delete data;
+			delete[] data;
 
 			// Assert
 			Assert::IsTrue(test == nullptr);
