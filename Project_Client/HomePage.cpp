@@ -124,6 +124,7 @@ void HomePage::waitforClt(void) {
             for (int i = 0; i < allPkgs.size(); i++)
                 if (allPkgs[i].getID() == tmpPkg.getID())
                     index = i; 
+
             ui.pkgList->takeItem(index);
             allQstrPkgs.erase(allQstrPkgs.begin() + index);
             allPkgs.erase(allPkgs.begin() + index);
