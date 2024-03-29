@@ -181,7 +181,7 @@ namespace JulianTestProj
 			// Assert
 			Assert::IsTrue(size == 7500 + sizeof(Header) + sizeof(Tail) && tmp.getTBuf() != NULL);
 		}
-		TEST_METHOD(TST_CLT007_INVALIDTBUF)
+		TEST_METHOD(TST_CLT007_CREATEINVALIDTBUF)
 		{
 			// Arrange
 			DataPkt tmp;
@@ -195,25 +195,97 @@ namespace JulianTestProj
 			// Assert
 			Assert::IsTrue(size == sizeof(Header) + sizeof(Tail) && tmp.getTBuf() != NULL); // Expected to create default packet with default info so SOMETHING is sent 
 		}
-		TEST_METHOD(TST_CLTOO8)
+		TEST_METHOD(TST_CLTOO8_RETRIEVEINVALIDTBUF)
 		{
+			// Arrange
+			DataPkt tmp; 
+			tmp.setHead(0, 0, NULL);
+			char data[100] = { "Hello World" };
+			int size = 0;
+			tmp.setTBuf(data, size);
+			char* modify = tmp.getTBuf();
+
+			// Act
+			memset(modify, NULL, sizeof(data));
+
+			// Assert
+			Assert::IsNull(tmp.getTBuf());
 
 		}
-		TEST_METHOD(TST_CLTOO9)
+		TEST_METHOD(TST_CLTOO9_RETUNINITBUF)
 		{
+			// Arrange
+			DataPkt tmp;
+			tmp.setHead(0, 0, NULL);
+
+			// Act
+			char* test = tmp.getTBuf();
+
+			// Assert
+			Assert::IsTrue(test == nullptr);
+		}
+		TEST_METHOD(TST_CLTO10_RBUFSIZETOOBIG)
+		{
+			// Arrange
+			char* data = new char[1000001];
+			memset(data, 1, sizeof(data));
+			Header head;
+			head.Datasize = sizeof(data);
+			head.DType = 1;
+			head.Flags = 0;
+			memcpy(data, &head, sizeof(head));
+
+			// Act
+			DataPkt tmp(data);
+			char* test = tmp.getTBuf();
+			delete data;
+
+			// Assert
+			Assert::IsTrue(test == nullptr);
+		}
+		TEST_METHOD(TST_CLTO10_RBUFSIZENEGATIVE)
+		{
+			// Arrange
+			char* data = new char[500];
+			memset(data, 1, sizeof(data));
+			Header head;
+			head.Datasize = -1;
+			head.DType = 1;
+			head.Flags = 0;
+			memcpy(data, &head, sizeof(head));
+
+			// Act
+			DataPkt tmp(data);
+			char* test = tmp.getTBuf();
+			delete data;
+
+			// Assert
+			Assert::IsTrue(test == nullptr);
 
 		}
-		TEST_METHOD(TST_CLTO10)
+		TEST_METHOD(TST_CLTO11_VALIDIMGSIZE)
 		{
+			// Arrange
+			std::string fpath = "C:\\Users\\dankp\\Downloads\\Delivered.jpg";
+			int expected = 9983;
 
+			// Act
+			int result = GetFileSize(fpath.c_str());
+
+			// Assert
+			Assert::AreEqual(result, expected);
 		}
-		TEST_METHOD(TST_CLTO11)
+		TEST_METHOD(TST_CLTO12_INVALIDIMGSIZE)
 		{
+			// Arrange
+			std::string fpath = "C:\\Users\\dankp\\Downloads\\DOESNOTEXIST.jpg";
+			int expected = 0;
 
-		}
-		TEST_METHOD(TST_CLTO12)
-		{
+			// Act
+			int result = GetFileSize(fpath.c_str());
 
+			// Assert
+			Assert::AreEqual(result, expected);
 		}
 		TEST_METHOD(TST_CLTO13)
 		{

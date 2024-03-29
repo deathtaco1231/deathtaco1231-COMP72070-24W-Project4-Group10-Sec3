@@ -6,8 +6,12 @@ DataPkt::DataPkt() {
 }
 DataPkt::DataPkt(char* buf) {
 	memcpy(&head, buf, sizeof(head));
-	TBuf = new char[head.Datasize];
-	memcpy(TBuf, buf + sizeof(head), head.Datasize);
+	if (head.Datasize < 0 || head.Datasize > 1000000)
+		TBuf = nullptr;
+	else {
+		TBuf = new char[head.Datasize];
+		memcpy(TBuf, buf + sizeof(head), head.Datasize);
+	}
 	memcpy(&tail, buf + sizeof(head) + head.Datasize, sizeof(tail));
 }
 void DataPkt::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
