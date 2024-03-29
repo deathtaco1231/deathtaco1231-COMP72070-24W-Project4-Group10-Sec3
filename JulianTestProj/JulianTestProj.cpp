@@ -351,6 +351,21 @@ namespace JulianTestProj
 			// Assert
 			Assert::IsFalse(isBound);
 		}
+		TEST_METHOD(TST_SRV012)
+		{
 
+		}
+		TEST_METHOD(TST_SRV013)
+		{
+
+		}
+		TEST_METHOD(TST_SRV014)
+		{
+
+		}
+		TEST_METHOD(TST_SRV015)
+		{
+
+		}
 	};
 }
