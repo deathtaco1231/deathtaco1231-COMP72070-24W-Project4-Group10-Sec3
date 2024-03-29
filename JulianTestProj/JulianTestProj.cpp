@@ -206,10 +206,11 @@ namespace JulianTestProj
 			char* modify = tmp.getTBuf();
 
 			// Act
-			memset(modify, NULL, sizeof(data));
+			char* test = tmp.getTBuf();
+			delete[] test;
 
 			// Assert
-			Assert::IsNull(tmp.getTBuf());
+			Assert::IsTrue(test == nullptr);
 
 		}
 		TEST_METHOD(TST_CLTOO9_RETUNINITBUF)
@@ -238,7 +239,7 @@ namespace JulianTestProj
 			// Act
 			DataPkt tmp(data);
 			char* test = tmp.getTBuf();
-			delete data;
+			delete[] data;
 
 			// Assert
 			Assert::IsTrue(test == nullptr);

@@ -42,6 +42,8 @@ void DataPkt::setTBuf(char* data, int& size) {
 	memcpy(TBuf + headSize + head.Datasize, &tail, tailSize);
 }
 char* DataPkt::getTBuf(void) {
+	if (!TBuf)
+		this->TBuf = nullptr;
 	return this->TBuf;
 }
 DataPkt::~DataPkt() {
