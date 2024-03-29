@@ -201,25 +201,25 @@ namespace AidanCheesmondTestProj
             // Act
             bool result = initPkgVect();
 
-            // Assert
+           //  Assert
             Assert::IsTrue(result);
             Assert::IsTrue(allPkgs.size() > 0);
 
-            // Cleanup
+           //  Cleanup
             std::remove("packages.txt");
         }
 
         //TEST_METHOD(ReadPkgTest)
         //{
         //    // Arrange
-        //    std::string input = "path/to/image,123,123 Main St,Toronto,ON,Item,10.5,15.5,20.5,25.5,1,1,2024,true\n";
+        //    std::string input = "DeliveredPackage.jpg,123,123 Main St,Toronto,ON,Item,10.5,15.5,20.5,25.5,1,1,2024,true\n";
         //    std::istringstream in(input);
 
         //    // Act
         //    Package p = readPkg(in);
 
         //    // Assert
-        //    Assert::AreEqual(std::string("path/to/image"), p.getImgPath());
+        //    Assert::AreEqual(std::string(DeliveredPackage.jpg), p.getImgPath());
         //    Assert::AreEqual(123, p.getID());
         //    Assert::AreEqual(std::string("Item"), p.getItem());
         //    Assert::AreEqual(10.5, p.getWeight());
