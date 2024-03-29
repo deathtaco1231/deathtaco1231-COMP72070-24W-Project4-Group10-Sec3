@@ -4,14 +4,14 @@
 #include "Package.h"
 #include "Date.h"
 #include "Courier.h"
-class Completed {
+class Order {
 protected:
 	Package p;
 	date completedOn;
 	Courier deliveredBy;
 public:
-	Completed();
-	Completed(Package&, date&, Courier&);
+	Order();
+	Order(Package&, date&, Courier&);
 	void setPackage(Package&);
 	void setDate(date&);
 	void setCourier(Courier&);
@@ -19,3 +19,4 @@ public:
 	date getDate();
 	Courier getCourier();
 };
+void writeOrderToFile(Order&);

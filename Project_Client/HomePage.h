@@ -6,6 +6,7 @@
 #include "Package.h"
 #include "Manager.h"
 #include "Courier.h"
+#include "Order.h"
 class HomePage : public QMainWindow
 {
     Q_OBJECT

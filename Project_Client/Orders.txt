@@ -1,0 +1,9 @@
+Order Completed At: Fri Mar 29 02:00:45 2024
+
+Package ID: 21	Item Name: Lmao
+Weight: 14.30LBS	Length: 86.00CM	Width: 44.62CM	Height: 3.00CM
+Created on: 2024/3/29	Delivery Deadline: 2024/3/6	Actual Delivery Date: 2024/3/29
+Late? --> Yes
+Delivered by courier: Cat Arena	ID: 2
+
+
