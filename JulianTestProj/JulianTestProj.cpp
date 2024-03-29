@@ -359,13 +359,44 @@ namespace JulianTestProj
 		{
 
 		}
-		TEST_METHOD(TST_SRV014)
+		TEST_METHOD(TST_SRV014_VALIDCOURIER)
 		{
+			// Arrange
+			std::string uname, pword;
+			uname = "Julian";
+			pword = "1234";
 
+			// Act
+			bool test = authCourier(uname, pword);
+
+			// Assert
+			Assert::IsTrue(test);
 		}
-		TEST_METHOD(TST_SRV015)
+		TEST_METHOD(TST_SRV015_INVALIDUNAME)
 		{
+			// Arrange
+			std::string uname, pword;
+			uname = "INVALID";
+			pword = "1234";
 
+			// Act
+			bool test = authCourier(uname, pword);
+
+			// Assert
+			Assert::IsFalse(test);
+		}
+		TEST_METHOD(TST_SRV015_INVALIDPWORD)
+		{
+			// Arrange
+			std::string uname, pword;
+			uname = "Julian";
+			pword = "INVALID";
+
+			// Act
+			bool test = authCourier(uname, pword);
+
+			// Assert
+			Assert::IsFalse(test);
 		}
 	};
 }
