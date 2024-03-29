@@ -194,8 +194,8 @@ namespace AidanCheesmondTestProj
         TEST_METHOD(InitPkgVectTest)
         {
             // Arrange
-            std::ofstream out("packages.txt");
-            out << "path/to/image,123,123 Main St,Toronto,ON,Item,10.5,15.5,20.5,25.5,1,1,2024,true\n";
+            std::ofstream out("test_data.txt");
+            out << "DeliveredPackage.jpg,2,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2025,true\n";
             out.close();
 
             // Act
@@ -209,25 +209,25 @@ namespace AidanCheesmondTestProj
             std::remove("packages.txt");
         }
 
-        //TEST_METHOD(ReadPkgTest)
-        //{
-        //    // Arrange
-        //    std::string input = "DeliveredPackage.jpg,123,123 Main St,Toronto,ON,Item,10.5,15.5,20.5,25.5,1,1,2024,true\n";
-        //    std::istringstream in(input);
+        TEST_METHOD(ReadPkgTest)
+        {
+            // Arrange
+            std::ifstream inFile("test_data.txt");
+            Assert::IsTrue(inFile.is_open(), L"Failed to open test data file.");
 
-        //    // Act
-        //    Package p = readPkg(in);
+            // Act
+            Package p = readPkg(inFile);
 
-        //    // Assert
-        //    Assert::AreEqual(std::string(DeliveredPackage.jpg), p.getImgPath());
-        //    Assert::AreEqual(123, p.getID());
-        //    Assert::AreEqual(std::string("Item"), p.getItem());
-        //    Assert::AreEqual(10.5, p.getWeight());
-        //    Assert::AreEqual(15.5, p.getLength());
-        //    Assert::AreEqual(20.5, p.getWidth());
-        //    Assert::AreEqual(25.5, p.getHeight());
-        //    Assert::IsTrue(p.checkifassigned());
-        //}
+            // Assert
+            Assert::AreEqual(std::string("DeliveredPackage.jpg"), p.getImgPath());
+            Assert::AreEqual(123, p.getID());
+            Assert::AreEqual(std::string("Item"), p.getItem());
+            Assert::AreEqual(10.5, p.getWeight());
+            Assert::AreEqual(15.5, p.getLength());
+            Assert::AreEqual(20.5, p.getWidth());
+            Assert::AreEqual(25.5, p.getHeight());
+            Assert::IsTrue(p.checkifassigned());
+        }
 
         TEST_METHOD(ToStringTest)
         {
