@@ -166,7 +166,7 @@ namespace AidanCheesmondTestProj
         TEST_METHOD(ParameterizedConstructor1)
         {
             // Arrange
-            std::string expectedLabelImgPath = "path/to/image";
+            std::string expectedLabelImgPath = "DeliveredPackage.jpg";
             int expectedID = 123;
             std::string expectedItemName = "Item";
             double expectedWeight = 10.0;
