@@ -91,4 +91,22 @@ void setCurrentCourier(void) {
 		}
 	}
 }
-
+void writeAllCouriers(void) {
+	std::ofstream out(COURIERFNAME);
+	for (int i = 0; i < allCouriers.size(); i++) {
+		Courier c = allCouriers[i];
+		out << c.getGoodDeliv() << DELIM << c.getLateDeliv() << DELIM << c.getAge() << DELIM << c.getID() << DELIM << c.getName() << DELIM << c.getUsername() << DELIM << c.getPassword() << std::endl;
+	}
+	out.close();
+}
+void setCourierVect(void) {
+	std::ifstream courierdata;
+	courierdata.open(COURIERFNAME);
+	if (!courierdata.is_open())
+		exit(1);
+	while (!courierdata.eof()) {
+		Courier tmp = readCourier(courierdata);
+		allCouriers.push_back(tmp);
+	}
+	courierdata.close();
+}

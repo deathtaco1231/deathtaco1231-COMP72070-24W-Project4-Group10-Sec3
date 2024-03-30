@@ -33,18 +33,6 @@ void HomePage::setupClt(void) {
 }
 
 void HomePage::configUI(void) {
-    /*QWidget::setWindowTitle(QString::fromStdString("Server"));
-    setProvVector(provvect);
-    ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
-    if (!initPkgVect()) {
-        qDebug("PACKAGE VECTOR INIT FAILURE. ABORTING...");
-        exit(-1);
-    }
-    sendCltPackages();
-    for (int i = 0; i < allPkgs.size(); i++) 
-        allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
-    for (int i = 0; i < allQstrPkgs.size(); i++)
-        ui.pkgList->addItem(allQstrPkgs[i]);  */
     ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
     QApplication::processEvents();
@@ -112,7 +100,7 @@ void HomePage::waitforClt(void) {
         char len[8] = { 0 };
         recvBuf(len, sizeof(len));
         long int reallen = atoi(len);
-        char buf[500000] = { 0 };
+        char buf[200000] = { 0 };
         recvBuf(buf, reallen);
         FILE* fp = fopen(TMPIMG, "wb");
         fwrite(buf, reallen, 1, fp);
@@ -133,6 +121,17 @@ void HomePage::waitforClt(void) {
         }
         break;
     }
+    case EXITFLAG:
+    {
+        writeAllCouriers();
+        writeAllPackages();
+        closesocket(ServerSocket);
+        closesocket(ConnectionSocket);
+        WSACleanup();
+        QApplication::quit();
+        break;
+    }
     }
     
+    //configUI();
 }

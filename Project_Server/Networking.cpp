@@ -78,6 +78,15 @@ void sendFlag(int VAL) {
 		sendToSrv(s.getTBuf(), size);
 		break;
 	}
+	case EXITFLAG:
+	{
+		DataPkt s;
+		s.setHead(0, EXITFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
+		break;
+	}
 	default:
 	{
 		DataPkt s;
@@ -144,7 +153,7 @@ void logRecv(DataPkt& p) {
 	out.close();
 }
 DataPkt recvPacket(void) {
-	char Rx[500000];
+	char Rx[200000];
 	recv(ClientSocket, Rx, sizeof(Rx), 0);
 	DataPkt p(Rx);
 	logRecv(p);
@@ -163,7 +172,7 @@ bool sendDelivered(std::string label, Package& p) {
 	sendToSrv(d.getTBuf(), size);
 	long int len = GetFileSize(label.c_str());
 	FILE* in = fopen(label.c_str(), "rb");
-	char buf[500000] = { 0 };
+	char buf[200000] = { 0 };
 	fread(buf, 1, len, in);
 	fclose(in);
 	char strlen[8] = { 0 };

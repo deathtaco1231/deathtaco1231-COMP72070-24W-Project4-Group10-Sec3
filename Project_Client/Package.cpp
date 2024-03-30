@@ -155,6 +155,19 @@ Package matchbyID(int i) {
 			return allPkgs[a];
 	}
 }
+void writeAllPackages(void) {
+	std::ofstream out(PKGFNAME);
+	for (int i = 0; i < allPkgs.size(); i++) {
+		Package c = allPkgs[i];
+		std::string isa;
+		if (c.checkifassigned() == false)
+			isa = "No";
+		else
+			isa = "Yes";
+		out << c.getImgPath() << DELIM << c.getID() << DELIM << c.getOnlySt() << DELIM << c.getCity() << DELIM << c.getProvince() << DELIM << c.getItem() << DELIM << c.getWeight() << DELIM << c.getLength() << DELIM << c.getWidth() << DELIM << c.getHeight() << c.getDeliverBy().getday() << DELIM << c.getDeliverBy().getmonth() << DELIM << c.getDeliverBy().getyear() << DELIM << isa << std::endl;
+	}
+	out.close();
+}
 //std::string Package::toStringConst(void)const {
 //	std::string isA;
 //	if (isAssigned == true)

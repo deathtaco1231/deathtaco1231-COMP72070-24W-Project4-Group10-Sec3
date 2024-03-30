@@ -5,6 +5,7 @@
 #define DELIVFLAG 4
 #define REJECTFLAG 5
 #define ERRFLAG 10
+#define EXITFLAG 12
 #define TMPIMG "TEMP.jpg"
 #include "AllHeaders.h"
 #include "DataPacket.h"
