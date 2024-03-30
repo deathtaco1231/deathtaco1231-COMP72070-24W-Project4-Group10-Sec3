@@ -221,9 +221,9 @@ namespace AidanCheesmondTestProj
             // Assert
             Assert::AreEqual(std::string("DeliveredPackage.jpg"), p.getImgPath());
             Assert::AreEqual(123, p.getID());
-            Assert::AreEqual(std::string("Item"), p.getItem());
-            Assert::AreEqual(10.5, p.getWeight());
-            Assert::AreEqual(15.5, p.getLength());
+            Assert::AreEqual(std::string("Lmao"), p.getItem());
+            Assert::AreEqual(14.3, p.getWeight());
+            Assert::AreEqual(86.1, p.getLength());
             Assert::AreEqual(20.5, p.getWidth());
             Assert::AreEqual(25.5, p.getHeight());
             Assert::IsTrue(p.checkifassigned());
