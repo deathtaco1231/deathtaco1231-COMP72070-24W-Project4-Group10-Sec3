@@ -38,10 +38,14 @@ void writeOrderToFile(Order& o) {
 	std::string late;
 	date d1 = o.getPackage().getDeliverBy();
 	date d2 = o.getDate();
-	if (d1 < d2)
+	if (d1 < d2) {
 		late = "Yes";
-	else
+		currCourier.incLateDeliv();
+	}
+	else {
 		late = "No";
+		currCourier.incGoodDeliv();
+	}
 	out << "Order Completed At: " << dt << std::endl;
 	out << "Package ID: " << o.getPackage().getID() << "	" << "Item Name: " << o.getPackage().getItem() << std::endl;
 	out << "Weight: " << std::format("{:.2f}", o.getPackage().getWeight()) << "LBS" << "	" << "Length: " << std::format("{:.2f}", o.getPackage().getLength()) << "CM" << "	" << "Width: " << std::format("{:.2f}", o.getPackage().getWidth()) << "CM" << "	" << "Height: " << std::format("{:.2f}", o.getPackage().getHeight()) << "CM" << std::endl;

@@ -112,7 +112,7 @@ void HomePage::waitforClt(void) {
         char len[8] = { 0 };
         recvBuf(len, sizeof(len));
         long int reallen = atoi(len);
-        char buf[100000] = { 0 };
+        char buf[500000] = { 0 };
         recvBuf(buf, reallen);
         FILE* fp = fopen(TMPIMG, "wb");
         fwrite(buf, reallen, 1, fp);
