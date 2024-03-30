@@ -140,10 +140,97 @@ namespace AidanNickersonTestProj
             Assert::AreEqual(std::string(" invalid date "), ss.str());
         }
 
-       
+        TEST_METHOD(TestLeapYear)
+        {
+            // Test a leap year
+            date d(29, 2, 2024); // February 29, 2024 is a leap year
+            Assert::IsTrue(d.valid(), L"Leap year should be valid");
 
+            // Test a non-leap year
+            d.setyear(2023); // 2023 is not a leap year
+            Assert::IsFalse(d.valid(), L"Non-leap year should be invalid for February 29");
+
+        }
+
+        TEST_METHOD(TestDateToStringFunctionality)
+        {
+            date d(15, 3, 2024);
+            std::string dateString = d.datetos();
+            Assert::AreEqual(std::string("2024/3/15"), dateString, L"datetos should return the correct string representation");
+        }
+
+        TEST_METHOD(TestDateComparisonOperators)
+        {
+            date d1(15, 3, 2024);
+            date d2(16, 3, 2024);
+            date d3(15, 4, 2024);
+            date d4(15, 3, 2025);
+
+            Assert::IsTrue(d1 < d2, L"d1 should be less than d2");
+            Assert::IsTrue(d1 < d3, L"d1 should be less than d3");
+            Assert::IsTrue(d1 < d4, L"d1 should be less than d4");
+            Assert::IsTrue(d1 == d1, L"d1 should be equal to itself");
+            Assert::IsTrue(d1 <= d2, L"d1 should be less than or equal to d2");
+        }
+
+        TEST_METHOD(TestValidMethodWithDifferentTimeZones)
+        {
+           
+            date d(15, 3, 2024);
+            Assert::IsTrue(d.valid(), L"Date should be valid in the current time zone");
+            
+        }
 
 
 	};
+
+    TEST_CLASS(AidanNickersonTestProj_Order_Tests)
+    {
+    public:
+
+        TEST_METHOD(TestDefaultConstructor)
+        {
+            Order order;
+            Assert::IsTrue(order.getPackage().getID() == 0, L"Default package ID should be 0");
+            Assert::IsTrue(order.getDate().getyear() == 0, L"Default date year should be 0");
+            Assert::IsTrue(order.getCourier().getID() == 0, L"Default courier ID should be 0");
+        }
+
+
+        TEST_METHOD(TestParameterizedConstructor)
+        {
+            Package p(1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024), date(1, 1, 2024));
+            date d(1, 1, 2024);
+            Courier2 c(1, 0, 1, "John Doe"); // Assuming Courier2 constructor takes ID, GoodDeliveries, LateDeliveries, and Name
+            Order order(p, d, c);
+
+            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
+            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
+            Assert::AreEqual(1, order.getCourier().getID(), L"Courier ID should be 1");
+        }
+
+        TEST_METHOD(TestSettersAndGetters)
+        {
+            Order order;
+            Package p(1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024), date(1, 1, 2024));
+            date d(1, 1, 2024);
+            Courier2 c(1, 0, 1, "John Doe");
+
+            order.setPackage(p);
+            order.setDate(d);
+            order.setCourier(c);
+
+            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
+            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
+            Assert::AreEqual(1, order.getCourier().getID(), L"Courier ID should be 1");
+        }
+
+
+
+
+      
+        
+
+    };
 
 }

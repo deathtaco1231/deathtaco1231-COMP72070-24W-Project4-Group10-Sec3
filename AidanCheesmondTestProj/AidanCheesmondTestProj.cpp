@@ -38,7 +38,7 @@ namespace AidanCheesmondTestProj
 	TEST_CLASS(AidanCheesmondTestProj)
 	{
 	public:
-		
+		// Address Tests
         TEST_METHOD(SRV_21_DefaultConstructor)
         {
             // Arrange
@@ -132,9 +132,122 @@ namespace AidanCheesmondTestProj
         //    //std::remove(testFilePath.c_str());
         //}
 
+        // Package Tests
         TEST_METHOD(SRV_26_Package)
         {
+            // Arrange
+            Package package;
 
+            // Act
+            std::string labelImgPath = package.getImgPath();
+            int id = package.getID();
+            std::string itemName = package.getItem();
+            double weight = package.getWeight();
+            double length = package.getLength();
+            double height = package.getHeight();
+            double width = package.getWidth();
+            date deliverBy = package.getDeliverBy();
+            date createdOn = package.getCreationDate();
+            bool isAssigned = package.checkifassigned();
+
+            // Assert
+            Assert::AreEqual(std::string(""), labelImgPath);
+            Assert::AreEqual(0, id); // Assuming ID defaults to 0 if not set
+            Assert::AreEqual(std::string("UNNAMED"), itemName);
+            Assert::AreEqual(0.0, weight);
+            Assert::AreEqual(0.0, length);
+            Assert::AreEqual(0.0, height);
+            Assert::AreEqual(0.0, width);
+            //Assert::IsTrue(deliverBy == date()); // Assuming date has a sensible default
+            //Assert::IsTrue(createdOn == currdate); // Assuming currdate is defined
+            Assert::IsFalse(isAssigned);
+        }
+
+        TEST_METHOD(ParameterizedConstructor1)
+        {
+            // Arrange
+            std::string expectedLabelImgPath = "path/to/image";
+            int expectedID = 123;
+            std::string expectedItemName = "Item";
+            double expectedWeight = 10.0;
+            double expectedLength = 20.0;
+            double expectedWidth = 30.0;
+            double expectedHeight = 40.0;
+            date expectedDeliverBy; // Assuming date is properly initialized
+
+            // Act
+            Package package(expectedLabelImgPath, expectedID, expectedItemName, expectedWeight, expectedLength, expectedWidth, expectedHeight, expectedDeliverBy);
+
+            // Assert
+            Assert::AreEqual(expectedLabelImgPath, package.getImgPath());
+            Assert::AreEqual(expectedID, package.getID());
+            Assert::AreEqual(expectedItemName, package.getItem());
+            Assert::AreEqual(expectedWeight, package.getWeight());
+            Assert::AreEqual(expectedLength, package.getLength());
+            Assert::AreEqual(expectedHeight, package.getHeight());
+            Assert::AreEqual(expectedWidth, package.getWidth());
+ /*           Assert::IsTrue(expectedDeliverBy == package.getDeliverBy());*/
+          /*  Assert::IsTrue(currdate == package.getCreationDate());*/
+            /*Assert::IsFalse(package.checkifassigned());*/
+        }
+
+        TEST_METHOD(InitPkgVectTest)
+        {
+            // Arrange
+            std::ofstream out("test_data.txt");
+            out << "DeliveredPackage.jpg,2,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2025,true\n";
+            out.close();
+
+            // Act
+            bool result = initPkgVect();
+
+           //  Assert
+            Assert::IsTrue(result);
+            Assert::IsTrue(allPkgs.size() > 0);
+
+           //  Cleanup
+            std::remove("packages.txt");
+        }
+
+        TEST_METHOD(ReadPkgTest)
+        {
+            // Arrange
+            std::ifstream inFile("test_data.txt");
+            Assert::IsTrue(inFile.is_open(), L"Failed to open test data file.");
+
+            // Act
+            Package p = readPkg(inFile);
+
+            // Assert
+            Assert::AreEqual(std::string("DeliveredPackage.jpg"), p.getImgPath());
+            Assert::AreEqual(123, p.getID());
+            Assert::AreEqual(std::string("Lmao"), p.getItem());
+            Assert::AreEqual(14.3, p.getWeight());
+            Assert::AreEqual(86.1, p.getLength());
+            Assert::AreEqual(20.5, p.getWidth());
+            Assert::AreEqual(25.5, p.getHeight());
+            Assert::IsTrue(p.checkifassigned());
+        }
+
+        TEST_METHOD(ToStringTest)
+        {
+            // Arrange
+            Package p;
+            p.setID(123);
+            p.setItem("Item");
+            p.setWeight(10.5);
+            p.setLength(15.5);
+            p.setWidth(20.5);
+            p.setHeight(25.5);
+            p.setDeliverBy(date(1, 1, 2024));
+            p.setAssigned();
+
+            // Act
+            std::string result = p.toString();
+
+            // Assert
+            std::string expected = "123\tItem\tYes\t" + p.getCreationDate().datetos() + "\t" + p.getDeliverBy().datetos();
+            Assert::AreEqual(expected, result);
         }
 
 	};
