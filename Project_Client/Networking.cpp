@@ -145,7 +145,7 @@ void logRecv(DataPkt& p) {
 	out.close();
 }
 DataPkt recvPacket(void) {
-	char Rx[100000];
+	char Rx[500000];
 	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
 	DataPkt p(Rx);
 	logRecv(p);
