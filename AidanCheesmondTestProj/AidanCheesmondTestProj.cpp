@@ -186,7 +186,7 @@ namespace AidanCheesmondTestProj
             Assert::AreEqual(expectedLength, package.getLength());
             Assert::AreEqual(expectedHeight, package.getHeight());
             Assert::AreEqual(expectedWidth, package.getWidth());
- /*           Assert::IsTrue(expectedDeliverBy == package.getDeliverBy());*/
+           /* Assert::IsTrue(expectedDeliverBy == package.getDeliverBy()); */
           /*  Assert::IsTrue(currdate == package.getCreationDate());*/
             /*Assert::IsFalse(package.checkifassigned());*/
         }
