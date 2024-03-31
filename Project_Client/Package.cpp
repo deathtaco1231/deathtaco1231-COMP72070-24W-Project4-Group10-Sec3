@@ -135,7 +135,7 @@ Package readPkg(std::ifstream& in) {
 	std::getline(isline, isAssigned);
 	date d(std::stoi(day), std::stoi(month), std::stoi(year));
 	Package p(labelpath, std::stoi(id), stadd, city, prov, itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
-	if (strncmp(isAssigned.c_str(), "true", 4) == 0)
+	if (isAssigned == "Yes")
 		p.setAssigned();
 	return p;
 }
@@ -154,6 +154,22 @@ Package matchbyID(int i) {
 		if (allPkgs[a].getID() == i)
 			return allPkgs[a];
 	}
+}
+void writeAllPackages(void) {
+	std::ofstream out(PKGFNAME);
+	for (int i = 0; i < allPkgs.size(); i++) {
+		Package c = allPkgs[i];
+		std::string isa;
+		if (c.checkifassigned() == false)
+			isa = "No";
+		else
+			isa = "Yes";
+		if (i == (allPkgs.size() - 1))
+			out << c.getImgPath() << DELIM << c.getID() << DELIM << c.getOnlySt() << DELIM << c.getCity() << DELIM << c.getProvince() << DELIM << c.getItem() << DELIM << c.getWeight() << DELIM << c.getLength() << DELIM << c.getWidth() << DELIM << c.getHeight() << DELIM << c.getDeliverBy().getday() << DELIM << c.getDeliverBy().getmonth() << DELIM << c.getDeliverBy().getyear() << DELIM << isa;
+		else
+			out << c.getImgPath() << DELIM << c.getID() << DELIM << c.getOnlySt() << DELIM << c.getCity() << DELIM << c.getProvince() << DELIM << c.getItem() << DELIM << c.getWeight() << DELIM << c.getLength() << DELIM << c.getWidth() << DELIM << c.getHeight() << DELIM << c.getDeliverBy().getday() << DELIM << c.getDeliverBy().getmonth() << DELIM << c.getDeliverBy().getyear() << DELIM << isa << std::endl;
+	}
+	out.close();
 }
 //std::string Package::toStringConst(void)const {
 //	std::string isA;

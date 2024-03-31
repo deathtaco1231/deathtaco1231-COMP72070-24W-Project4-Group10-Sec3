@@ -16,8 +16,11 @@ public:
 	int getGoodDeliv();
 	int getLateDeliv();
 };
+void setCourierVect(void);
 Courier readCourier(std::ifstream&);
+void writeAllCouriers(void);
 void sendCourier(Courier);
 bool authCourier(std::string, std::string);
 void setCurrentCourier(void);
 Courier currCourier;
+std::vector<Courier> allCouriers;

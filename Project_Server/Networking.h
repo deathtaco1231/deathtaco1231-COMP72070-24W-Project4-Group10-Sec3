@@ -4,6 +4,7 @@
 #define ACKFLAG 3
 #define DELIVFLAG 4
 #define ERRFLAG 10
+#define EXITFLAG 12
 #include "AllHeaders.h"
 #include "DataPacket.h"
 #include "Courier.h"

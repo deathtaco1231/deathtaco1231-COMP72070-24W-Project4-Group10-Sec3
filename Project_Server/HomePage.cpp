@@ -84,3 +84,9 @@ void setCurrPkgSel(QListWidgetItem* item) {
         if (item->text().toStdString() == allPkgs[i].toString())
             currSelect = allPkgs[i];
 }
+void HomePage::on_exitBtn_clicked() {
+    sendFlag(EXITFLAG);
+    closesocket(ClientSocket);
+    WSACleanup();
+    QApplication::quit();
+}
