@@ -95,7 +95,10 @@ void writeAllCouriers(void) {
 	std::ofstream out(COURIERFNAME);
 	for (int i = 0; i < allCouriers.size(); i++) {
 		Courier c = allCouriers[i];
-		out << c.getGoodDeliv() << DELIM << c.getLateDeliv() << DELIM << c.getAge() << DELIM << c.getID() << DELIM << c.getName() << DELIM << c.getUsername() << DELIM << c.getPassword() << std::endl;
+		if (i == allCouriers.size() - 1)
+			out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";";
+		else
+			out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";" << std::endl;
 	}
 	out.close();
 }

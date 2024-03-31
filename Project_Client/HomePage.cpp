@@ -17,6 +17,7 @@ HomePage::~HomePage()
 
 void HomePage::setupClt(void) {
     QWidget::setWindowTitle(QString::fromStdString("Server"));
+    setCourierVect();
     setProvVector(provvect);
     ui.currentpkgID->setText(QString::fromStdString("Selected Package ID Displayed Here"));
     if (!initPkgVect()) {
