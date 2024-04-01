@@ -75,6 +75,8 @@ void HomePage::on_deliveredBtn_clicked() {
                 allQstrPkgs.erase(allQstrPkgs.begin() + index);
                 allPkgs.erase(allPkgs.begin() + index);
                 currSelect.setID(0);
+                currCourier.incGoodDeliv();
+                ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
             }
         }  
     }

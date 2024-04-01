@@ -7,6 +7,7 @@ HomePage::HomePage(QWidget* parent)
 {
     ui.setupUi(this);
     setupClt();
+    show();
     configUI();
 }
 
@@ -101,12 +102,13 @@ void HomePage::waitforClt(void) {
         char len[8] = { 0 };
         recvBuf(len, sizeof(len));
         long int reallen = atoi(len);
-        char buf[200000] = { 0 };
+        char* buf = new char[200000]{ 0 };
         recvBuf(buf, reallen);
         FILE* fp = fopen(TMPIMG, "wb");
         fwrite(buf, reallen, 1, fp);
         fclose(fp);
         popup = new DeliveryPopup(this);
+        popup->setWindowModality(Qt::ApplicationModal);
         popup->exec();
         if (isDel) {
             int index = 0;
@@ -120,6 +122,12 @@ void HomePage::waitforClt(void) {
             allPkgs.erase(allPkgs.begin() + index);
             isDel = false;
         }
+        delete[] buf;
+        configUI();
+        break;
+    }
+    case REQPACKAGEFLAG: {
+
         break;
     }
     case EXITFLAG:
@@ -134,5 +142,4 @@ void HomePage::waitforClt(void) {
     }
     }
     
-    //configUI();
 }
