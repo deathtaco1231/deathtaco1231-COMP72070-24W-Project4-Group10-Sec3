@@ -103,7 +103,7 @@ void sendCltPackages(void) {
 			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());
 			FILE* in;
 			fopen_s(&in, allPkgs[i].getImgPath().c_str(), "rb");
-			char buf[100000] = { 0 };
+			char* buf = new char[200000]{ 0 };
 			fread(buf, 1, len, in);
 			fclose(in);
 			char strlen[8] = { 0 };
@@ -112,6 +112,7 @@ void sendCltPackages(void) {
 			sendToClt(strlen, sizeof(strlen));
 			Sleep(50);
 			sendToClt(buf, len);
+			delete[] buf;
 		}
 	}
 	sendFlag(PKGENDFLAG);
@@ -145,9 +146,11 @@ void logRecv(DataPkt& p) {
 	out.close();
 }
 DataPkt recvPacket(void) {
-	char Rx[200000];
-	recv(ConnectionSocket, Rx, sizeof(Rx), 0);
+	//char Rx[200000];
+	char* Rx = new char[200000] {0};
+	recv(ConnectionSocket, Rx, 200000, 0);
 	DataPkt p(Rx);
+	delete[] Rx;
 	logRecv(p);
 	return p;
 }

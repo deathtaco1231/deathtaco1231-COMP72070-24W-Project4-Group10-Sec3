@@ -3,6 +3,7 @@
 #define PKGENDFLAG 2
 #define ACKFLAG 3
 #define DELIVFLAG 4
+#define REQPACKAGEFLAG 6
 #define ERRFLAG 10
 #define EXITFLAG 12
 #include "AllHeaders.h"

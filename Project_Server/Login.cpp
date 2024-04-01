@@ -39,7 +39,7 @@ void Login::on_LoginBtn_clicked() {
     }
     else {
         mainscrn = new HomePage(this);
-        mainscrn->show();
         this->hide();
+        mainscrn->show();
     }
 }
