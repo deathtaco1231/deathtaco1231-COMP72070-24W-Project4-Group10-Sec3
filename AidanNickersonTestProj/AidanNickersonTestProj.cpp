@@ -197,11 +197,11 @@ namespace AidanNickersonTestProj
         }
 
 
-        TEST_METHOD(TestParameterizedConstructor)
+        TEST_METHOD(TestParameterizedConstructorWithPackage2)
         {
-            Package p(1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024), date(1, 1, 2024));
+            Package2 p("Test Item", 1, "LabelImgPath", 1.0, 10.0, 10.0, 10.0, date2(1, 1, 2024));
             date d(1, 1, 2024);
-            Courier2 c(1, 0, 1, "John Doe"); // Assuming Courier2 constructor takes ID, GoodDeliveries, LateDeliveries, and Name
+            Courier2 c(1, 1, 0, 1, "John Doe");
             Order order(p, d, c);
 
             Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
@@ -212,7 +212,7 @@ namespace AidanNickersonTestProj
         TEST_METHOD(TestSettersAndGetters)
         {
             Order order;
-            Package p(1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024), date(1, 1, 2024));
+            Package p( "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024), date(1, 1, 2024));
             date d(1, 1, 2024);
             Courier2 c(1, 0, 1, "John Doe");
 
