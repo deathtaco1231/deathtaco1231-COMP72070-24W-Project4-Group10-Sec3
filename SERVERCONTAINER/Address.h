@@ -22,4 +22,4 @@ public:
 	std::string getOnlySt();
 };
 std::vector<std::string> provvect;
-void setProvVector(std::vector<std::string>&);
+void setProvVector(std::vector<std::string>&, std::string);

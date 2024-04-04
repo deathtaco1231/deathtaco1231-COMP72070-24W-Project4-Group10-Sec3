@@ -35,9 +35,9 @@ std::string Address::getOnlySt() {
 	return this->stAddr;
 }
 
-void setProvVector(std::vector<std::string>& a) {
+void setProvVector(std::vector<std::string>& a, std::string s) {
 	std::ifstream lolz;
-	lolz.open(PROVFPATH);
+	lolz.open(s);
 	if (!lolz.is_open())
 		exit(-1);
 

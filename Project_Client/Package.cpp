@@ -154,6 +154,12 @@ Package matchbyID(int i) {
 			return allPkgs[a];
 	}
 }
+void setVectPkgAssigned(Package& p) {
+	for (int a = 0; a < allPkgs.size(); a++) {
+		if (allPkgs[a].getID() == p.getID())
+			allPkgs[a].setAssigned();
+	}
+}
 void writeAllPackages(void) {
 	std::ofstream out(PKGFNAME);
 	for (int i = 0; i < allPkgs.size(); i++) {

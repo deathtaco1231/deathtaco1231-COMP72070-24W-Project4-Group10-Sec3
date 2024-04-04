@@ -197,7 +197,7 @@ namespace AidanNickersonTestProj
         }
 
 
-        TEST_METHOD(TestParameterizedConstructor)
+        TEST_METHOD(TestParameterizedConstructorWithPackage2)
         {
             Package p("test.jpg", 1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024));
             date d(1, 1, 2024);
