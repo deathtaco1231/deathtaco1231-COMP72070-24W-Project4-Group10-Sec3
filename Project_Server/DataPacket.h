@@ -28,6 +28,7 @@ public:
 	void setDType(unsigned char);
 	void setFlags(unsigned char);
 	void setDsize(unsigned int);
+	void setSeqNum(unsigned char);
 	void setTBuf(char*, int&);
 	char* getTBuf();
 	int getDType();

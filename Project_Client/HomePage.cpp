@@ -7,6 +7,7 @@ HomePage::HomePage(QWidget* parent)
 {
     ui.setupUi(this);
     setupClt();
+    show();
     configUI();
 }
 
@@ -25,14 +26,16 @@ void HomePage::setupClt(void) {
         exit(-1);
     }
     sendCltPackages();
+    setItemList();
+    ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
+    ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
+}
+void HomePage::setItemList(void) {
     for (int i = 0; i < allPkgs.size(); i++)
         allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
     for (int i = 0; i < allQstrPkgs.size(); i++)
         ui.pkgList->addItem(allQstrPkgs[i]);
-    ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
-    ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
 }
-
 void HomePage::configUI(void) {
     ui.infoLabel->setText(QString::fromStdString("Manager ID: " + std::to_string(currManager.getID()) + ", Name: " + currManager.getName()));
     ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
@@ -40,6 +43,33 @@ void HomePage::configUI(void) {
     waitforClt();
 }
 void HomePage::on_sortstatusBtn_clicked() {
+    
+}
+void HomePage::on_sendPkgBtn_clicked() {
+    int size;
+    DataPkt p = fmtPkg(currSelect, size);
+    setVectPkgAssigned(currSelect);
+    sendToClt(p.getTBuf(), size);
+    long int len = GetFileSize(currSelect.getImgPath().c_str());
+    FILE* in;
+    fopen_s(&in, currSelect.getImgPath().c_str(), "rb");
+    char* buf = new char[200000] { 0 };
+    fread(buf, 1, len, in);
+    fclose(in);
+    char strlen[8] = { 0 };
+    _itoa_s(len, strlen, 10);
+    Sleep(50);
+    sendToClt(strlen, sizeof(strlen));
+    Sleep(50);
+    sendToClt(buf, len);
+    delete[] buf;
+    ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(pkgCount)));
+    allQstrPkgs.clear();
+    ui.pkgList->clear();
+    setItemList();
+    QApplication::processEvents();
+    if (--pkgCount == 0)
+        waitforClt();
     
 }
 void HomePage::on_delPkgBtn_clicked() {
@@ -101,12 +131,13 @@ void HomePage::waitforClt(void) {
         char len[8] = { 0 };
         recvBuf(len, sizeof(len));
         long int reallen = atoi(len);
-        char buf[200000] = { 0 };
+        char* buf = new char[200000]{ 0 };
         recvBuf(buf, reallen);
         FILE* fp = fopen(TMPIMG, "wb");
         fwrite(buf, reallen, 1, fp);
         fclose(fp);
         popup = new DeliveryPopup(this);
+        popup->setWindowModality(Qt::ApplicationModal);
         popup->exec();
         if (isDel) {
             int index = 0;
@@ -120,6 +151,14 @@ void HomePage::waitforClt(void) {
             allPkgs.erase(allPkgs.begin() + index);
             isDel = false;
         }
+        delete[] buf;
+        configUI();
+        break;
+    }
+    case REQPACKAGEFLAG: {
+        DataPkt p = recvPacket();
+        pkgCount = p.getSeqNum();
+        ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(pkgCount)));
         break;
     }
     case EXITFLAG:
@@ -134,5 +173,4 @@ void HomePage::waitforClt(void) {
     }
     }
     
-    //configUI();
 }

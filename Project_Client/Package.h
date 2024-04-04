@@ -47,7 +47,7 @@ bool initPkgVect(void);
 Package readPkg(std::ifstream&);
 Package matchbyID(int i);
 void writeAllPackages(void);
-
+void setVectPkgAssigned(Package&);
 
 
 

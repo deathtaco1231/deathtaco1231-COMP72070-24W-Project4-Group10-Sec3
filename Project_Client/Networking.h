@@ -4,11 +4,13 @@
 #define ACKFLAG 3
 #define DELIVFLAG 4
 #define REJECTFLAG 5
+#define REQPACKAGEFLAG 6
 #define ERRFLAG 10
 #define EXITFLAG 12
 #define TMPIMG "TEMP.jpg"
 #include "AllHeaders.h"
 #include "DataPacket.h"
+#include "Package.h"
 
 SOCKET ServerSocket, ConnectionSocket;
 bool initSocket(void) {
@@ -58,4 +60,4 @@ void sendToClt(char* Tx, int size);
 void logRecv(DataPkt& p);
 DataPkt recvPacket(void);
 void sendCltPackages(void);
-
+DataPkt fmtPkg(Package&, int&);

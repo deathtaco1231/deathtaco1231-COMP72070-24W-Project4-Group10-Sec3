@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1029</width>
-    <height>601</height>
+    <width>1017</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -241,7 +241,7 @@
      <string>Delete</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="editPkgBtn">
+   <widget class="QPushButton" name="sendPkgBtn">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -251,7 +251,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Edit</string>
+     <string>Send</string>
     </property>
    </widget>
    <widget class="QLabel" name="weightLabel">
@@ -404,13 +404,26 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="remainingLabel">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>520</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1029</width>
+     <width>1017</width>
      <height>22</height>
     </rect>
    </property>

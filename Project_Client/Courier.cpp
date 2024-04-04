@@ -95,10 +95,18 @@ void writeAllCouriers(void) {
 	std::ofstream out(COURIERFNAME);
 	for (int i = 0; i < allCouriers.size(); i++) {
 		Courier c = allCouriers[i];
-		if (i == allCouriers.size() - 1)
-			out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";";
-		else
-			out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";" << std::endl;
+		if (c.getID() == currCourier.getID()) {
+			if (i == allCouriers.size() - 1)
+				out << currCourier.getGoodDeliv() << "," << currCourier.getLateDeliv() << "," << currCourier.getAge() << "," << currCourier.getID() << "," << currCourier.getName() << "," << currCourier.getUsername() << "," << currCourier.getPassword() << ";";
+			else
+				out << currCourier.getGoodDeliv() << "," << currCourier.getLateDeliv() << "," << currCourier.getAge() << "," << currCourier.getID() << "," << currCourier.getName() << "," << currCourier.getUsername() << "," << currCourier.getPassword() << ";" << std::endl;
+		}
+		else {
+			if (i == allCouriers.size() - 1)
+				out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";";
+			else
+				out << c.getGoodDeliv() << "," << c.getLateDeliv() << "," << c.getAge() << "," << c.getID() << "," << c.getName() << "," << c.getUsername() << "," << c.getPassword() << ";" << std::endl;
+		}
 	}
 	out.close();
 }

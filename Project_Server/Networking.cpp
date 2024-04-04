@@ -1,5 +1,26 @@
 #include "Networking.h"
 
+Package recvPackage(DataPkt& p) {
+	std::istringstream isline(p.getTBuf());
+	std::string id, itemname, labelpath, weight, length, width, height, year, month, day, st, unit, city, prov;
+	std::getline(isline, id, DELIM);
+	std::getline(isline, itemname, DELIM);
+	std::getline(isline, labelpath, DELIM);
+	std::getline(isline, weight, DELIM);
+	std::getline(isline, length, DELIM);
+	std::getline(isline, width, DELIM);
+	std::getline(isline, height, DELIM);
+	std::getline(isline, year, DELIM);
+	std::getline(isline, month, DELIM);
+	std::getline(isline, day, DELIM);
+	std::getline(isline, st, DELIM);
+	std::getline(isline, unit, DELIM);
+	std::getline(isline, city, DELIM);
+	std::getline(isline, prov, BODYEND);
+	date d(std::stoi(day), std::stoi(month), std::stoi(year));
+	Package pkg(labelpath, std::stoi(id), st, city, prov, std::stoi(unit), itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
+	return pkg;
+}
 void initPkgVect(void) {
 	bool morePkg = true;
 	while (morePkg) {
@@ -8,32 +29,15 @@ void initPkgVect(void) {
 		if (p.getFlags() == PKGENDFLAG)
 			morePkg = false;
 		else {
-			std::istringstream isline(p.getTBuf());
-			std::string id, itemname, labelpath, weight, length, width, height, year, month, day, st, unit, city, prov;
-			std::getline(isline, id, DELIM);
-			std::getline(isline, itemname, DELIM);
-			std::getline(isline, labelpath, DELIM);
-			std::getline(isline, weight, DELIM);
-			std::getline(isline, length, DELIM);
-			std::getline(isline, width, DELIM);
-			std::getline(isline, height, DELIM);
-			std::getline(isline, year, DELIM);
-			std::getline(isline, month, DELIM);
-			std::getline(isline, day, DELIM);
-			std::getline(isline, st, DELIM);
-			std::getline(isline, unit, DELIM);
-			std::getline(isline, city, DELIM);
-			std::getline(isline, prov, BODYEND);
-			date d(std::stoi(day), std::stoi(month), std::stoi(year));
-			Package p(labelpath, std::stoi(id), st, city, prov, std::stoi(unit), itemname, std::stod(weight), std::stod(length), std::stod(width), std::stod(height), d);
-			allPkgs.push_back(p);
+			Package pkg = recvPackage(p);
+			allPkgs.push_back(pkg);
 			
 			char len[8] = { 0 };
 			recvBuf(len, sizeof(len));
 			long int reallen = atoi(len);
 			char buf[100000] = { 0 };
 			recvBuf(buf, reallen);
-			FILE* fp = fopen(labelpath.c_str(), "wb");
+			FILE* fp = fopen(pkg.getImgPath().c_str(), "wb");
 			fwrite(buf, reallen, 1, fp);
 			fclose(fp);
 		}
@@ -82,6 +86,15 @@ void sendFlag(int VAL) {
 	{
 		DataPkt s;
 		s.setHead(0, EXITFLAG, 0);
+		int size;
+		s.setTBuf(NULL, size);
+		sendToSrv(s.getTBuf(), size);
+		break;
+	}
+	case REQPACKAGEFLAG: 
+	{
+		DataPkt s;
+		s.setHead(0, REQPACKAGEFLAG, 0);
 		int size;
 		s.setTBuf(NULL, size);
 		sendToSrv(s.getTBuf(), size);
@@ -153,9 +166,11 @@ void logRecv(DataPkt& p) {
 	out.close();
 }
 DataPkt recvPacket(void) {
-	char Rx[200000];
-	recv(ClientSocket, Rx, sizeof(Rx), 0);
+	//char Rx[200000];
+	char* Rx = new char[200000] {0};
+	recv(ClientSocket, Rx, 200000, 0);
 	DataPkt p(Rx);
+	delete[] Rx;
 	logRecv(p);
 	return p;
 }
@@ -172,7 +187,7 @@ bool sendDelivered(std::string label, Package& p) {
 	sendToSrv(d.getTBuf(), size);
 	long int len = GetFileSize(label.c_str());
 	FILE* in = fopen(label.c_str(), "rb");
-	char buf[200000] = { 0 };
+	char* buf = new char[200000]{ 0 };
 	fread(buf, 1, len, in);
 	fclose(in);
 	char strlen[8] = { 0 };
@@ -181,6 +196,7 @@ bool sendDelivered(std::string label, Package& p) {
 	sendToSrv(strlen, sizeof(strlen));
 	Sleep(50);
 	sendToSrv(buf, len);
+	delete[] buf;
 	DataPkt n = recvPacket();
 	if (n.getFlags() == ACKFLAG)
 		return true;

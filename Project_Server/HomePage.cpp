@@ -22,6 +22,12 @@ void HomePage::configUI(void) {
     for (int i = 0; i < allQstrPkgs.size(); i++)
         ui.pkgList->addItem(allQstrPkgs[i]);
 }
+void HomePage::setItemList(void) {
+    for (int i = 0; i < allPkgs.size(); i++)
+        allQstrPkgs.push_back(QString::fromStdString(allPkgs[i].toString()));
+    for (int i = 0; i < allQstrPkgs.size(); i++)
+        ui.pkgList->addItem(allQstrPkgs[i]);
+}
 void HomePage::on_pkgList_itemClicked(QListWidgetItem* item) {
     setCurrPkgSel(item);
     currItem = item;
@@ -75,6 +81,8 @@ void HomePage::on_deliveredBtn_clicked() {
                 allQstrPkgs.erase(allQstrPkgs.begin() + index);
                 allPkgs.erase(allPkgs.begin() + index);
                 currSelect.setID(0);
+                currCourier.incGoodDeliv();
+                ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
             }
         }  
     }
@@ -89,4 +97,39 @@ void HomePage::on_exitBtn_clicked() {
     closesocket(ClientSocket);
     WSACleanup();
     QApplication::quit();
+}
+void HomePage::on_requestBtn_clicked() {
+    int num = std::stoi(ui.pkgnumline->text().toStdString());
+    if (num > 0 && num < 10) {
+        sendFlag(REQPACKAGEFLAG);
+        Sleep(50);
+        DataPkt s;
+        s.setSeqNum(num);
+        s.setHead(0, 0, 0);
+        int size;
+        s.setTBuf(NULL, size);
+        sendToSrv(s.getTBuf(), size);
+        for (int i = num; i > 0; i--) {
+            DataPkt p = recvPacket();
+            Package pkg = recvPackage(p);
+            allPkgs.push_back(pkg);
+
+            char len[8] = { 0 };
+            recvBuf(len, sizeof(len));
+            long int reallen = atoi(len);
+            char* buf = new char[200000]{ 0 };
+            recvBuf(buf, reallen);
+            FILE* fp = fopen(pkg.getImgPath().c_str(), "wb");
+            fwrite(buf, reallen, 1, fp);
+            fclose(fp);
+            delete[] buf;
+        }
+        allQstrPkgs.clear();
+        ui.pkgList->clear();
+        setItemList();
+        ui.errorLabel->setText("Packages received successfully.");
+    }
+    else {
+        ui.errorLabel->setText("Invalid entry!");
+    }
 }

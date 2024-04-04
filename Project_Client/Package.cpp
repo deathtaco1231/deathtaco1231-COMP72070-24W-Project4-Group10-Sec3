@@ -102,7 +102,6 @@ bool Package::checkifassigned(void) {
 std::string Package::getImgPath(void) {
 	return this->LabelImgPath;
 }
-
 bool initPkgVect(void) {
 	std::ifstream pkgdata;
 	pkgdata.open(PKGFNAME);
@@ -155,6 +154,12 @@ Package matchbyID(int i) {
 			return allPkgs[a];
 	}
 }
+void setVectPkgAssigned(Package& p) {
+	for (int a = 0; a < allPkgs.size(); a++) {
+		if (allPkgs[a].getID() == p.getID())
+			allPkgs[a].setAssigned();
+	}
+}
 void writeAllPackages(void) {
 	std::ofstream out(PKGFNAME);
 	for (int i = 0; i < allPkgs.size(); i++) {
@@ -171,19 +176,3 @@ void writeAllPackages(void) {
 	}
 	out.close();
 }
-//std::string Package::toStringConst(void)const {
-//	std::string isA;
-//	if (isAssigned == true)
-//		isA = "Yes";
-//	else
-//		isA = "No";
-//	std::stringstream s;
-//	s << ID << "	" << ItemName << "	" << isA;
-//	return s.str();
-//}
-//inline bool operator == (const Package& a, const Package& b) {
-//	if (a.toStringConst() == b.toStringConst())
-//		return true;
-//	else
-//		return false;
-//}

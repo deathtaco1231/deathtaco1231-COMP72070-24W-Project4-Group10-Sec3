@@ -17,11 +17,13 @@ public:
     void configUI(void);
     void waitforClt(void);
     void setupClt(void);
+    void setItemList(void);
     
 private slots:
     void on_sortstatusBtn_clicked();
     void on_delPkgBtn_clicked(); 
     void on_pkgList_itemClicked(QListWidgetItem*);
+    void on_sendPkgBtn_clicked();
 private:
     Ui::HomePage ui;
     DeliveryPopup* popup;
@@ -30,4 +32,4 @@ std::vector<QString> allQstrPkgs;
 Package currSelect;
 QListWidgetItem* currItem;
 void setCurrPkgSel(QListWidgetItem*);
-
+int pkgCount;
