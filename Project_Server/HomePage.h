@@ -13,10 +13,12 @@ public:
     HomePage(QWidget* parent = nullptr);
     ~HomePage();
     void configUI(void);
+    void setItemList(void);
 private slots:
     void on_pkgList_itemClicked(QListWidgetItem*);
     void on_deliveredBtn_clicked();
     void on_exitBtn_clicked();
+    void on_requestBtn_clicked();
 private:
     Ui::MainWindow ui;
 };

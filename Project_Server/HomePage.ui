@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>834</width>
-    <height>598</height>
+    <width>828</width>
+    <height>594</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -266,8 +266,8 @@
    <widget class="QPushButton" name="deliveredBtn">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>470</y>
+      <x>320</x>
+      <y>440</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -285,8 +285,8 @@
    <widget class="QLineEdit" name="deliveryimgline">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>480</y>
+      <x>20</x>
+      <y>450</y>
       <width>281</width>
       <height>31</height>
      </rect>
@@ -296,7 +296,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>450</y>
+      <y>420</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -329,13 +329,60 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="requestBtn">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>500</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Request</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="pkgnumline">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>500</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="deliverdateLabel_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Enter # of Packages to request:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>834</width>
+     <width>828</width>
      <height>22</height>
     </rect>
    </property>

@@ -10,6 +10,7 @@
 #define TMPIMG "TEMP.jpg"
 #include "AllHeaders.h"
 #include "DataPacket.h"
+#include "Package.h"
 
 SOCKET ServerSocket, ConnectionSocket;
 bool initSocket(void) {
@@ -59,4 +60,4 @@ void sendToClt(char* Tx, int size);
 void logRecv(DataPkt& p);
 DataPkt recvPacket(void);
 void sendCltPackages(void);
-
+DataPkt fmtPkg(Package&, int&);

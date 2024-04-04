@@ -27,6 +27,9 @@ void DataPkt::setDsize(unsigned int a) {
 	if (a >= 0 && a <= 1000000)
 		this->head.Datasize = a;
 }
+void DataPkt::setSeqNum(unsigned char c) {
+	this->tail.Seqnum = c;
+}
 void DataPkt::setTBuf(char* data, int& size) {
 	if (TBuf)
 		delete TBuf;

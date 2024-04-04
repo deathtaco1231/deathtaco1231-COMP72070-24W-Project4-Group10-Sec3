@@ -3,9 +3,8 @@ Aidan.jpg,2,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,20
 Label.jpg,3,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
 Label.jpg,4,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
 Label.jpg,5,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
-Label.jpg,7,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
-Label.jpg,8,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
-Label.jpg,9,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
+Label.jpg,8,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,Yes
+Label.jpg,9,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,Yes
 Label.jpg,10,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,Yes
 Label.jpg,11,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No
 Label.jpg,12,200 Old Carriage Drive,Kitchener,Ontario,Lmao,14.3,86,44.62,3,6,3,2024,No

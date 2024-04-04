@@ -60,44 +60,49 @@ void sendFlag(int VAL) {
 	}
 	}
 }
-void sendCltPackages(void) {
+DataPkt fmtPkg(Package& pkg, int& size) {
 	DataPkt p;
+	char cbuf[5000] = { 0 };
+	strcpy_s(cbuf, std::to_string(pkg.getID()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, pkg.getItem().c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, pkg.getImgPath().c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getWeight()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getLength()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getWidth()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getHeight()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getDeliverBy().getyear()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getDeliverBy().getmonth()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getDeliverBy().getday()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, pkg.getOnlySt().c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, std::to_string(pkg.getUnitNo()).c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, pkg.getCity().c_str());
+	strcat_s(cbuf, ",");
+	strcat_s(cbuf, pkg.getProvince().c_str());
+	strcat_s(cbuf, ";\n");
+	p.setHead(PKGDT, 0, strlen(cbuf));
+	size = 0;
+	p.setTBuf(cbuf, size);
+	return p;
+}
+void sendCltPackages(void) {
 	std::string tmp;
 	for (int i = 0; i < allPkgs.size(); i++) {
 		if (allPkgs[i].checkifassigned() == true) {
 			Sleep(50);
-			char cbuf[5000] = { 0 };
-			strcpy_s(cbuf, std::to_string(allPkgs[i].getID()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, allPkgs[i].getItem().c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, allPkgs[i].getImgPath().c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getWeight()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getLength()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getWidth()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getHeight()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getDeliverBy().getyear()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getDeliverBy().getmonth()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getDeliverBy().getday()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, allPkgs[i].getOnlySt().c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, std::to_string(allPkgs[i].getUnitNo()).c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, allPkgs[i].getCity().c_str());
-			strcat_s(cbuf, ",");
-			strcat_s(cbuf, allPkgs[i].getProvince().c_str());
-			strcat_s(cbuf, ";\n");
-			p.setHead(PKGDT, 0, strlen(cbuf));
-			int size = 0;
-			p.setTBuf(cbuf, size);
+			int size;
+			DataPkt p = fmtPkg(allPkgs[i], size);
 			Sleep(50);
 			sendToClt(p.getTBuf(), size);
 			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());

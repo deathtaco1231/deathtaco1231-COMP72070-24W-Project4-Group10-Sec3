@@ -50,3 +50,4 @@ void logRecv(DataPkt& p);
 DataPkt recvPacket(void);
 bool authCourier(void);
 void initPkgVect(void);
+Package recvPackage(DataPkt&);
