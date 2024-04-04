@@ -49,13 +49,13 @@ namespace AidanCheesmondTestProj
             std::string province = address.getProvince();
             std::string stAddr = address.getstAddr();
             int unitNo = address.getUnitNo();
+            std::string actual = city + ", " + province + ", " + stAddr + ", " + std::to_string(unitNo);
 
             // Assert
-            Assert::AreEqual(std::string("Empty"), city);
-            Assert::AreEqual(std::string("Empty"), province);
-            Assert::AreEqual(std::string("Empty, Empty, Empty"), stAddr);
-            Assert::AreEqual(0, unitNo);
+            std::string expected = "Empty, Empty, Empty, Empty, Empty, 0";
+            Assert::AreEqual(expected, actual);
         }
+
 
         TEST_METHOD(SRV_22_ParameterizedConstructor)
         {
@@ -107,30 +107,31 @@ namespace AidanCheesmondTestProj
 
         //TEST_METHOD(SRV_25_SetProvVectorTest)
         //{
-        //    // Arrange
+        //    /* Arrange */
         //    std::string testFilePath = "C:\\Users\Aeche\Downloads\provinces.txt";
         //    std::vector<std::string> expectedProvinces = { "Alberta", "British Columbia", "Manitoba" };
         //    std::vector<std::string> actualProvinces;
 
-        //    // Create a test file with expected provinces
+        //    /* Create a test file with expected provinces */
         //    std::ofstream testFile(testFilePath);
         //    for (const auto& province : expectedProvinces) {
         //        testFile << province << std::endl;
         //    }
         //    testFile.close();
 
-        //     //Act
+        //    /* Act */
         //    setProvVector(provvect);
 
-        //    // Assert
-        //    Assert::AreEqual(expectedProvinces.size(), actualProvinces.size(), L"The size of the vector should match the number of provinces in the test file.");
+        //    /* Assert */
+        //    Assert::AreEqual(expectedProvinces.size(), actualProvinces.size(), "The size of the vector should match the number of provinces in the test file.");
         //    for (size_t i = 0; i < expectedProvinces.size(); ++i) {
-        //        Assert::AreEqual(expectedProvinces[i].c_str(), actualProvinces[i].c_str(), L"Each province in the vector should match the corresponding line in the test file.");
+        //        Assert::AreEqual(expectedProvinces[i].c_str(), actualProvinces[i].c_str(), "Each province in the vector should match the corresponding line in the test file.");
         //    }
 
-        //    // Cleanup
+        //    /* Cleanup */
         //    std::remove(testFilePath.c_str());
         //}
+
 
         // Package Tests
         TEST_METHOD(SRV_26_Package)
