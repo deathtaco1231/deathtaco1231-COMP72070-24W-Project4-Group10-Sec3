@@ -100,10 +100,9 @@ void sendCltPackages(void) {
 	std::string tmp;
 	for (int i = 0; i < allPkgs.size(); i++) {
 		if (allPkgs[i].checkifassigned() == true) {
-			Sleep(50);
 			int size;
 			DataPkt p = fmtPkg(allPkgs[i], size);
-			Sleep(50);
+			Sleep(100);
 			sendToClt(p.getTBuf(), size);
 			long int len = GetFileSize(allPkgs[i].getImgPath().c_str());
 			FILE* in;
@@ -113,9 +112,9 @@ void sendCltPackages(void) {
 			fclose(in);
 			char strlen[8] = { 0 };
 			_itoa_s(len, strlen, 10);
-			Sleep(50);
+			Sleep(100);
 			sendToClt(strlen, sizeof(strlen));
-			Sleep(50);
+			Sleep(100);
 			sendToClt(buf, len);
 			delete[] buf;
 		}

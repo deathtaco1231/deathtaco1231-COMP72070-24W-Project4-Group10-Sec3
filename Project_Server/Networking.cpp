@@ -183,7 +183,7 @@ bool sendDelivered(std::string label, Package& p) {
 	d.setHead(PKGDT, DELIVFLAG, strlen(cbuf));
 	int size = 0;
 	d.setTBuf(cbuf, size);
-	Sleep(50);
+	Sleep(100);
 	sendToSrv(d.getTBuf(), size);
 	long int len = GetFileSize(label.c_str());
 	FILE* in = fopen(label.c_str(), "rb");
@@ -192,9 +192,9 @@ bool sendDelivered(std::string label, Package& p) {
 	fclose(in);
 	char strlen[8] = { 0 };
 	_itoa(len, strlen, 10);
-	Sleep(50);
+	Sleep(100);
 	sendToSrv(strlen, sizeof(strlen));
-	Sleep(50);
+	Sleep(100);
 	sendToSrv(buf, len);
 	delete[] buf;
 	DataPkt n = recvPacket();
