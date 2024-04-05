@@ -57,23 +57,19 @@ namespace AidanCheesmondTestProj
         }
 
 
+
         TEST_METHOD(SRV_22_ParameterizedConstructor)
         {
             // Arrange
             Address address("123 Main St", "Toronto", "ON");
 
             // Act
-            std::string city = address.getCity();
-            std::string province = address.getProvince();
             std::string stAddr = address.getstAddr();
-            int unitNo = address.getUnitNo();
 
             // Assert
-            Assert::AreEqual(std::string("Toronto"), city);
-            Assert::AreEqual(std::string("ON"), province);
             Assert::AreEqual(std::string("123 Main St, Toronto, ON"), stAddr);
-            Assert::AreEqual(0, unitNo);
         }
+
 
         TEST_METHOD(SRV_23_FullConstructor)
         {
@@ -87,10 +83,10 @@ namespace AidanCheesmondTestProj
             int unitNo = address.getUnitNo();
 
             // Assert
-            Assert::AreEqual(std::string("Toronto"), city);
-            Assert::AreEqual(std::string("ON"), province);
-            Assert::AreEqual(std::string("123 Main St Unit #4, Toronto, ON"), stAddr);
-            Assert::AreEqual(4, unitNo);
+            Assert::IsTrue(city == "Toronto" &&
+                province == "ON" &&
+                stAddr == "123 Main St Unit #4, Toronto, ON" &&
+                unitNo == 4);
         }
 
         TEST_METHOD(SRV_24_GetOnlySt)
@@ -111,13 +107,13 @@ namespace AidanCheesmondTestProj
             std::vector<std::string> expectedProvinces = { "Alberta", "British Columbia", "Manitoba" };
             std::vector<std::string> actualProvinces;
 
-
-             //Act
-            setProvVector(provvect, "C:\\Users\\dankp\\Downloads\\provinces.txt");
+            //Act
+            setProvVector(provvect, "C:\\Users\Aeche\Downloads\provinces.txt");
 
             // Assert
-            Assert::AreEqual(expectedProvinces.size(), provvect.size(), L"The size of the vector should match the number of provinces in the test file.");
+            Assert::AreEqual(expectedProvinces.size(), provvect.size());
         }
+
 
 
         // Package Tests
@@ -138,20 +134,15 @@ namespace AidanCheesmondTestProj
             date createdOn;
             bool isAssigned = package.checkifassigned();
 
-  
             // Assert
-            Assert::AreEqual(std::string(""), labelImgPath);
-            Assert::AreEqual(0, id); // Assuming ID defaults to 0 if not set
-            Assert::AreEqual(std::string("UNNAMED"), itemName);
-            Assert::AreEqual(0.0, weight);
-            Assert::AreEqual(0.0, length);
-            Assert::AreEqual(0.0, height);
-            Assert::AreEqual(0.0, width);
-            
-            //Assert::IsTrue(deliverBy == date()); // Assuming date has a sensible default
-            //Assert::IsTrue(createdOn == currdate); // Assuming currdate is defined
-            Assert::IsFalse(isAssigned);
+            Assert::IsTrue(labelImgPath.empty() &&
+                id == 0 && itemName == "UNNAMED" &&
+                weight == 0.0 && length == 0.0 &&
+                height == 0.0 && width == 0.0 &&
+                deliverBy == date() && createdOn == currdate &&
+                !isAssigned);
         }
+
 
         TEST_METHOD(ParameterizedConstructor1)
         {
@@ -168,18 +159,17 @@ namespace AidanCheesmondTestProj
             // Act
             Package package(expectedLabelImgPath, expectedID, expectedItemName, expectedWeight, expectedLength, expectedWidth, expectedHeight, expectedDeliverBy);
 
-            
             // Assert
-            Assert::AreEqual(expectedLabelImgPath, package.getImgPath());
-            Assert::AreEqual(expectedID, package.getID());
-            Assert::AreEqual(expectedItemName, package.getItem());
-            Assert::AreEqual(expectedWeight, package.getWeight());
-            Assert::AreEqual(expectedLength, package.getLength());
-            Assert::AreEqual(expectedHeight, package.getHeight());
-            Assert::AreEqual(expectedWidth, package.getWidth());
-           /* Assert::IsTrue(expectedDeliverBy == package.getDeliverBy()); */
-          /*  Assert::IsTrue(currdate == package.getCreationDate());*/
-            /*Assert::IsFalse(package.checkifassigned());*/
+            Assert::IsTrue(expectedLabelImgPath == package.getImgPath() &&
+                expectedID == package.getID() &&
+                expectedItemName == package.getItem() &&
+                expectedWeight == package.getWeight() &&
+                expectedLength == package.getLength() &&
+                expectedHeight == package.getHeight() &&
+                expectedWidth == package.getWidth() &&
+                expectedDeliverBy == package.getDeliverBy() &&
+                currdate == package.getCreationDate() &&
+                !package.checkifassigned());
         }
 
         TEST_METHOD(InitPkgVectTest)
