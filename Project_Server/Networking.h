@@ -30,12 +30,17 @@ bool initSocket() {
 	sockaddr_in SvrAddr;
 	SvrAddr.sin_family = AF_INET;						//Address family type itnernet
 	SvrAddr.sin_port = htons(27000);					//port (host to network conversion)
-	SvrAddr.sin_addr.s_addr = inet_addr("10.144.115.57");	//IP address
-	if ((connect(ClientSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr))) == SOCKET_ERROR) {
+	SvrAddr.sin_addr.s_addr = inet_addr("127.0.0.1");	//IP address
+	bool connecting = true;
+	while (connecting) {
+		if ((connect(ClientSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr))) != SOCKET_ERROR)
+			connecting = false;
+	}
+	/*if ((connect(ClientSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr))) == SOCKET_ERROR) {
 		closesocket(ClientSocket);
 		WSACleanup();
 		return false;
-	}
+	}*/
 	return true;
 }
 void recvBuf(char* buf, int len) {

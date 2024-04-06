@@ -196,7 +196,7 @@ namespace AidanCheesmondTestProj
             Assert::IsTrue(allPkgs.size() > 0);
 
            //  Cleanup
-            std::remove("packages.txt");
+            std::remove("test_data.txt");
         }
 
         TEST_METHOD(ReadPkgTest)

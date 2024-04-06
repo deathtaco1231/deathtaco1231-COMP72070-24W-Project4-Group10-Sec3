@@ -16,6 +16,8 @@ Login::~Login()
 void Login::tempui(void) {
     ui.connectingWidget->setAutoFillBackground(true);
     ui.connectingWidget->show();
+    show();
+    QApplication::processEvents();
     if (!initSocket()) {
         qDebug("Socket failed to initalize.");
         exit(1);
@@ -38,8 +40,7 @@ void Login::on_LoginBtn_clicked() {
         ui.errorLabel->setStyleSheet("QLabel { color : red; }");
     }
     else {
-        mainscrn = new HomePage(this);
         this->hide();
-        mainscrn->show();
+        mainscrn = new HomePage(this);
     }
 }

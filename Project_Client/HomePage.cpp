@@ -6,8 +6,12 @@ HomePage::HomePage(QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    this->hide();
+    activateWindow();
+    setParent(parent);
+    setWindowModality(Qt::WindowModal);
+    this->show();
     setupClt();
-    show();
     configUI();
 }
 
