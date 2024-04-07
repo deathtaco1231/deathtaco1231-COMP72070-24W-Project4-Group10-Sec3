@@ -43,7 +43,8 @@ void Login::on_LoginBtn_clicked() {
         ui.connectingWidget->show();
         QApplication::processEvents();
         setTempUI();
-        //this->hide();
+        //this->close();
+        this->hide();
         mainscrn = new HomePage(this);
         /*mainscrn->setWindowModality(Qt::ApplicationModal);
         this->hide();

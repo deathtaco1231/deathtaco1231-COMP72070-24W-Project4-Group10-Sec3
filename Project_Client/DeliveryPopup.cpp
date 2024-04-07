@@ -4,7 +4,12 @@ DeliveryPopup::DeliveryPopup(QWidget* parent)
     : QDialog(parent)
 {
     ui.setupUi(this);
+    this->setWindowModality(Qt::ApplicationModal);
     configUI();
+    this->show();
+    this->activateWindow();
+    this->raise();
+    
 }
 
 DeliveryPopup::~DeliveryPopup()

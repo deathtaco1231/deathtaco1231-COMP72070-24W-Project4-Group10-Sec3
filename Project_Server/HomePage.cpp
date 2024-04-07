@@ -6,8 +6,7 @@ HomePage::HomePage(QWidget* parent)
     ui.setupUi(this);
     this->hide();
     activateWindow();
-    setParent(parent);
-    setWindowModality(Qt::WindowModal);
+    setWindowModality(Qt::ApplicationModal);
     this->show();
     configUI();
 }
@@ -74,8 +73,10 @@ void HomePage::on_deliveredBtn_clicked() {
     else {
         if (currSelect.getID() != 0) {
             ui.errorLabel->setText("Waiting for response...");
+            this->hide();
             QApplication::processEvents();
             if (!sendDelivered(label, currSelect)) {
+                this->show();
                 ui.errorLabel->setText(QString::fromStdString("Server rejected delivery."));
                 ui.errorLabel->setStyleSheet("QLabel { color : red; }");
             }

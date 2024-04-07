@@ -8,8 +8,7 @@ HomePage::HomePage(QWidget* parent)
     ui.setupUi(this);
     this->hide();
     activateWindow();
-    setParent(parent);
-    setWindowModality(Qt::WindowModal);
+    this->setWindowModality(Qt::ApplicationModal);
     this->show();
     setupClt();
     configUI();
@@ -140,8 +139,8 @@ void HomePage::waitforClt(void) {
         FILE* fp = fopen(TMPIMG, "wb");
         fwrite(buf, reallen, 1, fp);
         fclose(fp);
+        setFocus();
         popup = new DeliveryPopup(this);
-        popup->setWindowModality(Qt::ApplicationModal);
         popup->exec();
         if (isDel) {
             int index = 0;
@@ -162,6 +161,7 @@ void HomePage::waitforClt(void) {
     case REQPACKAGEFLAG: {
         DataPkt p = recvPacket();
         pkgCount = p.getSeqNum();
+        this->raise(); // TEST
         ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(pkgCount)));
         break;
     }
