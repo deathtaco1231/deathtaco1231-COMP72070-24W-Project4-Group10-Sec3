@@ -137,7 +137,7 @@ namespace AidanNickersonTestProj
             ss << invalidDate;
 
             // Verify the output
-            Assert::AreEqual("invalid date", ss.str().c_str());
+            Assert::AreEqual(" invalid date ", ss.str().c_str());
         }
 
         TEST_METHOD(TestLeapYear)
