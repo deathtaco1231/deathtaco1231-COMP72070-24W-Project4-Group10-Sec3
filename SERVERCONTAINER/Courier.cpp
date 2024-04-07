@@ -37,9 +37,9 @@ Courier readCourier(std::ifstream& in) {
 	Courier c(stoi(gooddeliv), stoi(latedeliv), stoi(age), stoi(id), name, uname, pword);
 	return c;
 }
-bool authCourier(std::string uname, std::string pword) {
+bool authCourier(std::string uname, std::string pword, std::string fname) {
 	std::ifstream courierdata;
-	courierdata.open(COURIERFNAME);
+	courierdata.open(fname);
 	if (!courierdata.is_open()) {
 		return false;
 	}
@@ -83,7 +83,7 @@ void setCurrentCourier(void) {
 		std::string uname, pword;
 		std::getline(isline, uname, DELIM);
 		std::getline(isline, pword, BODYEND);
-		if (!authCourier(uname, pword))
+		if (!authCourier(uname, pword, COURIERFNAME))
 			sendFlag(FAILEDAUTHFLAG);
 		else {
 			isValid = true;

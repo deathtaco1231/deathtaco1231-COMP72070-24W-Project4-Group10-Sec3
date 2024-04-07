@@ -201,18 +201,18 @@ namespace JulianTestProj
 		{
 			// Arrange
 			DataPkt tmp; 
-			tmp.setHead(0, 0, NULL);
+			tmp.setHead(1, 1, 100);
 			char data[100] = { "Hello World" };
 			int size = 0;
 			tmp.setTBuf(data, size);
 			char* modify = tmp.getTBuf();
+			
 
 			// Act
-			char* test = tmp.getTBuf();
-			delete[] test;
+			delete[] modify;
 
 			// Assert
-			Assert::IsTrue(test == nullptr);
+			Assert::IsTrue(tmp.getTBuf() == nullptr);
 
 		}
 		TEST_METHOD(TST_CLTOO9_RETUNINITBUF)
@@ -230,10 +230,11 @@ namespace JulianTestProj
 		TEST_METHOD(TST_CLTO10_RBUFSIZETOOBIG)
 		{
 			// Arrange
-			char* data = new char[1000001];
-			memset(data, 1, sizeof(data));
+			int datasize = 1000001;
+			char* data = new char[datasize];
+			memset(data, 1, datasize);
 			Header head;
-			head.Datasize = sizeof(data);
+			head.Datasize = datasize;
 			head.DType = 1;
 			head.Flags = 0;
 			memcpy(data, &head, sizeof(head));
@@ -290,7 +291,7 @@ namespace JulianTestProj
 			// Assert
 			Assert::AreEqual(result, expected);
 		}
-		TEST_METHOD(TST_CLTO13)
+		/*TEST_METHOD(TST_CLTO13)
 		{
 
 		}
@@ -301,7 +302,7 @@ namespace JulianTestProj
 		TEST_METHOD(TST_CLTO15)
 		{
 
-		}
+		}*/
 
 	};
 	TEST_CLASS(ServerUnitTests)
@@ -364,41 +365,82 @@ namespace JulianTestProj
 		TEST_METHOD(TST_SRV014_VALIDCOURIER)
 		{
 			// Arrange
-			std::string uname, pword;
+			std::ofstream out("C:\\Users\\dankp\\Downloads\\test_data.txt");
+			out << "0,203,19,1,Cat Arena,Julian,1234;";
+			out.close();
+			std::string uname, pword, fname;
 			uname = "Julian";
 			pword = "1234";
+			fname = "C:\\Users\\dankp\\Downloads\\test_data.txt";
 
 			// Act
-			bool test = authCourier(uname, pword);
-
+			bool test = authCourier(uname, pword, fname);
+			std::remove("C:\\Users\\dankp\\Downloads\\test_data.txt");
 			// Assert
 			Assert::IsTrue(test);
 		}
 		TEST_METHOD(TST_SRV015_INVALIDUNAME)
 		{
 			// Arrange
-			std::string uname, pword;
+			std::string uname, pword, fname;
 			uname = "INVALID";
 			pword = "1234";
+			fname = "C:\\Users\\dankp\\Downloads\\test_data.txt";
 
 			// Act
-			bool test = authCourier(uname, pword);
-
+			bool test = authCourier(uname, pword, fname);
+			std::remove("C:\\Users\\dankp\\Downloads\\test_data.txt");
 			// Assert
 			Assert::IsFalse(test);
 		}
 		TEST_METHOD(TST_SRV015_INVALIDPWORD)
 		{
 			// Arrange
-			std::string uname, pword;
+			std::string uname, pword, fname;
 			uname = "Julian";
 			pword = "INVALID";
-
+			fname = "C:\\Users\\dankp\\Downloads\\test_data.txt";
 			// Act
-			bool test = authCourier(uname, pword);
-
+			bool test = authCourier(uname, pword, fname);
+			std::remove("C:\\Users\\dankp\\Downloads\\test_data.txt");
 			// Assert
 			Assert::IsFalse(test);
 		}
+	};
+	TEST_CLASS(SystemTests) // Tests which are flagged as tested inside the Squish automated testing tool are marked as false (fail) until they pass in that tool and are marked as passed in the test log
+	{						// Once this happens, the false flag here is changed to true
+	public:
+		TEST_METHOD(TST_SYS_001)
+		{
+			//TESTED INSIDE CATCH AND REPLY TOOL
+			Assert::IsTrue(true);
+		}
+		TEST_METHOD(TST_SYS_002)
+		{
+			//TESTED INSIDE CATCH AND REPLY TOOL
+			Assert::IsTrue(true);
+		}
+		TEST_METHOD(TST_SYS_003)
+		{
+			//TESTED INSIDE CATCH AND REPLY TOOL
+			Assert::IsTrue(true);
+		}
+		TEST_METHOD(TST_SYS_004)
+		{
+
+		}
+		TEST_METHOD(TST_SYS_005)
+		{
+
+		}
+		TEST_METHOD(TST_SYS_006)
+		{
+
+		}
+		TEST_METHOD(TST_SYS_007)
+		{
+
+		}
+
 	};
 }

@@ -122,7 +122,7 @@ long int GetFileSize(const char* filename)
 	FILE* f;
 
 	fopen_s(&f, filename, "rb");
-	if (f == NULL) return -1;
+	if (f == NULL) return 0;
 	fseek(f, 0, SEEK_END);
 	size = ftell(f);
 	fclose(f);
