@@ -1,7 +1,7 @@
 #include "Package.h"
 Package::Package() : Address() {
-	this->LabelImgPath = "";
-	this->ID = NULL;
+	this->LabelImgPath = "EMPTY";
+	this->ID = 0;
 	this->ItemName = "UNNAMED";
 	this->weight = 0;
 	this->length = 0;

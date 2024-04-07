@@ -73,7 +73,6 @@ void HomePage::on_deliveredBtn_clicked() {
     else {
         if (currSelect.getID() != 0) {
             ui.errorLabel->setText("Waiting for response...");
-            this->hide();
             QApplication::processEvents();
             if (!sendDelivered(label, currSelect)) {
                 this->show();
