@@ -133,7 +133,7 @@ namespace AidanCheesmondTestProj
             bool isAssigned = package.checkifassigned();
 
             // Assert
-            Assert::IsTrue(labelImgPath.empty() &&
+            Assert::IsTrue(labelImgPath == "EMPTY" &&
                 id == 0 && itemName == "UNNAMED" &&
                 weight == 0.0 && length == 0.0 &&
                 height == 0.0 && width == 0.0 /*&&

@@ -21,7 +21,7 @@ void DeliveryPopup::configUI(void) {
     QPixmap demo(TMPIMG);
     ui.imglabel->setPixmap(demo);
     ui.imglabel->setScaledContents(true);
-    ui.idLabel->setText(QString::fromStdString("Package ID: " + tmpPkg.getID()));
+    ui.idLabel->setText(QString::fromStdString("Package ID: " + std::to_string(tmpPkg.getID())));
     ui.itemnameLabel->setText(QString::fromStdString("Item Name: " + tmpPkg.getItem()));
     ui.dimensionsLabel->setText(QString::fromStdString("Dimensions: Width " + std::format("{:.2f}", tmpPkg.getWidth()) + "CM, Length " + std::format("{:.2f}", tmpPkg.getLength()) + "CM, Height " + std::format("{:.2f}", tmpPkg.getHeight()) + "CM"));
     ui.weightLabel->setText(QString::fromStdString("Weight: " + std::format("{:.2f}", tmpPkg.getWeight()) + " LBS"));
