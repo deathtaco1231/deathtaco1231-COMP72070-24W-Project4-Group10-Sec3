@@ -202,14 +202,15 @@ namespace JulianTestProj
 			// Arrange
 			DataPkt tmp; 
 			tmp.setHead(1, 1, 100);
-			char data[100] = { "Hello World" };
+			char data[100] = { "Hello World\0" };
 			int size = 0;
 			tmp.setTBuf(data, size);
 			char* modify = tmp.getTBuf();
 			
-
-			// Act
-			delete[] modify;
+			
+			memset(tmp.getTBuf(), '\0', size);
+			//delete[] tmp.getTBuf();
+			
 
 			// Assert
 			Assert::IsTrue(tmp.getTBuf() == nullptr);

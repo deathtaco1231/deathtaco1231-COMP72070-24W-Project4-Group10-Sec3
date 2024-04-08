@@ -86,8 +86,13 @@ void HomePage::on_deliveredBtn_clicked() {
                 allQstrPkgs.erase(allQstrPkgs.begin() + index);
                 allPkgs.erase(allPkgs.begin() + index);
                 currSelect.setID(0);
-                currCourier.incGoodDeliv();
+                date currentdate = currSelect.getDeliverBy();
+                if (currentdate < currdate)
+                    currCourier.incLateDeliv();
+                else
+                    currCourier.incLateDeliv();
                 ui.courierLabel->setText(QString::fromStdString("Courier ID: " + std::to_string(currCourier.getID()) + ", Name: " + currCourier.getName() + ", On Time: " + std::to_string(currCourier.getGoodDeliv()) + ", Late: " + std::to_string(currCourier.getLateDeliv())));
+                ui.errorLabel->setText(QString::fromStdString("Delivery Accepted."));
             }
         }  
     }
@@ -132,7 +137,7 @@ void HomePage::on_requestBtn_clicked() {
         allQstrPkgs.clear();
         ui.pkgList->clear();
         setItemList();
-        ui.errorLabel->setText("Packages received successfully.");
+        ui.errorLabel->setText("Received successfully.");
     }
     else {
         ui.errorLabel->setText("Invalid entry!");

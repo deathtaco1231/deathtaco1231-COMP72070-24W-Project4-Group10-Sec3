@@ -54,10 +54,15 @@ void DataPkt::setTBuf(char* data, int& size) {
 	memcpy(TBuf + headSize + head.Datasize, &tail, tailSize);
 }
 char* DataPkt::getTBuf(void) {
-	Header h;
-	memcpy(&h, &this->TBuf, sizeof(head));
-	if (h.Datasize != this->head.Datasize || h.DType != this->head.DType || h.Flags != this->head.Flags)
-		this->TBuf = nullptr;
+	if (head.Datasize > 0 && head.Datasize <= 1000000) {
+		bool invalid = true;
+		for (int i = 0; i < head.Datasize; i++)
+			if (TBuf[i] != '\0')
+				invalid = false;
+
+		if (invalid)
+			this->TBuf = nullptr;
+	}
 	return this->TBuf;
 }
 DataPkt::~DataPkt() {

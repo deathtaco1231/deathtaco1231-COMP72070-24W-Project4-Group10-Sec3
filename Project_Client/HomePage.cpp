@@ -66,12 +66,12 @@ void HomePage::on_sendPkgBtn_clicked() {
     Sleep(50);
     sendToClt(buf, len);
     delete[] buf;
-    ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(pkgCount)));
+    ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(--pkgCount)));
     allQstrPkgs.clear();
     ui.pkgList->clear();
     setItemList();
     QApplication::processEvents();
-    if (--pkgCount == 0)
+    if (pkgCount == 0)
         waitforClt();
     
 }
