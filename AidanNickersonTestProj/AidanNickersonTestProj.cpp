@@ -28,6 +28,7 @@ extern std::vector<Package> allPkgs;
 extern Courier currCourier;
 extern Package tmpPkg;
 extern bool isDel;
+extern date currdate;
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -40,17 +41,15 @@ namespace AidanNickersonTestProj
         TEST_METHOD(TestDefaultConstructor)
         {
             date d;
-            Assert::AreEqual(0, d.getyear(), L"Default constructor year should be 0");
-            Assert::AreEqual(0, d.getmonth(), L"Default constructor month should be 0");
-            Assert::AreEqual(0, d.getday(), L"Default constructor day should be 0");
+            
+            Assert::IsTrue(1 == d.getyear() && 0 == d.getmonth() && 0 == d.getyear());
         }
 
         TEST_METHOD(TestParameterizedConstructor)
         {
             date d(18, 3, 2024);
-            Assert::AreEqual(2024, d.getyear(), L"Parameterized constructor year should be 2024");
-            Assert::AreEqual(3, d.getmonth(), L"Parameterized constructor month should be 3");
-            Assert::AreEqual(18, d.getday(), L"Parameterized constructor day should be 18");
+           
+            Assert::IsTrue(2024 == d.getyear() && 3 == d.getmonth() && 18 == d.getday());
         }
 
         TEST_METHOD(TestValidDate)
@@ -71,9 +70,8 @@ namespace AidanNickersonTestProj
             d.setyear(2024);
             d.setmonth(3);
             d.setday(18);
-            Assert::AreEqual(2024, d.getyear(), L"Year should be 2024");
-            Assert::AreEqual(3, d.getmonth(), L"Month should be 3");
-            Assert::AreEqual(18, d.getday(), L"Day should be 18");
+           
+            Assert::IsTrue(2024 == d.getyear() && 3 == d.getmonth() && 18 == d.getday());
         }
 
         TEST_METHOD(TESTLONGDATE)
@@ -166,11 +164,8 @@ namespace AidanNickersonTestProj
             date d3(15, 4, 2024);
             date d4(15, 3, 2025);
 
-            Assert::IsTrue(d1 < d2, L"d1 should be less than d2");
-            Assert::IsTrue(d1 < d3, L"d1 should be less than d3");
-            Assert::IsTrue(d1 < d4, L"d1 should be less than d4");
-            Assert::IsTrue(d1 == d1, L"d1 should be equal to itself");
-            Assert::IsTrue(d1 <= d2, L"d1 should be less than or equal to d2");
+            Assert::IsTrue(d1 < d2 && d1 < d3 && d1 < d4 && d1 == d1 && d1 <= d2, L"d1 should be less than d2");
+           
         }
 
         TEST_METHOD(TestValidMethodWithDifferentTimeZones)
@@ -191,9 +186,8 @@ namespace AidanNickersonTestProj
         TEST_METHOD(TestDefaultConstructor)
         {
             Order order;
-            Assert::IsTrue(order.getPackage().getID() == 0, L"Default package ID should be 0");
-            Assert::IsTrue(order.getDate().getyear() == 0, L"Default date year should be 0");
-            Assert::IsTrue(order.getCourier().getID() == 0, L"Default courier ID should be 0");
+            Assert::IsTrue(order.getPackage().getID() == 0 && order.getDate().getyear() == 0 && order.getCourier().getID() == 0, L"Default package ID should be 0");
+           
         }
 
 
@@ -205,9 +199,8 @@ namespace AidanNickersonTestProj
             Order order(p, d, c);
 
            
-            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
-            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
-            Assert::AreEqual(1, order.getCourier().getID(), L"Courier ID should be 1");
+           
+            Assert::IsTrue(1 == order.getPackage().getID() && 2024 == order.getDate().getyear() && 1 == order.getCourier().getID());
         }
 
         TEST_METHOD(TestSettersAndGetters)
@@ -221,9 +214,9 @@ namespace AidanNickersonTestProj
             order.setDate(d);
             order.setCourier(c);
 
-            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
-            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
-            Assert::AreEqual(1, order.getCourier().getID(), L"Courier ID should be 1");
+           
+            Assert::IsTrue(1 == order.getPackage().getID() && 2024 == order.getDate().getyear() && 1 == order.getCourier().getID());
+
         }
 
 
