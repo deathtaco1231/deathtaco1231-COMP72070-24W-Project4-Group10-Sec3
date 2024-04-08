@@ -12,12 +12,24 @@ DataPkt::DataPkt(char* buf) {
 		TBuf = new char[head.Datasize];
 		memcpy(TBuf, buf + sizeof(head), head.Datasize);
 	}
-	memcpy(&tail, buf + sizeof(head) + head.Datasize, sizeof(tail));
+	if (head.Datasize > 0 && head.Datasize < 1000000)
+		memcpy(&tail, buf + sizeof(head) + head.Datasize, sizeof(tail));
+	else
+		memset(&tail, 0, sizeof(tail));
 }
 void DataPkt::setHead(unsigned char dt, unsigned char fl, unsigned int size) {
-	this->head.DType = dt;
-	this->head.Flags = fl;
-	this->head.Datasize = size;
+	if (dt <= 15 && dt >= 0)
+		this->head.DType = dt;
+	else
+		this->head.DType = 0;
+	if (fl <= 15 && fl >= 0)
+		this->head.Flags = fl;
+	else
+		this->head.Flags = 0;
+	if (size <= 1000000 && size >= 0)
+		this->head.Datasize = size;
+	else
+		this->head.Datasize = 0;
 }
 void DataPkt::setDType(unsigned char a) {
 	if (a >= 0 && a <= 15)
@@ -42,8 +54,15 @@ void DataPkt::setTBuf(char* data, int& size) {
 	memcpy(TBuf + headSize + head.Datasize, &tail, tailSize);
 }
 char* DataPkt::getTBuf(void) {
-	if (!TBuf)
-		this->TBuf = nullptr;
+	if (head.Datasize > 0 && head.Datasize <= 1000000) {
+		bool invalid = true;
+		for (int i = 0; i < head.Datasize; i++)
+			if (TBuf[i] != '\0')
+				invalid = false;
+
+		if (invalid)
+			this->TBuf = nullptr;
+	}
 	return this->TBuf;
 }
 DataPkt::~DataPkt() {

@@ -135,7 +135,7 @@ namespace AidanNickersonTestProj
             ss << invalidDate;
 
             // Verify the output
-            Assert::AreEqual(std::string(" invalid date "), ss.str());
+            Assert::AreEqual(" invalid date ", ss.str().c_str());
         }
 
         TEST_METHOD(TestLeapYear)
@@ -195,12 +195,13 @@ namespace AidanNickersonTestProj
         {
             Package p("test.jpg", 1, "Test Item", 1.0, 10.0, 10.0, 10.0, date(1, 1, 2024));
             date d(1, 1, 2024);
-            Courier c(1, 0); // Assuming Courier constructor takes ID, GoodDeliveries, LateDeliveries, and Name
+            Courier c(1, 0); // Assuming Courier constructor takes GoodDeliveries, LateDeliveries
             Order order(p, d, c);
 
            
-           
-            Assert::IsTrue(1 == order.getPackage().getID() && 2024 == order.getDate().getyear() && 1 == order.getCourier().getID());
+            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
+            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
+            Assert::AreEqual(0, order.getCourier().getID(), L"Courier ID should be 1");
         }
 
         TEST_METHOD(TestSettersAndGetters)
@@ -214,9 +215,9 @@ namespace AidanNickersonTestProj
             order.setDate(d);
             order.setCourier(c);
 
-           
-            Assert::IsTrue(1 == order.getPackage().getID() && 2024 == order.getDate().getyear() && 1 == order.getCourier().getID());
-
+            Assert::AreEqual(1, order.getPackage().getID(), L"Package ID should be 1");
+            Assert::AreEqual(2024, order.getDate().getyear(), L"Date year should be 2024");
+            Assert::AreEqual(0, order.getCourier().getID(), L"Courier ID should be 1");
         }
 
 

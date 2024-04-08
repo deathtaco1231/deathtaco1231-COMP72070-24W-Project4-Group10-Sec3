@@ -43,6 +43,6 @@ public:
 std::vector<Package> allPkgs;
 Package tmpPkg;
 bool isDel;
-bool initPkgVect(void);
+bool initPkgVect(std::string);
 Package readPkg(std::ifstream&);
 Package matchbyID(int i);

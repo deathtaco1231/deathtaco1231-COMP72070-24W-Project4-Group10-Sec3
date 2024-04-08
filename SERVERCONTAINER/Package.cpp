@@ -1,7 +1,7 @@
 #include "Package.h"
 Package::Package() : Address() {
-	this->LabelImgPath = "";
-	this->ID = NULL;
+	this->LabelImgPath = "EMPTY";
+	this->ID = 0;
 	this->ItemName = "UNNAMED";
 	this->weight = 0;
 	this->length = 0;
@@ -103,9 +103,9 @@ std::string Package::getImgPath(void) {
 	return this->LabelImgPath;
 }
 
-bool initPkgVect(void) {
+bool initPkgVect(std::string fname) {
 	std::ifstream pkgdata;
-	pkgdata.open(PKGFNAME);
+	pkgdata.open(fname);
 	if (!pkgdata.is_open())
 		return false;
 	while (!pkgdata.eof()) {
