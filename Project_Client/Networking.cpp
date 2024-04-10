@@ -114,7 +114,7 @@ void sendCltPackages(void) {
 			_itoa_s(len, strlen, 10);
 			Sleep(100);
 			sendToClt(strlen, sizeof(strlen));
-			Sleep(100);
+			Sleep(150);
 			sendToClt(buf, len);
 			delete[] buf;
 		}

@@ -142,3 +142,21 @@ Late? --> Yes
 Delivered by courier: Cat Arena	ID: 1
 
 
+Order Completed At: Mon Apr  8 08:13:12 2024
+
+Package ID: 4	Item Name: Lmao
+Weight: 14.30LBS	Length: 86.00CM	Width: 44.62CM	Height: 3.00CM
+Created on: 2024/4/8	Delivery Deadline: 2024/3/6	Actual Delivery Date: 2024/4/8
+Late? --> Yes
+Delivered by courier: Cat Arena	ID: 1
+
+
+Order Completed At: Mon Apr  8 08:56:16 2024
+
+Package ID: 14	Item Name: Charger
+Weight: 14.30LBS	Length: 86.00CM	Width: 44.62CM	Height: 3.00CM
+Created on: 2024/4/8	Delivery Deadline: 2024/3/6	Actual Delivery Date: 2024/4/8
+Late? --> Yes
+Delivered by courier: Cat Arena	ID: 1
+
+

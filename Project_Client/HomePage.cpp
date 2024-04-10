@@ -53,6 +53,7 @@ void HomePage::on_sendPkgBtn_clicked() {
     DataPkt p = fmtPkg(currSelect, size);
     setVectPkgAssigned(currSelect);
     sendToClt(p.getTBuf(), size);
+    Sleep(100);
     long int len = GetFileSize(currSelect.getImgPath().c_str());
     FILE* in;
     fopen_s(&in, currSelect.getImgPath().c_str(), "rb");
@@ -61,9 +62,9 @@ void HomePage::on_sendPkgBtn_clicked() {
     fclose(in);
     char strlen[8] = { 0 };
     _itoa_s(len, strlen, 10);
-    Sleep(50);
+    Sleep(100);
     sendToClt(strlen, sizeof(strlen));
-    Sleep(50);
+    Sleep(150);
     sendToClt(buf, len);
     delete[] buf;
     ui.remainingLabel->setText(QString::fromStdString("Remaining: " + std::to_string(--pkgCount)));
